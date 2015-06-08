@@ -1,0 +1,109 @@
+#ifndef ModelFactory_H_
+#define ModelFactory_H_
+
+
+#include "SWGConnector.h"
+#include "SWGConversionStep.h"
+#include "SWGCorrelation.h"
+#include "SWGJsonErrorResponse.h"
+#include "SWGMeasurement.h"
+#include "SWGMeasurementRange.h"
+#include "SWGMeasurementSource.h"
+#include "SWGPairs.h"
+#include "SWGPermission.h"
+#include "SWGPostCorrelation.h"
+#include "SWGUnit.h"
+#include "SWGUnitCategory.h"
+#include "SWGUser.h"
+#include "SWGUserTokenRequest.h"
+#include "SWGUserTokenSuccessfulResponse.h"
+#include "SWGUserTokenFailedResponse.h"
+#include "SWGUserTokenRequestInnerUserField.h"
+#include "SWGUserTokenSuccessfulResponseInnerUserField.h"
+#include "SWGVariable.h"
+#include "SWGVariableCategory.h"
+#include "SWGVariableUserSettings.h"
+
+namespace Swagger {
+  inline void* create(QString type) {
+    if(QString("SWGConnector").compare(type) == 0) {
+      return new SWGConnector();
+    }
+    if(QString("SWGConversionStep").compare(type) == 0) {
+      return new SWGConversionStep();
+    }
+    if(QString("SWGCorrelation").compare(type) == 0) {
+      return new SWGCorrelation();
+    }
+    if(QString("SWGJsonErrorResponse").compare(type) == 0) {
+      return new SWGJsonErrorResponse();
+    }
+    if(QString("SWGMeasurement").compare(type) == 0) {
+      return new SWGMeasurement();
+    }
+    if(QString("SWGMeasurementRange").compare(type) == 0) {
+      return new SWGMeasurementRange();
+    }
+    if(QString("SWGMeasurementSource").compare(type) == 0) {
+      return new SWGMeasurementSource();
+    }
+    if(QString("SWGPairs").compare(type) == 0) {
+      return new SWGPairs();
+    }
+    if(QString("SWGPermission").compare(type) == 0) {
+      return new SWGPermission();
+    }
+    if(QString("SWGPostCorrelation").compare(type) == 0) {
+      return new SWGPostCorrelation();
+    }
+    if(QString("SWGUnit").compare(type) == 0) {
+      return new SWGUnit();
+    }
+    if(QString("SWGUnitCategory").compare(type) == 0) {
+      return new SWGUnitCategory();
+    }
+    if(QString("SWGUser").compare(type) == 0) {
+      return new SWGUser();
+    }
+    if(QString("SWGUserTokenRequest").compare(type) == 0) {
+      return new SWGUserTokenRequest();
+    }
+    if(QString("SWGUserTokenSuccessfulResponse").compare(type) == 0) {
+      return new SWGUserTokenSuccessfulResponse();
+    }
+    if(QString("SWGUserTokenFailedResponse").compare(type) == 0) {
+      return new SWGUserTokenFailedResponse();
+    }
+    if(QString("SWGUserTokenRequestInnerUserField").compare(type) == 0) {
+      return new SWGUserTokenRequestInnerUserField();
+    }
+    if(QString("SWGUserTokenSuccessfulResponseInnerUserField").compare(type) == 0) {
+      return new SWGUserTokenSuccessfulResponseInnerUserField();
+    }
+    if(QString("SWGVariable").compare(type) == 0) {
+      return new SWGVariable();
+    }
+    if(QString("SWGVariableCategory").compare(type) == 0) {
+      return new SWGVariableCategory();
+    }
+    if(QString("SWGVariableUserSettings").compare(type) == 0) {
+      return new SWGVariableUserSettings();
+    }
+    
+    return NULL;
+  }
+
+  inline void* create(QString json, QString type) {
+    void* val = create(type);
+    if(val != NULL) {
+      SWGObject* obj = static_cast<SWGObject*>(val);
+      return obj->fromJson(json);
+    }
+    if(type.startsWith("QString")) {
+      return new QString();
+    }
+    return NULL;
+  }
+} /* namespace Swagger */
+
+#endif /* ModelFactory_H_ */
