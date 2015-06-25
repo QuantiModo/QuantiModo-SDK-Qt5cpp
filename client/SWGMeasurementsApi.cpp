@@ -53,13 +53,22 @@ SWGMeasurementsApi::measurementSourcesGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGMeasurementSource* output = static_cast<SWGMeasurementSource*>(create(json, QString("SWGMeasurementSource")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit measurementSourcesGetSignal(output);
     
-    emit measurementSourcesGetSignal();
 }
 void
-SWGMeasurementsApi::measurementSourcesPost(QList<SWGMeasurementSource*>* name) {
+SWGMeasurementsApi::measurementSourcesPost(SWGMeasurementSource name) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurementSources");
 
@@ -74,14 +83,9 @@ SWGMeasurementsApi::measurementSourcesPost(QList<SWGMeasurementSource*>* name) {
 
     
     
-    QJsonArray* nameArray = new QJsonArray();
-    toJsonArray((QList<void*>*)name, nameArray, QString("body"), QString("SWGUser*"));
-
-    QJsonDocument doc(*nameArray);
-    QByteArray bytes = doc.toJson();
-
-    input.request_body.append(bytes);
     
+    QString output = name.asJson();
+    input.request_body.append(output);
     
 
     
@@ -221,13 +225,22 @@ SWGMeasurementsApi::measurementsGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGMeasurement* output = static_cast<SWGMeasurement*>(create(json, QString("SWGMeasurement")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit measurementsGetSignal(output);
     
-    emit measurementsGetSignal();
 }
 void
-SWGMeasurementsApi::measurementsV2Post(QList<SWGMeasurement*>* measurements) {
+SWGMeasurementsApi::measurementsV2Post(SWGMeasurementSet measurements) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/v2");
 
@@ -242,14 +255,9 @@ SWGMeasurementsApi::measurementsV2Post(QList<SWGMeasurement*>* measurements) {
 
     
     
-    QJsonArray* measurementsArray = new QJsonArray();
-    toJsonArray((QList<void*>*)measurements, measurementsArray, QString("body"), QString("SWGUser*"));
-
-    QJsonDocument doc(*measurementsArray);
-    QByteArray bytes = doc.toJson();
-
-    input.request_body.append(bytes);
     
+    QString output = measurements.asJson();
+    input.request_body.append(output);
     
 
     
@@ -341,9 +349,18 @@ SWGMeasurementsApi::measurementsRangeGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGMeasurementRange* output = static_cast<SWGMeasurementRange*>(create(json, QString("SWGMeasurementRange")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit measurementsRangeGetSignal(output);
     
-    emit measurementsRangeGetSignal();
 }
 } /* namespace Swagger */

@@ -27,7 +27,7 @@ private:
     void pairsGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void pairsGetSignal();
+    void pairsGetSignal(QList<SWGPairs*>* summary);
     
 };
 }

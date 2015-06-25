@@ -121,7 +121,7 @@ SWGConnectorsApi::connectorsConnectorConnectGetCallback(HttpRequestWorker * work
     emit connectorsConnectorConnectGetSignal();
 }
 void
-SWGConnectorsApi::connectorsConnectorConnectInstructionsGet(QString* connector) {
+SWGConnectorsApi::connectorsConnectorConnectInstructionsGet(QString* connector, QString* url, QList<QString*>* parameters, bool usePopup) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/connectInstructions");
 
@@ -130,6 +130,42 @@ SWGConnectorsApi::connectorsConnectorConnectInstructionsGet(QString* connector) 
     fullPath.replace(connectorPathParam, stringValue(connector));
     
 
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("url"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(url)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("parameters"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(parameters)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("usePopup"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(usePopup)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -165,6 +201,124 @@ SWGConnectorsApi::connectorsConnectorConnectInstructionsGetCallback(HttpRequestW
 
     
     emit connectorsConnectorConnectInstructionsGetSignal();
+}
+void
+SWGConnectorsApi::connectorsConnectorConnectParameterGet(QString* connector, QString* displayName, QString* key, bool usePopup, QString* type, QString* placeholder, QString* defaultValue) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/connectParameter");
+
+    
+    QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
+    fullPath.replace(connectorPathParam, stringValue(connector));
+    
+
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("displayName"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(displayName)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("key"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(key)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("usePopup"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(usePopup)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("type"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(type)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("placeholder"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(placeholder)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("defaultValue"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(defaultValue)));
+    
+
+    
+    
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+    
+
+    
+
+    
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGConnectorsApi::connectorsConnectorConnectParameterGetCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGConnectorsApi::connectorsConnectorConnectParameterGetCallback(HttpRequestWorker * worker) {
+    QString msg;
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    
+
+    worker->deleteLater();
+
+    
+    emit connectorsConnectorConnectParameterGetSignal();
 }
 void
 SWGConnectorsApi::connectorsConnectorDisconnectGet(QString* connector) {

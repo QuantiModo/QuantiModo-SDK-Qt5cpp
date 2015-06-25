@@ -31,7 +31,7 @@ private:
     void v1OrganizationsOrganizationIdUsersPostCallback (HttpRequestWorker * worker);
     
 signals:
-    void userMeGetSignal();
+    void userMeGetSignal(SWGUser* summary);
     void v1OrganizationsOrganizationIdUsersPostSignal(SWGUserTokenSuccessfulResponse* summary);
     
 };

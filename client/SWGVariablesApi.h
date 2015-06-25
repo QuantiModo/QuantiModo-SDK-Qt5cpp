@@ -6,8 +6,8 @@
 #include <QString>
 #include "SWGVariable.h"
 #include "SWGVariableCategory.h"
-#include <QList>
 #include "SWGVariableUserSettings.h"
+#include "SWGVariablesNew.h"
 
 #include <QObject>
 
@@ -28,9 +28,9 @@ public:
     void publicVariablesGet();
     void publicVariablesSearchSearchGet(QString* search, QString* effectOrCause);
     void variableCategoriesGet();
-    void variableUserSettingsPost(QList<SWGVariableUserSettings*>* sharingData);
+    void variableUserSettingsPost(SWGVariableUserSettings sharingData);
     void variablesGet(qint32 userId, QString* categoryName);
-    void variablesPost(QList<SWGVariable*>* variableName);
+    void variablesPost(SWGVariablesNew variableName);
     void variablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset);
     void variablesVariableNameGet(QString* variableName);
     
@@ -47,14 +47,14 @@ private:
     
 signals:
     void correlationsPostSignal();
-    void publicVariablesGetSignal();
-    void publicVariablesSearchSearchGetSignal();
-    void variableCategoriesGetSignal();
+    void publicVariablesGetSignal(SWGVariable* summary);
+    void publicVariablesSearchSearchGetSignal(SWGVariable* summary);
+    void variableCategoriesGetSignal(QList<SWGVariableCategory*>* summary);
     void variableUserSettingsPostSignal();
-    void variablesGetSignal();
+    void variablesGetSignal(SWGVariable* summary);
     void variablesPostSignal();
-    void variablesSearchSearchGetSignal();
-    void variablesVariableNameGetSignal();
+    void variablesSearchSearchGetSignal(QList<SWGVariable*>* summary);
+    void variablesVariableNameGetSignal(SWGVariable* summary);
     
 };
 }

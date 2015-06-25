@@ -4,9 +4,9 @@
 #include "SWGHttpRequest.h"
 
 #include "SWGMeasurementSource.h"
-#include <QList>
 #include <QString>
 #include "SWGMeasurement.h"
+#include "SWGMeasurementSet.h"
 #include "SWGMeasurementRange.h"
 
 #include <QObject>
@@ -25,9 +25,9 @@ public:
     QString basePath;
 
     void measurementSourcesGet();
-    void measurementSourcesPost(QList<SWGMeasurementSource*>* name);
+    void measurementSourcesPost(SWGMeasurementSource name);
     void measurementsGet(QString* variableName, QString* unit, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone);
-    void measurementsV2Post(QList<SWGMeasurement*>* measurements);
+    void measurementsV2Post(SWGMeasurementSet measurements);
     void measurementsRangeGet(QString* sources, qint32 user);
     
 private:
@@ -38,11 +38,11 @@ private:
     void measurementsRangeGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void measurementSourcesGetSignal();
+    void measurementSourcesGetSignal(SWGMeasurementSource* summary);
     void measurementSourcesPostSignal();
-    void measurementsGetSignal();
+    void measurementsGetSignal(SWGMeasurement* summary);
     void measurementsV2PostSignal();
-    void measurementsRangeGetSignal();
+    void measurementsRangeGetSignal(SWGMeasurementRange* summary);
     
 };
 }

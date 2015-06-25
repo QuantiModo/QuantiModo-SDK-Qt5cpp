@@ -144,10 +144,19 @@ SWGVariablesApi::publicVariablesGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGVariable* output = static_cast<SWGVariable*>(create(json, QString("SWGVariable")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit publicVariablesGetSignal(output);
     
-    emit publicVariablesGetSignal();
 }
 void
 SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effectOrCause) {
@@ -202,10 +211,19 @@ SWGVariablesApi::publicVariablesSearchSearchGetCallback(HttpRequestWorker * work
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGVariable* output = static_cast<SWGVariable*>(create(json, QString("SWGVariable")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit publicVariablesSearchSearchGetSignal(output);
     
-    emit publicVariablesSearchSearchGetSignal();
 }
 void
 SWGVariablesApi::variableCategoriesGet() {
@@ -244,14 +262,30 @@ SWGVariablesApi::variableCategoriesGetCallback(HttpRequestWorker * worker) {
     }
 
     
+    QList<SWGVariableCategory*>* output = new QList<SWGVariableCategory*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+
+    foreach(QJsonValue obj, jsonArray) {
+        SWGVariableCategory* o = new SWGVariableCategory();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        output->append(o);
+    }
+    
+
+    
 
     worker->deleteLater();
 
+    emit variableCategoriesGetSignal(output);
     
-    emit variableCategoriesGetSignal();
 }
 void
-SWGVariablesApi::variableUserSettingsPost(QList<SWGVariableUserSettings*>* sharingData) {
+SWGVariablesApi::variableUserSettingsPost(SWGVariableUserSettings sharingData) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSettings");
 
@@ -266,14 +300,9 @@ SWGVariablesApi::variableUserSettingsPost(QList<SWGVariableUserSettings*>* shari
 
     
     
-    QJsonArray* sharingDataArray = new QJsonArray();
-    toJsonArray((QList<void*>*)sharingData, sharingDataArray, QString("body"), QString("SWGUser*"));
-
-    QJsonDocument doc(*sharingDataArray);
-    QByteArray bytes = doc.toJson();
-
-    input.request_body.append(bytes);
     
+    QString output = sharingData.asJson();
+    input.request_body.append(output);
     
 
     
@@ -365,13 +394,22 @@ SWGVariablesApi::variablesGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGVariable* output = static_cast<SWGVariable*>(create(json, QString("SWGVariable")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit variablesGetSignal(output);
     
-    emit variablesGetSignal();
 }
 void
-SWGVariablesApi::variablesPost(QList<SWGVariable*>* variableName) {
+SWGVariablesApi::variablesPost(SWGVariablesNew variableName) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables");
 
@@ -386,14 +424,9 @@ SWGVariablesApi::variablesPost(QList<SWGVariable*>* variableName) {
 
     
     
-    QJsonArray* variableNameArray = new QJsonArray();
-    toJsonArray((QList<void*>*)variableName, variableNameArray, QString("body"), QString("SWGUser*"));
-
-    QJsonDocument doc(*variableNameArray);
-    QByteArray bytes = doc.toJson();
-
-    input.request_body.append(bytes);
     
+    QString output = variableName.asJson();
+    input.request_body.append(output);
     
 
     
@@ -511,11 +544,27 @@ SWGVariablesApi::variablesSearchSearchGetCallback(HttpRequestWorker * worker) {
     }
 
     
+    QList<SWGVariable*>* output = new QList<SWGVariable*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+
+    foreach(QJsonValue obj, jsonArray) {
+        SWGVariable* o = new SWGVariable();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        output->append(o);
+    }
+    
+
+    
 
     worker->deleteLater();
 
+    emit variablesSearchSearchGetSignal(output);
     
-    emit variablesSearchSearchGetSignal();
 }
 void
 SWGVariablesApi::variablesVariableNameGet(QString* variableName) {
@@ -558,9 +607,18 @@ SWGVariablesApi::variablesVariableNameGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGVariable* output = static_cast<SWGVariable*>(create(json, QString("SWGVariable")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit variablesVariableNameGetSignal(output);
     
-    emit variablesVariableNameGetSignal();
 }
 } /* namespace Swagger */

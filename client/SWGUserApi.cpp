@@ -53,10 +53,19 @@ SWGUserApi::userMeGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGUser* output = static_cast<SWGUser*>(create(json, QString("SWGUser")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit userMeGetSignal(output);
     
-    emit userMeGetSignal();
 }
 void
 SWGUserApi::v1OrganizationsOrganizationIdUsersPost(qint32 organizationId, SWGUserTokenRequest body) {

@@ -31,7 +31,8 @@ SWGMeasurement::init() {
     timestamp = 0L;
     value = 0.0;
     unit = new QString("");
-    note = new QString("");
+    storedValue = 0.0;
+    storedUnit = new QString("");
     
 }
 
@@ -50,8 +51,11 @@ SWGMeasurement::cleanup() {
     if(unit != NULL) {
         delete unit;
     }
-    if(note != NULL) {
-        delete note;
+    if(storedValue != NULL) {
+        delete storedValue;
+    }
+    if(storedUnit != NULL) {
+        delete storedUnit;
     }
     
 }
@@ -72,7 +76,8 @@ SWGMeasurement::fromJsonObject(QJsonObject &pJson) {
     setValue(&timestamp, pJson["timestamp"], "qint64", "");
     setValue(&value, pJson["value"], "double", "double");
     setValue(&unit, pJson["unit"], "QString", "QString");
-    setValue(&note, pJson["note"], "QString", "QString");
+    setValue(&storedValue, pJson["storedValue"], "double", "double");
+    setValue(&storedUnit, pJson["storedUnit"], "QString", "QString");
     
 }
 
@@ -116,7 +121,13 @@ SWGMeasurement::asJsonObject() {
     
     
     
-    toJsonValue(QString("note"), note, obj, QString("QString"));
+    toJsonValue(QString("storedValue"), storedValue, obj, QString("double"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("storedUnit"), storedUnit, obj, QString("QString"));
     
     
     
@@ -170,13 +181,22 @@ SWGMeasurement::setUnit(QString* unit) {
     this->unit = unit;
 }
 
-QString*
-SWGMeasurement::getNote() {
-    return note;
+double*
+SWGMeasurement::getStoredValue() {
+    return storedValue;
 }
 void
-SWGMeasurement::setNote(QString* note) {
-    this->note = note;
+SWGMeasurement::setStoredValue(double* storedValue) {
+    this->storedValue = storedValue;
+}
+
+QString*
+SWGMeasurement::getStoredUnit() {
+    return storedUnit;
+}
+void
+SWGMeasurement::setStoredUnit(QString* storedUnit) {
+    this->storedUnit = storedUnit;
 }
 
 

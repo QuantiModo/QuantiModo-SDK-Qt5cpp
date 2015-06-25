@@ -6,6 +6,7 @@
 #include "SWGConversionStep.h"
 #include "SWGCorrelation.h"
 #include "SWGJsonErrorResponse.h"
+#include "SWGMeasurementSet.h"
 #include "SWGMeasurement.h"
 #include "SWGMeasurementRange.h"
 #include "SWGMeasurementSource.h"
@@ -20,9 +21,12 @@
 #include "SWGUserTokenFailedResponse.h"
 #include "SWGUserTokenRequestInnerUserField.h"
 #include "SWGUserTokenSuccessfulResponseInnerUserField.h"
+#include "SWGValueObject.h"
 #include "SWGVariable.h"
 #include "SWGVariableCategory.h"
 #include "SWGVariableUserSettings.h"
+#include "SWGVariableNew.h"
+#include "SWGVariablesNew.h"
 
 namespace Swagger {
   inline void* create(QString type) {
@@ -37,6 +41,9 @@ namespace Swagger {
     }
     if(QString("SWGJsonErrorResponse").compare(type) == 0) {
       return new SWGJsonErrorResponse();
+    }
+    if(QString("SWGMeasurementSet").compare(type) == 0) {
+      return new SWGMeasurementSet();
     }
     if(QString("SWGMeasurement").compare(type) == 0) {
       return new SWGMeasurement();
@@ -80,6 +87,9 @@ namespace Swagger {
     if(QString("SWGUserTokenSuccessfulResponseInnerUserField").compare(type) == 0) {
       return new SWGUserTokenSuccessfulResponseInnerUserField();
     }
+    if(QString("SWGValueObject").compare(type) == 0) {
+      return new SWGValueObject();
+    }
     if(QString("SWGVariable").compare(type) == 0) {
       return new SWGVariable();
     }
@@ -88,6 +98,12 @@ namespace Swagger {
     }
     if(QString("SWGVariableUserSettings").compare(type) == 0) {
       return new SWGVariableUserSettings();
+    }
+    if(QString("SWGVariableNew").compare(type) == 0) {
+      return new SWGVariableNew();
+    }
+    if(QString("SWGVariablesNew").compare(type) == 0) {
+      return new SWGVariablesNew();
     }
     
     return NULL;

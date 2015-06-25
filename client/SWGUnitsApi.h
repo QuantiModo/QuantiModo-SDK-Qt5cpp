@@ -30,8 +30,8 @@ private:
     void unitsGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void unitCategoriesGetSignal();
-    void unitsGetSignal();
+    void unitCategoriesGetSignal(SWGUnitCategory* summary);
+    void unitsGetSignal(QList<SWGUnit*>* summary);
     
 };
 }

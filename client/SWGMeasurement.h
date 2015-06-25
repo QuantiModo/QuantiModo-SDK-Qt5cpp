@@ -40,8 +40,10 @@ public:
     void setValue(double* value);
     QString* getUnit();
     void setUnit(QString* unit);
-    QString* getNote();
-    void setNote(QString* note);
+    double* getStoredValue();
+    void setStoredValue(double* storedValue);
+    QString* getStoredUnit();
+    void setStoredUnit(QString* storedUnit);
     
 
 private:
@@ -50,7 +52,8 @@ private:
     qint64 timestamp;
     double* value;
     QString* unit;
-    QString* note;
+    double* storedValue;
+    QString* storedUnit;
     
 };
 

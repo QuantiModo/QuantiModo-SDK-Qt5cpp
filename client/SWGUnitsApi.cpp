@@ -53,10 +53,19 @@ SWGUnitsApi::unitCategoriesGetCallback(HttpRequestWorker * worker) {
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGUnitCategory* output = static_cast<SWGUnitCategory*>(create(json, QString("SWGUnitCategory")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit unitCategoriesGetSignal(output);
     
-    emit unitCategoriesGetSignal();
 }
 void
 SWGUnitsApi::unitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName) {
@@ -131,10 +140,26 @@ SWGUnitsApi::unitsGetCallback(HttpRequestWorker * worker) {
     }
 
     
+    QList<SWGUnit*>* output = new QList<SWGUnit*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+
+    foreach(QJsonValue obj, jsonArray) {
+        SWGUnit* o = new SWGUnit();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        output->append(o);
+    }
+    
+
+    
 
     worker->deleteLater();
 
+    emit unitsGetSignal(output);
     
-    emit unitsGetSignal();
 }
 } /* namespace Swagger */

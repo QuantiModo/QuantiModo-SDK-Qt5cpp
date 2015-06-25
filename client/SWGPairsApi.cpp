@@ -172,10 +172,26 @@ SWGPairsApi::pairsGetCallback(HttpRequestWorker * worker) {
     }
 
     
+    QList<SWGPairs*>* output = new QList<SWGPairs*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+
+    foreach(QJsonValue obj, jsonArray) {
+        SWGPairs* o = new SWGPairs();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        output->append(o);
+    }
+    
+
+    
 
     worker->deleteLater();
 
+    emit pairsGetSignal(output);
     
-    emit pairsGetSignal();
 }
 } /* namespace Swagger */
