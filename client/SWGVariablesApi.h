@@ -26,10 +26,10 @@ public:
 
     void correlationsPost(QString* cause, QString* effect, QString* correlationcoefficient, QString* vote);
     void publicVariablesGet();
-    void publicVariablesSearchSearchGet(QString* search, QString* effectOrCause);
+    void publicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort);
     void variableCategoriesGet();
     void variableUserSettingsPost(SWGVariableUserSettings sharingData);
-    void variablesGet(qint32 userId, QString* categoryName);
+    void variablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort);
     void variablesPost(SWGVariablesNew variableName);
     void variablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset);
     void variablesVariableNameGet(QString* variableName);

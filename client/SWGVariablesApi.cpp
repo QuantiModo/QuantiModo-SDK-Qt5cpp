@@ -159,7 +159,7 @@ SWGVariablesApi::publicVariablesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effectOrCause) {
+SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/public/variables/search/{search}");
 
@@ -177,6 +177,42 @@ SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effect
     fullPath.append(QUrl::toPercentEncoding("effectOrCause"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(effectOrCause)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("limit"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(limit)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("offset"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(offset)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("sort"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(sort)));
     
 
     
@@ -333,7 +369,7 @@ SWGVariablesApi::variableUserSettingsPostCallback(HttpRequestWorker * worker) {
     emit variableUserSettingsPostSignal();
 }
 void
-SWGVariablesApi::variablesGet(qint32 userId, QString* categoryName) {
+SWGVariablesApi::variablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables");
 
@@ -357,9 +393,45 @@ SWGVariablesApi::variablesGet(qint32 userId, QString* categoryName) {
       fullPath.append("&");
     else 
       fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("categoryName"))
+    fullPath.append(QUrl::toPercentEncoding("category"))
         .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(categoryName)));
+        .append(QUrl::toPercentEncoding(stringValue(category)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("limit"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(limit)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("offset"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(offset)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("sort"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(sort)));
     
 
     

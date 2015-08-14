@@ -2,6 +2,7 @@
 #define ModelFactory_H_
 
 
+#include "SWGCommonResponse.h"
 #include "SWGConnector.h"
 #include "SWGConversionStep.h"
 #include "SWGCorrelation.h"
@@ -30,6 +31,9 @@
 
 namespace Swagger {
   inline void* create(QString type) {
+    if(QString("SWGCommonResponse").compare(type) == 0) {
+      return new SWGCommonResponse();
+    }
     if(QString("SWGConnector").compare(type) == 0) {
       return new SWGConnector();
     }

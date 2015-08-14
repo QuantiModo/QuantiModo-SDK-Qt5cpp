@@ -16,7 +16,7 @@ SWGOauthApi::SWGOauthApi(QString host, QString basePath) {
 }
 
 void
-SWGOauthApi::oauth2AccesstokenGet(QString* responseType, QString* redirectUri, QString* realm, QString* clientId, QString* scope, QString* state) {
+SWGOauthApi::oauth2AccesstokenGet(QString* clientId, QString* clientSecret, QString* grantType, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/oauth2/accesstoken");
 
@@ -28,45 +28,45 @@ SWGOauthApi::oauth2AccesstokenGet(QString* responseType, QString* redirectUri, Q
       fullPath.append("&");
     else 
       fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("responseType"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(responseType)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("redirectUri"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(redirectUri)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("realm"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(realm)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
     fullPath.append(QUrl::toPercentEncoding("clientId"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(clientId)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("clientSecret"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(clientSecret)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("grantType"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(grantType)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("responseType"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(responseType)));
     
 
     
@@ -88,9 +88,33 @@ SWGOauthApi::oauth2AccesstokenGet(QString* responseType, QString* redirectUri, Q
       fullPath.append("&");
     else 
       fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("redirectUri"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(redirectUri)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
     fullPath.append(QUrl::toPercentEncoding("state"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(state)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("realm"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(realm)));
     
 
     
@@ -131,7 +155,7 @@ SWGOauthApi::oauth2AccesstokenGetCallback(HttpRequestWorker * worker) {
     emit oauth2AccesstokenGetSignal();
 }
 void
-SWGOauthApi::oauth2AuthorizeGet(QString* clientId, QString* realm, QString* redirectUri, QString* responseType, QString* scope, QString* state) {
+SWGOauthApi::oauth2AuthorizeGet(QString* clientId, QString* clientSecret, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/oauth2/authorize");
 
@@ -155,21 +179,9 @@ SWGOauthApi::oauth2AuthorizeGet(QString* clientId, QString* realm, QString* redi
       fullPath.append("&");
     else 
       fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("realm"))
+    fullPath.append(QUrl::toPercentEncoding("clientSecret"))
         .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(realm)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("redirectUri"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(redirectUri)));
+        .append(QUrl::toPercentEncoding(stringValue(clientSecret)));
     
 
     
@@ -203,9 +215,33 @@ SWGOauthApi::oauth2AuthorizeGet(QString* clientId, QString* realm, QString* redi
       fullPath.append("&");
     else 
       fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("redirectUri"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(redirectUri)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
     fullPath.append(QUrl::toPercentEncoding("state"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(state)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("realm"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(realm)));
     
 
     

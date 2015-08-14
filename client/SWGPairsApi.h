@@ -21,7 +21,7 @@ public:
     QString host;
     QString basePath;
 
-    void pairsGet(QString* cause, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effect, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime);
+    void pairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort);
     
 private:
     void pairsGetCallback (HttpRequestWorker * worker);

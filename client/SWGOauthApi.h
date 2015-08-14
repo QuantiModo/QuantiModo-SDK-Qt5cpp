@@ -20,8 +20,8 @@ public:
     QString host;
     QString basePath;
 
-    void oauth2AccesstokenGet(QString* responseType, QString* redirectUri, QString* realm, QString* clientId, QString* scope, QString* state);
-    void oauth2AuthorizeGet(QString* clientId, QString* realm, QString* redirectUri, QString* responseType, QString* scope, QString* state);
+    void oauth2AccesstokenGet(QString* clientId, QString* clientSecret, QString* grantType, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm);
+    void oauth2AuthorizeGet(QString* clientId, QString* clientSecret, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm);
     
 private:
     void oauth2AccesstokenGetCallback (HttpRequestWorker * worker);

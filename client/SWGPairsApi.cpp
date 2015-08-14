@@ -16,7 +16,7 @@ SWGPairsApi::SWGPairsApi(QString host, QString basePath) {
 }
 
 void
-SWGPairsApi::pairsGet(QString* cause, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effect, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime) {
+SWGPairsApi::pairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/pairs");
 
@@ -139,6 +139,42 @@ SWGPairsApi::pairsGet(QString* cause, QString* causeSource, QString* causeUnit, 
     fullPath.append(QUrl::toPercentEncoding("startTime"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(startTime)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("limit"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(limit)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("offset"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(offset)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("sort"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(sort)));
     
 
     

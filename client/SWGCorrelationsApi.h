@@ -7,6 +7,7 @@
 #include "SWGCorrelation.h"
 #include "SWGJsonErrorResponse.h"
 #include "SWGPostCorrelation.h"
+#include "SWGCommonResponse.h"
 
 #include <QObject>
 
@@ -23,7 +24,7 @@ public:
     QString host;
     QString basePath;
 
-    void correlationsGet(QString* effect, QString* cause);
+    void correlationsGet(QString* effect, QString* cause, qint32 limit, qint32 offset, qint32 sort);
     void publicCorrelationsSearchSearchGet(QString* search, QString* effectOrCause);
     void v1CorrelationsPost(SWGPostCorrelation body);
     void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameCausesGet(qint32 organizationId, qint32 userId, QString* variableName, QString* organizationToken, QString* includePublic);
@@ -32,6 +33,8 @@ public:
     void v1VariablesVariableNameEffectsGet(QString* variableName);
     void v1VariablesVariableNamePublicCausesGet(QString* variableName);
     void v1VariablesVariableNamePublicEffectsGet(QString* variableName);
+    void v1VotesPost(QString* cause, QString* effect, bool vote);
+    void v1VotesDeletePost(QString* cause, QString* effect);
     
 private:
     void correlationsGetCallback (HttpRequestWorker * worker);
@@ -43,17 +46,21 @@ private:
     void v1VariablesVariableNameEffectsGetCallback (HttpRequestWorker * worker);
     void v1VariablesVariableNamePublicCausesGetCallback (HttpRequestWorker * worker);
     void v1VariablesVariableNamePublicEffectsGetCallback (HttpRequestWorker * worker);
+    void v1VotesPostCallback (HttpRequestWorker * worker);
+    void v1VotesDeletePostCallback (HttpRequestWorker * worker);
     
 signals:
     void correlationsGetSignal(QList<SWGCorrelation*>* summary);
     void publicCorrelationsSearchSearchGetSignal(QList<SWGCorrelation*>* summary);
     void v1CorrelationsPostSignal();
     void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameCausesGetSignal(QList<SWGCorrelation*>* summary);
-    void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameEffectsGetSignal(QList<SWGCorrelation*>* summary);
+    void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameEffectsGetSignal(QList<SWGCommonResponse*>* summary);
     void v1VariablesVariableNameCausesGetSignal(QList<SWGCorrelation*>* summary);
     void v1VariablesVariableNameEffectsGetSignal(QList<SWGCorrelation*>* summary);
     void v1VariablesVariableNamePublicCausesGetSignal(QList<SWGCorrelation*>* summary);
     void v1VariablesVariableNamePublicEffectsGetSignal(QList<SWGCorrelation*>* summary);
+    void v1VotesPostSignal(SWGCommonResponse* summary);
+    void v1VotesDeletePostSignal(SWGCommonResponse* summary);
     
 };
 }

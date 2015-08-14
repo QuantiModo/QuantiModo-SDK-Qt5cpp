@@ -24,14 +24,17 @@ public:
 
     void unitCategoriesGet();
     void unitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName);
+    void unitsVariableGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName, QString* variable);
     
 private:
     void unitCategoriesGetCallback (HttpRequestWorker * worker);
     void unitsGetCallback (HttpRequestWorker * worker);
+    void unitsVariableGetCallback (HttpRequestWorker * worker);
     
 signals:
     void unitCategoriesGetSignal(SWGUnitCategory* summary);
     void unitsGetSignal(QList<SWGUnit*>* summary);
+    void unitsVariableGetSignal(QList<SWGUnit*>* summary);
     
 };
 }

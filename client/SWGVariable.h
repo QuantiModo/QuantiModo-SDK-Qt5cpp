@@ -11,6 +11,8 @@
 
 
 #include <QString>
+#include <QList>
+#include "SWGVariable.h"
 
 #include "SWGObject.h"
 
@@ -30,6 +32,8 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGVariable* fromJson(QString &jsonString);
 
+    qint32 getId();
+    void setId(qint32 id);
     QString* getName();
     void setName(QString* name);
     QString* getOriginalName();
@@ -48,9 +52,48 @@ public:
     void setCombinationOperation(QString* combinationOperation);
     double* getFillingValue();
     void setFillingValue(double* fillingValue);
+    QString* getJoinWith();
+    void setJoinWith(QString* joinWith);
+    QList<SWGVariable*>* getJoinedVariables();
+    void setJoinedVariables(QList<SWGVariable*>* joinedVariables);
+    qint32 getParent();
+    void setParent(qint32 parent);
+    QList<SWGVariable*>* getSubVariables();
+    void setSubVariables(QList<SWGVariable*>* subVariables);
+    qint32 getOnsetDelay();
+    void setOnsetDelay(qint32 onsetDelay);
+    qint32 getDurationOfAction();
+    void setDurationOfAction(qint32 durationOfAction);
+    qint32 getEarliestMeasurementTime();
+    void setEarliestMeasurementTime(qint32 earliestMeasurementTime);
+    qint32 getLatestMeasurementTime();
+    void setLatestMeasurementTime(qint32 latestMeasurementTime);
+    qint32 getUpdated();
+    void setUpdated(qint32 updated);
+    qint32 getCauseOnly();
+    void setCauseOnly(qint32 causeOnly);
+    qint32 getNumberOfCorrelations();
+    void setNumberOfCorrelations(qint32 numberOfCorrelations);
+    qint32 getOutcome();
+    void setOutcome(qint32 outcome);
+    qint32 getMeasurementsAtLastAnalysis();
+    void setMeasurementsAtLastAnalysis(qint32 measurementsAtLastAnalysis);
+    qint32 getNumberOfMeasurements();
+    void setNumberOfMeasurements(qint32 numberOfMeasurements);
+    qint32 getLastUnit();
+    void setLastUnit(qint32 lastUnit);
+    qint32 getLastValue();
+    void setLastValue(qint32 lastValue);
+    qint32 getMostCommonValue();
+    void setMostCommonValue(qint32 mostCommonValue);
+    qint32 getMostCommonUnit();
+    void setMostCommonUnit(qint32 mostCommonUnit);
+    qint32 getLastSource();
+    void setLastSource(qint32 lastSource);
     
 
 private:
+    qint32 id;
     QString* name;
     QString* originalName;
     QString* category;
@@ -60,6 +103,25 @@ private:
     double* maximumValue;
     QString* combinationOperation;
     double* fillingValue;
+    QString* joinWith;
+    QList<SWGVariable*>* joinedVariables;
+    qint32 parent;
+    QList<SWGVariable*>* subVariables;
+    qint32 onsetDelay;
+    qint32 durationOfAction;
+    qint32 earliestMeasurementTime;
+    qint32 latestMeasurementTime;
+    qint32 updated;
+    qint32 causeOnly;
+    qint32 numberOfCorrelations;
+    qint32 outcome;
+    qint32 measurementsAtLastAnalysis;
+    qint32 numberOfMeasurements;
+    qint32 lastUnit;
+    qint32 lastValue;
+    qint32 mostCommonValue;
+    qint32 mostCommonUnit;
+    qint32 lastSource;
     
 };
 
