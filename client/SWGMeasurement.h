@@ -42,8 +42,8 @@ public:
     void setUnit(QString* unit);
     double* getStoredValue();
     void setStoredValue(double* storedValue);
-    QString* getStoredUnit();
-    void setStoredUnit(QString* storedUnit);
+    QString* getStoredAbbreviatedUnitName();
+    void setStoredAbbreviatedUnitName(QString* storedAbbreviatedUnitName);
     
 
 private:
@@ -53,7 +53,7 @@ private:
     double* value;
     QString* unit;
     double* storedValue;
-    QString* storedUnit;
+    QString* storedAbbreviatedUnitName;
     
 };
 

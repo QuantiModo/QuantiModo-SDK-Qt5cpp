@@ -26,7 +26,7 @@ SWGCommonResponse::~SWGCommonResponse() {
 
 void
 SWGCommonResponse::init() {
-    status = 0;
+    status = NULL;
     message = new QString("");
     success = false;
     

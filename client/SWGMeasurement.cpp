@@ -32,7 +32,7 @@ SWGMeasurement::init() {
     value = 0.0;
     unit = new QString("");
     storedValue = 0.0;
-    storedUnit = new QString("");
+    storedAbbreviatedUnitName = new QString("");
     
 }
 
@@ -54,8 +54,8 @@ SWGMeasurement::cleanup() {
     if(storedValue != NULL) {
         delete storedValue;
     }
-    if(storedUnit != NULL) {
-        delete storedUnit;
+    if(storedAbbreviatedUnitName != NULL) {
+        delete storedAbbreviatedUnitName;
     }
     
 }
@@ -77,7 +77,7 @@ SWGMeasurement::fromJsonObject(QJsonObject &pJson) {
     setValue(&value, pJson["value"], "double", "double");
     setValue(&unit, pJson["unit"], "QString", "QString");
     setValue(&storedValue, pJson["storedValue"], "double", "double");
-    setValue(&storedUnit, pJson["storedUnit"], "QString", "QString");
+    setValue(&storedAbbreviatedUnitName, pJson["storedAbbreviatedUnitName"], "QString", "QString");
     
 }
 
@@ -127,7 +127,7 @@ SWGMeasurement::asJsonObject() {
     
     
     
-    toJsonValue(QString("storedUnit"), storedUnit, obj, QString("QString"));
+    toJsonValue(QString("storedAbbreviatedUnitName"), storedAbbreviatedUnitName, obj, QString("QString"));
     
     
     
@@ -191,12 +191,12 @@ SWGMeasurement::setStoredValue(double* storedValue) {
 }
 
 QString*
-SWGMeasurement::getStoredUnit() {
-    return storedUnit;
+SWGMeasurement::getStoredAbbreviatedUnitName() {
+    return storedAbbreviatedUnitName;
 }
 void
-SWGMeasurement::setStoredUnit(QString* storedUnit) {
-    this->storedUnit = storedUnit;
+SWGMeasurement::setStoredAbbreviatedUnitName(QString* storedAbbreviatedUnitName) {
+    this->storedAbbreviatedUnitName = storedAbbreviatedUnitName;
 }
 
 

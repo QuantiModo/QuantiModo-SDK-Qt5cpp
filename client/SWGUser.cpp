@@ -26,8 +26,8 @@ SWGUser::~SWGUser() {
 
 void
 SWGUser::init() {
-    id = 0;
-    wpId = 0;
+    id = NULL;
+    wpId = NULL;
     displayName = new QString("");
     loginName = new QString("");
     email = new QString("");

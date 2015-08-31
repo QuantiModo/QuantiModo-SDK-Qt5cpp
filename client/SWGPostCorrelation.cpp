@@ -29,7 +29,7 @@ SWGPostCorrelation::init() {
     cause = new QString("");
     effect = new QString("");
     correlation = 0.0;
-    vote = 0;
+    vote = NULL;
     
 }
 

@@ -5,8 +5,8 @@
 
 #include <QString>
 #include "SWGVariable.h"
+#include "SWGUserVariables.h"
 #include "SWGVariableCategory.h"
-#include "SWGVariableUserSettings.h"
 #include "SWGVariablesNew.h"
 
 #include <QObject>
@@ -27,8 +27,8 @@ public:
     void correlationsPost(QString* cause, QString* effect, QString* correlationcoefficient, QString* vote);
     void publicVariablesGet();
     void publicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort);
+    void v1UserVariablesPost(SWGUserVariables sharingData);
     void variableCategoriesGet();
-    void variableUserSettingsPost(SWGVariableUserSettings sharingData);
     void variablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort);
     void variablesPost(SWGVariablesNew variableName);
     void variablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset);
@@ -38,8 +38,8 @@ private:
     void correlationsPostCallback (HttpRequestWorker * worker);
     void publicVariablesGetCallback (HttpRequestWorker * worker);
     void publicVariablesSearchSearchGetCallback (HttpRequestWorker * worker);
+    void v1UserVariablesPostCallback (HttpRequestWorker * worker);
     void variableCategoriesGetCallback (HttpRequestWorker * worker);
-    void variableUserSettingsPostCallback (HttpRequestWorker * worker);
     void variablesGetCallback (HttpRequestWorker * worker);
     void variablesPostCallback (HttpRequestWorker * worker);
     void variablesSearchSearchGetCallback (HttpRequestWorker * worker);
@@ -49,8 +49,8 @@ signals:
     void correlationsPostSignal();
     void publicVariablesGetSignal(SWGVariable* summary);
     void publicVariablesSearchSearchGetSignal(SWGVariable* summary);
+    void v1UserVariablesPostSignal();
     void variableCategoriesGetSignal(QList<SWGVariableCategory*>* summary);
-    void variableUserSettingsPostSignal();
     void variablesGetSignal(SWGVariable* summary);
     void variablesPostSignal();
     void variablesSearchSearchGetSignal(QList<SWGVariable*>* summary);

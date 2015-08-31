@@ -16,9 +16,9 @@ SWGConnectorsApi::SWGConnectorsApi(QString host, QString basePath) {
 }
 
 void
-SWGConnectorsApi::connectorsListGet() {
+SWGConnectorsApi::v1ConnectorsListGet() {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/list");
+    fullPath.append(this->host).append(this->basePath).append("/v1/connectors/list");
 
     
 
@@ -36,13 +36,13 @@ SWGConnectorsApi::connectorsListGet() {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGConnectorsApi::connectorsListGetCallback);
+            &SWGConnectorsApi::v1ConnectorsListGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGConnectorsApi::connectorsListGetCallback(HttpRequestWorker * worker) {
+SWGConnectorsApi::v1ConnectorsListGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -71,13 +71,13 @@ SWGConnectorsApi::connectorsListGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit connectorsListGetSignal(output);
+    emit v1ConnectorsListGetSignal(output);
     
 }
 void
-SWGConnectorsApi::connectorsConnectorConnectGet(QString* connector) {
+SWGConnectorsApi::v1ConnectorsConnectorConnectGet(QString* connector) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/connect");
+    fullPath.append(this->host).append(this->basePath).append("/v1/connectors/{connector}/connect");
 
     
     QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
@@ -98,13 +98,13 @@ SWGConnectorsApi::connectorsConnectorConnectGet(QString* connector) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGConnectorsApi::connectorsConnectorConnectGetCallback);
+            &SWGConnectorsApi::v1ConnectorsConnectorConnectGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGConnectorsApi::connectorsConnectorConnectGetCallback(HttpRequestWorker * worker) {
+SWGConnectorsApi::v1ConnectorsConnectorConnectGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -118,212 +118,12 @@ SWGConnectorsApi::connectorsConnectorConnectGetCallback(HttpRequestWorker * work
     worker->deleteLater();
 
     
-    emit connectorsConnectorConnectGetSignal();
+    emit v1ConnectorsConnectorConnectGetSignal();
 }
 void
-SWGConnectorsApi::connectorsConnectorConnectInstructionsGet(QString* connector, QString* url, QList<QString*>* parameters, bool usePopup) {
+SWGConnectorsApi::v1ConnectorsConnectorDisconnectGet(QString* connector) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/connectInstructions");
-
-    
-    QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
-    fullPath.replace(connectorPathParam, stringValue(connector));
-    
-
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("url"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(url)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("parameters"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(parameters)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("usePopup"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(usePopup)));
-    
-
-    
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "GET");
-
-    
-
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGConnectorsApi::connectorsConnectorConnectInstructionsGetCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGConnectorsApi::connectorsConnectorConnectInstructionsGetCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-
-    worker->deleteLater();
-
-    
-    emit connectorsConnectorConnectInstructionsGetSignal();
-}
-void
-SWGConnectorsApi::connectorsConnectorConnectParameterGet(QString* connector, QString* displayName, QString* key, bool usePopup, QString* type, QString* placeholder, QString* defaultValue) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/connectParameter");
-
-    
-    QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
-    fullPath.replace(connectorPathParam, stringValue(connector));
-    
-
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("displayName"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(displayName)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("key"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(key)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("usePopup"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(usePopup)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("type"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(type)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("placeholder"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(placeholder)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("defaultValue"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(defaultValue)));
-    
-
-    
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "GET");
-
-    
-
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGConnectorsApi::connectorsConnectorConnectParameterGetCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGConnectorsApi::connectorsConnectorConnectParameterGetCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-
-    worker->deleteLater();
-
-    
-    emit connectorsConnectorConnectParameterGetSignal();
-}
-void
-SWGConnectorsApi::connectorsConnectorDisconnectGet(QString* connector) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/disconnect");
+    fullPath.append(this->host).append(this->basePath).append("/v1/connectors/{connector}/disconnect");
 
     
     QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
@@ -344,13 +144,13 @@ SWGConnectorsApi::connectorsConnectorDisconnectGet(QString* connector) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGConnectorsApi::connectorsConnectorDisconnectGetCallback);
+            &SWGConnectorsApi::v1ConnectorsConnectorDisconnectGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGConnectorsApi::connectorsConnectorDisconnectGetCallback(HttpRequestWorker * worker) {
+SWGConnectorsApi::v1ConnectorsConnectorDisconnectGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -364,12 +164,12 @@ SWGConnectorsApi::connectorsConnectorDisconnectGetCallback(HttpRequestWorker * w
     worker->deleteLater();
 
     
-    emit connectorsConnectorDisconnectGetSignal();
+    emit v1ConnectorsConnectorDisconnectGetSignal();
 }
 void
-SWGConnectorsApi::connectorsConnectorInfoGet(QString* connector) {
+SWGConnectorsApi::v1ConnectorsConnectorInfoGet(QString* connector) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/info");
+    fullPath.append(this->host).append(this->basePath).append("/v1/connectors/{connector}/info");
 
     
     QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
@@ -390,13 +190,13 @@ SWGConnectorsApi::connectorsConnectorInfoGet(QString* connector) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGConnectorsApi::connectorsConnectorInfoGetCallback);
+            &SWGConnectorsApi::v1ConnectorsConnectorInfoGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGConnectorsApi::connectorsConnectorInfoGetCallback(HttpRequestWorker * worker) {
+SWGConnectorsApi::v1ConnectorsConnectorInfoGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -407,15 +207,24 @@ SWGConnectorsApi::connectorsConnectorInfoGetCallback(HttpRequestWorker * worker)
 
     
 
+    
+    
+    
+    QString json(worker->response);
+    SWGConnectorInfo* output = static_cast<SWGConnectorInfo*>(create(json, QString("SWGConnectorInfo")));
+    
+    
+    
+
     worker->deleteLater();
 
+    emit v1ConnectorsConnectorInfoGetSignal(output);
     
-    emit connectorsConnectorInfoGetSignal();
 }
 void
-SWGConnectorsApi::connectorsConnectorUpdateGet(QString* connector) {
+SWGConnectorsApi::v1ConnectorsConnectorUpdateGet(QString* connector) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/connectors/{connector}/update");
+    fullPath.append(this->host).append(this->basePath).append("/v1/connectors/{connector}/update");
 
     
     QString connectorPathParam("{"); connectorPathParam.append("connector").append("}");
@@ -436,13 +245,13 @@ SWGConnectorsApi::connectorsConnectorUpdateGet(QString* connector) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGConnectorsApi::connectorsConnectorUpdateGetCallback);
+            &SWGConnectorsApi::v1ConnectorsConnectorUpdateGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGConnectorsApi::connectorsConnectorUpdateGetCallback(HttpRequestWorker * worker) {
+SWGConnectorsApi::v1ConnectorsConnectorUpdateGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -456,6 +265,6 @@ SWGConnectorsApi::connectorsConnectorUpdateGetCallback(HttpRequestWorker * worke
     worker->deleteLater();
 
     
-    emit connectorsConnectorUpdateGetSignal();
+    emit v1ConnectorsConnectorUpdateGetSignal();
 }
 } /* namespace Swagger */

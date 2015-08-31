@@ -26,8 +26,8 @@ SWGMeasurementRange::~SWGMeasurementRange() {
 
 void
 SWGMeasurementRange::init() {
-    lowerLimit = 0;
-    upperLimit = 0;
+    lowerLimit = NULL;
+    upperLimit = NULL;
     
 }
 

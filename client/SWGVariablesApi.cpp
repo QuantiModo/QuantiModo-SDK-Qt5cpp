@@ -262,6 +262,54 @@ SWGVariablesApi::publicVariablesSearchSearchGetCallback(HttpRequestWorker * work
     
 }
 void
+SWGVariablesApi::v1UserVariablesPost(SWGUserVariables sharingData) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/v1/userVariables");
+
+    
+
+    
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "POST");
+
+    
+
+    
+    
+    
+    QString output = sharingData.asJson();
+    input.request_body.append(output);
+    
+
+    
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGVariablesApi::v1UserVariablesPostCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGVariablesApi::v1UserVariablesPostCallback(HttpRequestWorker * worker) {
+    QString msg;
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    
+
+    worker->deleteLater();
+
+    
+    emit v1UserVariablesPostSignal();
+}
+void
 SWGVariablesApi::variableCategoriesGet() {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories");
@@ -319,54 +367,6 @@ SWGVariablesApi::variableCategoriesGetCallback(HttpRequestWorker * worker) {
 
     emit variableCategoriesGetSignal(output);
     
-}
-void
-SWGVariablesApi::variableUserSettingsPost(SWGVariableUserSettings sharingData) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variableUserSettings");
-
-    
-
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "POST");
-
-    
-
-    
-    
-    
-    QString output = sharingData.asJson();
-    input.request_body.append(output);
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGVariablesApi::variableUserSettingsPostCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGVariablesApi::variableUserSettingsPostCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-
-    worker->deleteLater();
-
-    
-    emit variableUserSettingsPostSignal();
 }
 void
 SWGVariablesApi::variablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort) {

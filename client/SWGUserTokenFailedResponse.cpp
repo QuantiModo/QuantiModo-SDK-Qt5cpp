@@ -26,7 +26,7 @@ SWGUserTokenFailedResponse::~SWGUserTokenFailedResponse() {
 
 void
 SWGUserTokenFailedResponse::init() {
-    code = 0;
+    code = NULL;
     message = new QString("");
     success = false;
     

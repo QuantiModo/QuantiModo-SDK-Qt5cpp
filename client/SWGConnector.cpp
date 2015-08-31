@@ -26,15 +26,15 @@ SWGConnector::~SWGConnector() {
 
 void
 SWGConnector::init() {
-    id = 0;
+    id = NULL;
     name = new QString("");
     displayName = new QString("");
     image = new QString("");
     getItUrl = new QString("");
     connected = new QString("");
     connectInstructions = new QString("");
-    lastUpdate = 0;
-    latestData = 0;
+    lastUpdate = NULL;
+    totalMeasurementsInLastUpdate = NULL;
     noDataYet = false;
     
 }
@@ -85,7 +85,7 @@ SWGConnector::fromJsonObject(QJsonObject &pJson) {
     setValue(&connected, pJson["connected"], "QString", "QString");
     setValue(&connectInstructions, pJson["connectInstructions"], "QString", "QString");
     setValue(&lastUpdate, pJson["lastUpdate"], "qint32", "");
-    setValue(&latestData, pJson["latestData"], "qint32", "");
+    setValue(&totalMeasurementsInLastUpdate, pJson["totalMeasurementsInLastUpdate"], "qint32", "");
     setValue(&noDataYet, pJson["noDataYet"], "bool", "");
     
 }
@@ -141,7 +141,7 @@ SWGConnector::asJsonObject() {
     
     
     obj->insert("lastUpdate", QJsonValue(lastUpdate));
-    obj->insert("latestData", QJsonValue(latestData));
+    obj->insert("totalMeasurementsInLastUpdate", QJsonValue(totalMeasurementsInLastUpdate));
     obj->insert("noDataYet", QJsonValue(noDataYet));
     
 
@@ -221,12 +221,12 @@ SWGConnector::setLastUpdate(qint32 lastUpdate) {
 }
 
 qint32
-SWGConnector::getLatestData() {
-    return latestData;
+SWGConnector::getTotalMeasurementsInLastUpdate() {
+    return totalMeasurementsInLastUpdate;
 }
 void
-SWGConnector::setLatestData(qint32 latestData) {
-    this->latestData = latestData;
+SWGConnector::setTotalMeasurementsInLastUpdate(qint32 totalMeasurementsInLastUpdate) {
+    this->totalMeasurementsInLastUpdate = totalMeasurementsInLastUpdate;
 }
 
 bool

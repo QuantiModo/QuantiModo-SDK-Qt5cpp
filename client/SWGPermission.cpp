@@ -26,12 +26,12 @@ SWGPermission::~SWGPermission() {
 
 void
 SWGPermission::init() {
-    target = 0;
+    target = NULL;
     variableName = new QString("");
-    min_timestamp = 0;
-    max_timestamp = 0;
-    min_time_of_day = 0;
-    max_time_of_day = 0;
+    min_timestamp = NULL;
+    max_timestamp = NULL;
+    min_time_of_day = NULL;
+    max_time_of_day = NULL;
     week = new QString("");
     
 }

@@ -26,7 +26,7 @@ SWGUserTokenSuccessfulResponse::~SWGUserTokenSuccessfulResponse() {
 
 void
 SWGUserTokenSuccessfulResponse::init() {
-    code = 0;
+    code = NULL;
     message = new QString("");
     user = new SWGUserTokenSuccessfulResponseInnerUserField();
     

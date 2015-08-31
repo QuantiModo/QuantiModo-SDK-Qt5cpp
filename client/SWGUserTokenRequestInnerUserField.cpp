@@ -26,7 +26,7 @@ SWGUserTokenRequestInnerUserField::~SWGUserTokenRequestInnerUserField() {
 
 void
 SWGUserTokenRequestInnerUserField::init() {
-    _id = 0;
+    _id = NULL;
     
 }
 

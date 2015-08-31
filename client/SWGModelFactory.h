@@ -4,6 +4,8 @@
 
 #include "SWGCommonResponse.h"
 #include "SWGConnector.h"
+#include "SWGConnectorInfo.h"
+#include "SWGConnectorInfoHistoryItem.h"
 #include "SWGConversionStep.h"
 #include "SWGCorrelation.h"
 #include "SWGJsonErrorResponse.h"
@@ -25,7 +27,7 @@
 #include "SWGValueObject.h"
 #include "SWGVariable.h"
 #include "SWGVariableCategory.h"
-#include "SWGVariableUserSettings.h"
+#include "SWGUserVariables.h"
 #include "SWGVariableNew.h"
 #include "SWGVariablesNew.h"
 
@@ -36,6 +38,12 @@ namespace Swagger {
     }
     if(QString("SWGConnector").compare(type) == 0) {
       return new SWGConnector();
+    }
+    if(QString("SWGConnectorInfo").compare(type) == 0) {
+      return new SWGConnectorInfo();
+    }
+    if(QString("SWGConnectorInfoHistoryItem").compare(type) == 0) {
+      return new SWGConnectorInfoHistoryItem();
     }
     if(QString("SWGConversionStep").compare(type) == 0) {
       return new SWGConversionStep();
@@ -100,8 +108,8 @@ namespace Swagger {
     if(QString("SWGVariableCategory").compare(type) == 0) {
       return new SWGVariableCategory();
     }
-    if(QString("SWGVariableUserSettings").compare(type) == 0) {
-      return new SWGVariableUserSettings();
+    if(QString("SWGUserVariables").compare(type) == 0) {
+      return new SWGUserVariables();
     }
     if(QString("SWGVariableNew").compare(type) == 0) {
       return new SWGVariableNew();

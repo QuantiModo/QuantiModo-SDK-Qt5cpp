@@ -26,7 +26,7 @@ SWGVariable::~SWGVariable() {
 
 void
 SWGVariable::init() {
-    id = 0;
+    id = NULL;
     name = new QString("");
     originalName = new QString("");
     category = new QString("");
@@ -38,23 +38,23 @@ SWGVariable::init() {
     fillingValue = 0.0;
     joinWith = new QString("");
     joinedVariables = new QList<SWGVariable*>();
-    parent = 0;
+    parent = NULL;
     subVariables = new QList<SWGVariable*>();
-    onsetDelay = 0;
-    durationOfAction = 0;
-    earliestMeasurementTime = 0;
-    latestMeasurementTime = 0;
-    updated = 0;
-    causeOnly = 0;
-    numberOfCorrelations = 0;
-    outcome = 0;
-    measurementsAtLastAnalysis = 0;
-    numberOfMeasurements = 0;
-    lastUnit = 0;
-    lastValue = 0;
-    mostCommonValue = 0;
-    mostCommonUnit = 0;
-    lastSource = 0;
+    onsetDelay = NULL;
+    durationOfAction = NULL;
+    earliestMeasurementTime = NULL;
+    latestMeasurementTime = NULL;
+    updated = NULL;
+    causeOnly = NULL;
+    numberOfCorrelations = NULL;
+    outcome = NULL;
+    measurementsAtLastAnalysis = NULL;
+    numberOfMeasurements = NULL;
+    lastUnit = NULL;
+    lastValue = NULL;
+    mostCommonValue = NULL;
+    mostCommonUnit = NULL;
+    lastSource = NULL;
     
 }
 

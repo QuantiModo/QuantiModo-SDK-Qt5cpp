@@ -46,8 +46,8 @@ public:
     void setConnectInstructions(QString* connectInstructions);
     qint32 getLastUpdate();
     void setLastUpdate(qint32 lastUpdate);
-    qint32 getLatestData();
-    void setLatestData(qint32 latestData);
+    qint32 getTotalMeasurementsInLastUpdate();
+    void setTotalMeasurementsInLastUpdate(qint32 totalMeasurementsInLastUpdate);
     bool getNoDataYet();
     void setNoDataYet(bool noDataYet);
     
@@ -61,7 +61,7 @@ private:
     QString* connected;
     QString* connectInstructions;
     qint32 lastUpdate;
-    qint32 latestData;
+    qint32 totalMeasurementsInLastUpdate;
     bool noDataYet;
     
 };

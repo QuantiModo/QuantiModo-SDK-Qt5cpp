@@ -26,7 +26,7 @@ SWGUserTokenSuccessfulResponseInnerUserField::~SWGUserTokenSuccessfulResponseInn
 
 void
 SWGUserTokenSuccessfulResponseInnerUserField::init() {
-    _id = 0;
+    _id = NULL;
     access_token = new QString("");
     
 }
