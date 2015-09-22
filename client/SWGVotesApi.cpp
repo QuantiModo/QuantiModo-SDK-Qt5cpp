@@ -16,7 +16,7 @@ SWGVotesApi::SWGVotesApi(QString host, QString basePath) {
 }
 
 void
-SWGVotesApi::v1VotesPost(QString* cause, QString* effect, bool vote) {
+SWGVotesApi::v1VotesPost(QString* cause, QString* effect, SWGNumber* correlation, bool vote) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/votes");
 
@@ -43,6 +43,18 @@ SWGVotesApi::v1VotesPost(QString* cause, QString* effect, bool vote) {
     fullPath.append(QUrl::toPercentEncoding("effect"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(effect)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("correlation"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(correlation)));
     
 
     

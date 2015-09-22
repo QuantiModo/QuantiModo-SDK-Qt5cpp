@@ -4,6 +4,7 @@
 #include "SWGHttpRequest.h"
 
 #include <QString>
+#include "SWGNumber.h"
 #include "SWGCommonResponse.h"
 
 #include <QObject>
@@ -21,7 +22,7 @@ public:
     QString host;
     QString basePath;
 
-    void v1VotesPost(QString* cause, QString* effect, bool vote);
+    void v1VotesPost(QString* cause, QString* effect, SWGNumber* correlation, bool vote);
     void v1VotesDeletePost(QString* cause, QString* effect);
     
 private:

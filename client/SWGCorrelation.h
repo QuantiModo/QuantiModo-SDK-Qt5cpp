@@ -35,8 +35,12 @@ public:
     void setCorrelationCoefficient(SWGNumber* correlationCoefficient);
     QString* getCause();
     void setCause(QString* cause);
+    QString* getOriginalCause();
+    void setOriginalCause(QString* originalCause);
     QString* getEffect();
     void setEffect(QString* effect);
+    QString* getOriginalEffect();
+    void setOriginalEffect(QString* originalEffect);
     double* getOnsetDelay();
     void setOnsetDelay(double* onsetDelay);
     SWGNumber* getDurationOfAction();
@@ -57,12 +61,28 @@ public:
     void setCauseCategory(QString* causeCategory);
     QString* getEffectCategory();
     void setEffectCategory(QString* effectCategory);
+    SWGNumber* getValuePredictingHighOutcome();
+    void setValuePredictingHighOutcome(SWGNumber* valuePredictingHighOutcome);
+    SWGNumber* getValuePredictingLowOutcome();
+    void setValuePredictingLowOutcome(SWGNumber* valuePredictingLowOutcome);
+    SWGNumber* getOptimalPearsonProduct();
+    void setOptimalPearsonProduct(SWGNumber* optimalPearsonProduct);
+    SWGNumber* getAverageVote();
+    void setAverageVote(SWGNumber* averageVote);
+    SWGNumber* getUserVote();
+    void setUserVote(SWGNumber* userVote);
+    QString* getCauseUnit();
+    void setCauseUnit(QString* causeUnit);
+    qint32 getCauseUnitId();
+    void setCauseUnitId(qint32 causeUnitId);
     
 
 private:
     SWGNumber* correlationCoefficient;
     QString* cause;
+    QString* originalCause;
     QString* effect;
+    QString* originalEffect;
     double* onsetDelay;
     SWGNumber* durationOfAction;
     SWGNumber* numberOfPairs;
@@ -73,6 +93,13 @@ private:
     SWGNumber* causalityFactor;
     QString* causeCategory;
     QString* effectCategory;
+    SWGNumber* valuePredictingHighOutcome;
+    SWGNumber* valuePredictingLowOutcome;
+    SWGNumber* optimalPearsonProduct;
+    SWGNumber* averageVote;
+    SWGNumber* userVote;
+    QString* causeUnit;
+    qint32 causeUnitId;
     
 };
 

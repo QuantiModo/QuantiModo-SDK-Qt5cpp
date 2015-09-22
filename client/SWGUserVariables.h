@@ -40,10 +40,10 @@ public:
     void setFillingValue(qint32 fillingValue);
     QString* getJoinWith();
     void setJoinWith(QString* joinWith);
-    float* getMaximumValue();
-    void setMaximumValue(float* maximumValue);
-    float* getMinimumValue();
-    void setMinimumValue(float* minimumValue);
+    float* getMaximumAllowedValue();
+    void setMaximumAllowedValue(float* maximumAllowedValue);
+    float* getMinimumAllowedValue();
+    void setMinimumAllowedValue(float* minimumAllowedValue);
     QString* getName();
     void setName(QString* name);
     qint32 getOnsetDelay();
@@ -58,8 +58,8 @@ private:
     qint32 durationOfAction;
     qint32 fillingValue;
     QString* joinWith;
-    float* maximumValue;
-    float* minimumValue;
+    float* maximumAllowedValue;
+    float* minimumAllowedValue;
     QString* name;
     qint32 onsetDelay;
     QString* unit;

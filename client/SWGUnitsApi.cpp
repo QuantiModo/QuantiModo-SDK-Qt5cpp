@@ -16,9 +16,9 @@ SWGUnitsApi::SWGUnitsApi(QString host, QString basePath) {
 }
 
 void
-SWGUnitsApi::unitCategoriesGet() {
+SWGUnitsApi::v1UnitCategoriesGet() {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/unitCategories");
+    fullPath.append(this->host).append(this->basePath).append("/v1/unitCategories");
 
     
 
@@ -36,13 +36,13 @@ SWGUnitsApi::unitCategoriesGet() {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGUnitsApi::unitCategoriesGetCallback);
+            &SWGUnitsApi::v1UnitCategoriesGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGUnitsApi::unitCategoriesGetCallback(HttpRequestWorker * worker) {
+SWGUnitsApi::v1UnitCategoriesGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -64,13 +64,13 @@ SWGUnitsApi::unitCategoriesGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit unitCategoriesGetSignal(output);
+    emit v1UnitCategoriesGetSignal(output);
     
 }
 void
-SWGUnitsApi::unitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName) {
+SWGUnitsApi::v1UnitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/units");
+    fullPath.append(this->host).append(this->basePath).append("/v1/units");
 
     
 
@@ -124,13 +124,13 @@ SWGUnitsApi::unitsGet(QString* unitName, QString* abbreviatedUnitName, QString* 
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGUnitsApi::unitsGetCallback);
+            &SWGUnitsApi::v1UnitsGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGUnitsApi::unitsGetCallback(HttpRequestWorker * worker) {
+SWGUnitsApi::v1UnitsGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -159,13 +159,13 @@ SWGUnitsApi::unitsGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit unitsGetSignal(output);
+    emit v1UnitsGetSignal(output);
     
 }
 void
-SWGUnitsApi::unitsVariableGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName, QString* variable) {
+SWGUnitsApi::v1UnitsVariableGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName, QString* variable) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/unitsVariable");
+    fullPath.append(this->host).append(this->basePath).append("/v1/unitsVariable");
 
     
 
@@ -231,13 +231,13 @@ SWGUnitsApi::unitsVariableGet(QString* unitName, QString* abbreviatedUnitName, Q
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGUnitsApi::unitsVariableGetCallback);
+            &SWGUnitsApi::v1UnitsVariableGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGUnitsApi::unitsVariableGetCallback(HttpRequestWorker * worker) {
+SWGUnitsApi::v1UnitsVariableGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -266,7 +266,7 @@ SWGUnitsApi::unitsVariableGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit unitsVariableGetSignal(output);
+    emit v1UnitsVariableGetSignal(output);
     
 }
 } /* namespace Swagger */

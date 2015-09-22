@@ -20,16 +20,16 @@ public:
     QString host;
     QString basePath;
 
-    void oauth2AccesstokenGet(QString* clientId, QString* clientSecret, QString* grantType, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm);
-    void oauth2AuthorizeGet(QString* clientId, QString* clientSecret, QString* responseType, QString* scope, QString* redirectUri, QString* state, QString* realm);
+    void v1Oauth2AuthorizeGet(QString* clientId, QString* clientSecret, QString* responseType, QString* scope, QString* redirectUri, QString* state);
+    void v1Oauth2TokenGet(QString* clientId, QString* clientSecret, QString* grantType, QString* responseType, QString* scope, QString* redirectUri, QString* state);
     
 private:
-    void oauth2AccesstokenGetCallback (HttpRequestWorker * worker);
-    void oauth2AuthorizeGetCallback (HttpRequestWorker * worker);
+    void v1Oauth2AuthorizeGetCallback (HttpRequestWorker * worker);
+    void v1Oauth2TokenGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void oauth2AccesstokenGetSignal();
-    void oauth2AuthorizeGetSignal();
+    void v1Oauth2AuthorizeGetSignal();
+    void v1Oauth2TokenGetSignal();
     
 };
 }

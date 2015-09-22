@@ -30,7 +30,8 @@ SWGVariable::init() {
     name = new QString("");
     originalName = new QString("");
     category = new QString("");
-    unit = new QString("");
+    abbreviatedUnitName = new QString("");
+    abbreviatedUnitId = NULL;
     sources = new QString("");
     minimumValue = 0.0;
     maximumValue = 0.0;
@@ -50,10 +51,10 @@ SWGVariable::init() {
     outcome = NULL;
     measurementsAtLastAnalysis = NULL;
     numberOfMeasurements = NULL;
-    lastUnit = NULL;
+    lastUnit = new QString("");
     lastValue = NULL;
     mostCommonValue = NULL;
-    mostCommonUnit = NULL;
+    mostCommonUnit = new QString("");
     lastSource = NULL;
     
 }
@@ -70,9 +71,10 @@ SWGVariable::cleanup() {
     if(category != NULL) {
         delete category;
     }
-    if(unit != NULL) {
-        delete unit;
+    if(abbreviatedUnitName != NULL) {
+        delete abbreviatedUnitName;
     }
+    
     if(sources != NULL) {
         delete sources;
     }
@@ -116,10 +118,14 @@ SWGVariable::cleanup() {
     
     
     
+    if(lastUnit != NULL) {
+        delete lastUnit;
+    }
     
     
-    
-    
+    if(mostCommonUnit != NULL) {
+        delete mostCommonUnit;
+    }
     
     
 }
@@ -139,7 +145,8 @@ SWGVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&name, pJson["name"], "QString", "QString");
     setValue(&originalName, pJson["originalName"], "QString", "QString");
     setValue(&category, pJson["category"], "QString", "QString");
-    setValue(&unit, pJson["unit"], "QString", "QString");
+    setValue(&abbreviatedUnitName, pJson["abbreviatedUnitName"], "QString", "QString");
+    setValue(&abbreviatedUnitId, pJson["abbreviatedUnitId"], "qint32", "");
     setValue(&sources, pJson["sources"], "QString", "QString");
     setValue(&minimumValue, pJson["minimumValue"], "double", "double");
     setValue(&maximumValue, pJson["maximumValue"], "double", "double");
@@ -159,10 +166,10 @@ SWGVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&outcome, pJson["outcome"], "qint32", "");
     setValue(&measurementsAtLastAnalysis, pJson["measurementsAtLastAnalysis"], "qint32", "");
     setValue(&numberOfMeasurements, pJson["numberOfMeasurements"], "qint32", "");
-    setValue(&lastUnit, pJson["lastUnit"], "qint32", "");
+    setValue(&lastUnit, pJson["lastUnit"], "QString", "QString");
     setValue(&lastValue, pJson["lastValue"], "qint32", "");
     setValue(&mostCommonValue, pJson["mostCommonValue"], "qint32", "");
-    setValue(&mostCommonUnit, pJson["mostCommonUnit"], "qint32", "");
+    setValue(&mostCommonUnit, pJson["mostCommonUnit"], "QString", "QString");
     setValue(&lastSource, pJson["lastSource"], "qint32", "");
     
 }
@@ -201,10 +208,11 @@ SWGVariable::asJsonObject() {
     
     
     
-    toJsonValue(QString("unit"), unit, obj, QString("QString"));
+    toJsonValue(QString("abbreviatedUnitName"), abbreviatedUnitName, obj, QString("QString"));
     
     
     
+    obj->insert("abbreviatedUnitId", QJsonValue(abbreviatedUnitId));
     
     
     toJsonValue(QString("sources"), sources, obj, QString("QString"));
@@ -270,10 +278,20 @@ SWGVariable::asJsonObject() {
     obj->insert("outcome", QJsonValue(outcome));
     obj->insert("measurementsAtLastAnalysis", QJsonValue(measurementsAtLastAnalysis));
     obj->insert("numberOfMeasurements", QJsonValue(numberOfMeasurements));
-    obj->insert("lastUnit", QJsonValue(lastUnit));
+    
+    
+    toJsonValue(QString("lastUnit"), lastUnit, obj, QString("QString"));
+    
+    
+    
     obj->insert("lastValue", QJsonValue(lastValue));
     obj->insert("mostCommonValue", QJsonValue(mostCommonValue));
-    obj->insert("mostCommonUnit", QJsonValue(mostCommonUnit));
+    
+    
+    toJsonValue(QString("mostCommonUnit"), mostCommonUnit, obj, QString("QString"));
+    
+    
+    
     obj->insert("lastSource", QJsonValue(lastSource));
     
 
@@ -317,12 +335,21 @@ SWGVariable::setCategory(QString* category) {
 }
 
 QString*
-SWGVariable::getUnit() {
-    return unit;
+SWGVariable::getAbbreviatedUnitName() {
+    return abbreviatedUnitName;
 }
 void
-SWGVariable::setUnit(QString* unit) {
-    this->unit = unit;
+SWGVariable::setAbbreviatedUnitName(QString* abbreviatedUnitName) {
+    this->abbreviatedUnitName = abbreviatedUnitName;
+}
+
+qint32
+SWGVariable::getAbbreviatedUnitId() {
+    return abbreviatedUnitId;
+}
+void
+SWGVariable::setAbbreviatedUnitId(qint32 abbreviatedUnitId) {
+    this->abbreviatedUnitId = abbreviatedUnitId;
 }
 
 QString*
@@ -496,12 +523,12 @@ SWGVariable::setNumberOfMeasurements(qint32 numberOfMeasurements) {
     this->numberOfMeasurements = numberOfMeasurements;
 }
 
-qint32
+QString*
 SWGVariable::getLastUnit() {
     return lastUnit;
 }
 void
-SWGVariable::setLastUnit(qint32 lastUnit) {
+SWGVariable::setLastUnit(QString* lastUnit) {
     this->lastUnit = lastUnit;
 }
 
@@ -523,12 +550,12 @@ SWGVariable::setMostCommonValue(qint32 mostCommonValue) {
     this->mostCommonValue = mostCommonValue;
 }
 
-qint32
+QString*
 SWGVariable::getMostCommonUnit() {
     return mostCommonUnit;
 }
 void
-SWGVariable::setMostCommonUnit(qint32 mostCommonUnit) {
+SWGVariable::setMostCommonUnit(QString* mostCommonUnit) {
     this->mostCommonUnit = mostCommonUnit;
 }
 

@@ -16,58 +16,6 @@ SWGUserApi::SWGUserApi(QString host, QString basePath) {
 }
 
 void
-SWGUserApi::userMeGet() {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user/me");
-
-    
-
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "GET");
-
-    
-
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::userMeGetCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::userMeGetCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-
-    
-    
-    
-    QString json(worker->response);
-    SWGUser* output = static_cast<SWGUser*>(create(json, QString("SWGUser")));
-    
-    
-    
-
-    worker->deleteLater();
-
-    emit userMeGetSignal(output);
-    
-}
-void
 SWGUserApi::v1OrganizationsOrganizationIdUsersPost(qint32 organizationId, SWGUserTokenRequest body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/organizations/{organizationId}/users");
@@ -125,6 +73,58 @@ SWGUserApi::v1OrganizationsOrganizationIdUsersPostCallback(HttpRequestWorker * w
     worker->deleteLater();
 
     emit v1OrganizationsOrganizationIdUsersPostSignal(output);
+    
+}
+void
+SWGUserApi::v1UserMeGet() {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/v1/user/me");
+
+    
+
+    
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+    
+
+    
+
+    
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::v1UserMeGetCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::v1UserMeGetCallback(HttpRequestWorker * worker) {
+    QString msg;
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    
+
+    
+    
+    
+    QString json(worker->response);
+    SWGUser* output = static_cast<SWGUser*>(create(json, QString("SWGUser")));
+    
+    
+    
+
+    worker->deleteLater();
+
+    emit v1UserMeGetSignal(output);
     
 }
 } /* namespace Swagger */

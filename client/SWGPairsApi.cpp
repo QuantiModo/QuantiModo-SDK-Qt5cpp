@@ -16,9 +16,9 @@ SWGPairsApi::SWGPairsApi(QString host, QString basePath) {
 }
 
 void
-SWGPairsApi::pairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort) {
+SWGPairsApi::v1PairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/pairs");
+    fullPath.append(this->host).append(this->basePath).append("/v1/pairs");
 
     
 
@@ -192,13 +192,13 @@ SWGPairsApi::pairsGet(QString* cause, QString* effect, QString* causeSource, QSt
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGPairsApi::pairsGetCallback);
+            &SWGPairsApi::v1PairsGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGPairsApi::pairsGetCallback(HttpRequestWorker * worker) {
+SWGPairsApi::v1PairsGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -227,7 +227,7 @@ SWGPairsApi::pairsGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit pairsGetSignal(output);
+    emit v1PairsGetSignal(output);
     
 }
 } /* namespace Swagger */

@@ -31,8 +31,8 @@ SWGUserVariables::init() {
     durationOfAction = NULL;
     fillingValue = NULL;
     joinWith = new QString("");
-    maximumValue = 0.0f;
-    minimumValue = 0.0f;
+    maximumAllowedValue = 0.0f;
+    minimumAllowedValue = 0.0f;
     name = new QString("");
     onsetDelay = NULL;
     unit = new QString("");
@@ -50,11 +50,11 @@ SWGUserVariables::cleanup() {
     if(joinWith != NULL) {
         delete joinWith;
     }
-    if(maximumValue != NULL) {
-        delete maximumValue;
+    if(maximumAllowedValue != NULL) {
+        delete maximumAllowedValue;
     }
-    if(minimumValue != NULL) {
-        delete minimumValue;
+    if(minimumAllowedValue != NULL) {
+        delete minimumAllowedValue;
     }
     if(name != NULL) {
         delete name;
@@ -82,8 +82,8 @@ SWGUserVariables::fromJsonObject(QJsonObject &pJson) {
     setValue(&durationOfAction, pJson["durationOfAction"], "qint32", "");
     setValue(&fillingValue, pJson["fillingValue"], "qint32", "");
     setValue(&joinWith, pJson["joinWith"], "QString", "QString");
-    setValue(&maximumValue, pJson["maximumValue"], "float", "float");
-    setValue(&minimumValue, pJson["minimumValue"], "float", "float");
+    setValue(&maximumAllowedValue, pJson["maximumAllowedValue"], "float", "float");
+    setValue(&minimumAllowedValue, pJson["minimumAllowedValue"], "float", "float");
     setValue(&name, pJson["name"], "QString", "QString");
     setValue(&onsetDelay, pJson["onsetDelay"], "qint32", "");
     setValue(&unit, pJson["unit"], "QString", "QString");
@@ -120,13 +120,13 @@ SWGUserVariables::asJsonObject() {
     
     
     
-    toJsonValue(QString("maximumValue"), maximumValue, obj, QString("float"));
+    toJsonValue(QString("maximumAllowedValue"), maximumAllowedValue, obj, QString("float"));
     
     
     
     
     
-    toJsonValue(QString("minimumValue"), minimumValue, obj, QString("float"));
+    toJsonValue(QString("minimumAllowedValue"), minimumAllowedValue, obj, QString("float"));
     
     
     
@@ -194,21 +194,21 @@ SWGUserVariables::setJoinWith(QString* joinWith) {
 }
 
 float*
-SWGUserVariables::getMaximumValue() {
-    return maximumValue;
+SWGUserVariables::getMaximumAllowedValue() {
+    return maximumAllowedValue;
 }
 void
-SWGUserVariables::setMaximumValue(float* maximumValue) {
-    this->maximumValue = maximumValue;
+SWGUserVariables::setMaximumAllowedValue(float* maximumAllowedValue) {
+    this->maximumAllowedValue = maximumAllowedValue;
 }
 
 float*
-SWGUserVariables::getMinimumValue() {
-    return minimumValue;
+SWGUserVariables::getMinimumAllowedValue() {
+    return minimumAllowedValue;
 }
 void
-SWGUserVariables::setMinimumValue(float* minimumValue) {
-    this->minimumValue = minimumValue;
+SWGUserVariables::setMinimumAllowedValue(float* minimumAllowedValue) {
+    this->minimumAllowedValue = minimumAllowedValue;
 }
 
 QString*

@@ -40,8 +40,10 @@ public:
     void setOriginalName(QString* originalName);
     QString* getCategory();
     void setCategory(QString* category);
-    QString* getUnit();
-    void setUnit(QString* unit);
+    QString* getAbbreviatedUnitName();
+    void setAbbreviatedUnitName(QString* abbreviatedUnitName);
+    qint32 getAbbreviatedUnitId();
+    void setAbbreviatedUnitId(qint32 abbreviatedUnitId);
     QString* getSources();
     void setSources(QString* sources);
     double* getMinimumValue();
@@ -80,14 +82,14 @@ public:
     void setMeasurementsAtLastAnalysis(qint32 measurementsAtLastAnalysis);
     qint32 getNumberOfMeasurements();
     void setNumberOfMeasurements(qint32 numberOfMeasurements);
-    qint32 getLastUnit();
-    void setLastUnit(qint32 lastUnit);
+    QString* getLastUnit();
+    void setLastUnit(QString* lastUnit);
     qint32 getLastValue();
     void setLastValue(qint32 lastValue);
     qint32 getMostCommonValue();
     void setMostCommonValue(qint32 mostCommonValue);
-    qint32 getMostCommonUnit();
-    void setMostCommonUnit(qint32 mostCommonUnit);
+    QString* getMostCommonUnit();
+    void setMostCommonUnit(QString* mostCommonUnit);
     qint32 getLastSource();
     void setLastSource(qint32 lastSource);
     
@@ -97,7 +99,8 @@ private:
     QString* name;
     QString* originalName;
     QString* category;
-    QString* unit;
+    QString* abbreviatedUnitName;
+    qint32 abbreviatedUnitId;
     QString* sources;
     double* minimumValue;
     double* maximumValue;
@@ -117,10 +120,10 @@ private:
     qint32 outcome;
     qint32 measurementsAtLastAnalysis;
     qint32 numberOfMeasurements;
-    qint32 lastUnit;
+    QString* lastUnit;
     qint32 lastValue;
     qint32 mostCommonValue;
-    qint32 mostCommonUnit;
+    QString* mostCommonUnit;
     qint32 lastSource;
     
 };

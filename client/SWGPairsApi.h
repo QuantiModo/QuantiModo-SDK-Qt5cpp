@@ -21,13 +21,13 @@ public:
     QString host;
     QString basePath;
 
-    void pairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort);
+    void v1PairsGet(QString* cause, QString* effect, QString* causeSource, QString* causeUnit, QString* delay, QString* duration, QString* effectSource, QString* effectUnit, QString* endTime, QString* startTime, qint32 limit, qint32 offset, qint32 sort);
     
 private:
-    void pairsGetCallback (HttpRequestWorker * worker);
+    void v1PairsGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void pairsGetSignal(QList<SWGPairs*>* summary);
+    void v1PairsGetSignal(QList<SWGPairs*>* summary);
     
 };
 }

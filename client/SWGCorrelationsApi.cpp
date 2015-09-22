@@ -16,9 +16,9 @@ SWGCorrelationsApi::SWGCorrelationsApi(QString host, QString basePath) {
 }
 
 void
-SWGCorrelationsApi::correlationsGet(QString* effect, QString* cause, qint32 limit, qint32 offset, qint32 sort) {
+SWGCorrelationsApi::v1CorrelationsGet(QString* effect, QString* cause, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/correlations");
+    fullPath.append(this->host).append(this->basePath).append("/v1/correlations");
 
     
 
@@ -96,13 +96,13 @@ SWGCorrelationsApi::correlationsGet(QString* effect, QString* cause, qint32 limi
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGCorrelationsApi::correlationsGetCallback);
+            &SWGCorrelationsApi::v1CorrelationsGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGCorrelationsApi::correlationsGetCallback(HttpRequestWorker * worker) {
+SWGCorrelationsApi::v1CorrelationsGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -131,81 +131,7 @@ SWGCorrelationsApi::correlationsGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit correlationsGetSignal(output);
-    
-}
-void
-SWGCorrelationsApi::publicCorrelationsSearchSearchGet(QString* search, QString* effectOrCause) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/public/correlations/search/{search}");
-
-    
-    QString searchPathParam("{"); searchPathParam.append("search").append("}");
-    fullPath.replace(searchPathParam, stringValue(search));
-    
-
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("effectOrCause"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(effectOrCause)));
-    
-
-    
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "GET");
-
-    
-
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGCorrelationsApi::publicCorrelationsSearchSearchGetCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGCorrelationsApi::publicCorrelationsSearchSearchGetCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-    QList<SWGCorrelation*>* output = new QList<SWGCorrelation*>();
-    QString json(worker->response);
-    QByteArray array (json.toStdString().c_str());
-    QJsonDocument doc = QJsonDocument::fromJson(array);
-    QJsonArray jsonArray = doc.array();
-
-    foreach(QJsonValue obj, jsonArray) {
-        SWGCorrelation* o = new SWGCorrelation();
-        QJsonObject jv = obj.toObject();
-        QJsonObject * ptr = (QJsonObject*)&jv;
-        o->fromJsonObject(*ptr);
-        output->append(o);
-    }
-    
-
-    
-
-    worker->deleteLater();
-
-    emit publicCorrelationsSearchSearchGetSignal(output);
+    emit v1CorrelationsGetSignal(output);
     
 }
 void
@@ -438,6 +364,80 @@ SWGCorrelationsApi::v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNam
     worker->deleteLater();
 
     emit v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameEffectsGetSignal(output);
+    
+}
+void
+SWGCorrelationsApi::v1PublicCorrelationsSearchSearchGet(QString* search, QString* effectOrCause) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/v1/public/correlations/search/{search}");
+
+    
+    QString searchPathParam("{"); searchPathParam.append("search").append("}");
+    fullPath.replace(searchPathParam, stringValue(search));
+    
+
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("effectOrCause"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(effectOrCause)));
+    
+
+    
+    
+
+    HttpRequestWorker *worker = new HttpRequestWorker();
+    HttpRequestInput input(fullPath, "GET");
+
+    
+
+    
+
+    
+
+    connect(worker,
+            &HttpRequestWorker::on_execution_finished,
+            this,
+            &SWGCorrelationsApi::v1PublicCorrelationsSearchSearchGetCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGCorrelationsApi::v1PublicCorrelationsSearchSearchGetCallback(HttpRequestWorker * worker) {
+    QString msg;
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    
+    QList<SWGCorrelation*>* output = new QList<SWGCorrelation*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+
+    foreach(QJsonValue obj, jsonArray) {
+        SWGCorrelation* o = new SWGCorrelation();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        output->append(o);
+    }
+    
+
+    
+
+    worker->deleteLater();
+
+    emit v1PublicCorrelationsSearchSearchGetSignal(output);
     
 }
 void
@@ -689,7 +689,7 @@ SWGCorrelationsApi::v1VariablesVariableNamePublicEffectsGetCallback(HttpRequestW
     
 }
 void
-SWGCorrelationsApi::v1VotesPost(QString* cause, QString* effect, bool vote) {
+SWGCorrelationsApi::v1VotesPost(QString* cause, QString* effect, SWGNumber* correlation, bool vote) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/votes");
 
@@ -716,6 +716,18 @@ SWGCorrelationsApi::v1VotesPost(QString* cause, QString* effect, bool vote) {
     fullPath.append(QUrl::toPercentEncoding("effect"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(effect)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("correlation"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(correlation)));
     
 
     

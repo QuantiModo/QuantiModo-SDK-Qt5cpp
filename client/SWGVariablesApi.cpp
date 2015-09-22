@@ -16,100 +16,9 @@ SWGVariablesApi::SWGVariablesApi(QString host, QString basePath) {
 }
 
 void
-SWGVariablesApi::correlationsPost(QString* cause, QString* effect, QString* correlationcoefficient, QString* vote) {
+SWGVariablesApi::v1PublicVariablesGet() {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/correlations");
-
-    
-
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("cause"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(cause)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("effect"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(effect)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("correlationcoefficient"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(correlationcoefficient)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("vote"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(vote)));
-    
-
-    
-    
-
-    HttpRequestWorker *worker = new HttpRequestWorker();
-    HttpRequestInput input(fullPath, "POST");
-
-    
-
-    
-
-    
-
-    connect(worker,
-            &HttpRequestWorker::on_execution_finished,
-            this,
-            &SWGVariablesApi::correlationsPostCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGVariablesApi::correlationsPostCallback(HttpRequestWorker * worker) {
-    QString msg;
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    
-
-    worker->deleteLater();
-
-    
-    emit correlationsPostSignal();
-}
-void
-SWGVariablesApi::publicVariablesGet() {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/public/variables");
+    fullPath.append(this->host).append(this->basePath).append("/v1/public/variables");
 
     
 
@@ -127,13 +36,13 @@ SWGVariablesApi::publicVariablesGet() {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::publicVariablesGetCallback);
+            &SWGVariablesApi::v1PublicVariablesGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::publicVariablesGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1PublicVariablesGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -155,13 +64,13 @@ SWGVariablesApi::publicVariablesGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit publicVariablesGetSignal(output);
+    emit v1PublicVariablesGetSignal(output);
     
 }
 void
-SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort) {
+SWGVariablesApi::v1PublicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/public/variables/search/{search}");
+    fullPath.append(this->host).append(this->basePath).append("/v1/public/variables/search/{search}");
 
     
     QString searchPathParam("{"); searchPathParam.append("search").append("}");
@@ -230,13 +139,13 @@ SWGVariablesApi::publicVariablesSearchSearchGet(QString* search, QString* effect
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::publicVariablesSearchSearchGetCallback);
+            &SWGVariablesApi::v1PublicVariablesSearchSearchGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::publicVariablesSearchSearchGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1PublicVariablesSearchSearchGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -258,7 +167,7 @@ SWGVariablesApi::publicVariablesSearchSearchGetCallback(HttpRequestWorker * work
 
     worker->deleteLater();
 
-    emit publicVariablesSearchSearchGetSignal(output);
+    emit v1PublicVariablesSearchSearchGetSignal(output);
     
 }
 void
@@ -310,9 +219,9 @@ SWGVariablesApi::v1UserVariablesPostCallback(HttpRequestWorker * worker) {
     emit v1UserVariablesPostSignal();
 }
 void
-SWGVariablesApi::variableCategoriesGet() {
+SWGVariablesApi::v1VariableCategoriesGet() {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variableCategories");
+    fullPath.append(this->host).append(this->basePath).append("/v1/variableCategories");
 
     
 
@@ -330,13 +239,13 @@ SWGVariablesApi::variableCategoriesGet() {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::variableCategoriesGetCallback);
+            &SWGVariablesApi::v1VariableCategoriesGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::variableCategoriesGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1VariableCategoriesGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -365,13 +274,13 @@ SWGVariablesApi::variableCategoriesGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit variableCategoriesGetSignal(output);
+    emit v1VariableCategoriesGetSignal(output);
     
 }
 void
-SWGVariablesApi::variablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort) {
+SWGVariablesApi::v1VariablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variables");
+    fullPath.append(this->host).append(this->basePath).append("/v1/variables");
 
     
 
@@ -449,13 +358,13 @@ SWGVariablesApi::variablesGet(qint32 userId, QString* category, qint32 limit, qi
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::variablesGetCallback);
+            &SWGVariablesApi::v1VariablesGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::variablesGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1VariablesGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -477,13 +386,13 @@ SWGVariablesApi::variablesGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit variablesGetSignal(output);
+    emit v1VariablesGetSignal(output);
     
 }
 void
-SWGVariablesApi::variablesPost(SWGVariablesNew variableName) {
+SWGVariablesApi::v1VariablesPost(SWGVariablesNew variableName) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variables");
+    fullPath.append(this->host).append(this->basePath).append("/v1/variables");
 
     
 
@@ -506,13 +415,13 @@ SWGVariablesApi::variablesPost(SWGVariablesNew variableName) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::variablesPostCallback);
+            &SWGVariablesApi::v1VariablesPostCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::variablesPostCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1VariablesPostCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -526,12 +435,12 @@ SWGVariablesApi::variablesPostCallback(HttpRequestWorker * worker) {
     worker->deleteLater();
 
     
-    emit variablesPostSignal();
+    emit v1VariablesPostSignal();
 }
 void
-SWGVariablesApi::variablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset) {
+SWGVariablesApi::v1VariablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variables/search/{search}");
+    fullPath.append(this->host).append(this->basePath).append("/v1/variables/search/{search}");
 
     
     QString searchPathParam("{"); searchPathParam.append("search").append("}");
@@ -600,13 +509,13 @@ SWGVariablesApi::variablesSearchSearchGet(QString* search, QString* categoryName
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::variablesSearchSearchGetCallback);
+            &SWGVariablesApi::v1VariablesSearchSearchGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::variablesSearchSearchGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1VariablesSearchSearchGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -635,13 +544,13 @@ SWGVariablesApi::variablesSearchSearchGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit variablesSearchSearchGetSignal(output);
+    emit v1VariablesSearchSearchGetSignal(output);
     
 }
 void
-SWGVariablesApi::variablesVariableNameGet(QString* variableName) {
+SWGVariablesApi::v1VariablesVariableNameGet(QString* variableName) {
     QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/variables/{variableName}");
+    fullPath.append(this->host).append(this->basePath).append("/v1/variables/{variableName}");
 
     
     QString variableNamePathParam("{"); variableNamePathParam.append("variableName").append("}");
@@ -662,13 +571,13 @@ SWGVariablesApi::variablesVariableNameGet(QString* variableName) {
     connect(worker,
             &HttpRequestWorker::on_execution_finished,
             this,
-            &SWGVariablesApi::variablesVariableNameGetCallback);
+            &SWGVariablesApi::v1VariablesVariableNameGetCallback);
 
     worker->execute(&input);
 }
 
 void
-SWGVariablesApi::variablesVariableNameGetCallback(HttpRequestWorker * worker) {
+SWGVariablesApi::v1VariablesVariableNameGetCallback(HttpRequestWorker * worker) {
     QString msg;
     if (worker->error_type == QNetworkReply::NoError) {
         msg = QString("Success! %1 bytes").arg(worker->response.length());
@@ -690,7 +599,7 @@ SWGVariablesApi::variablesVariableNameGetCallback(HttpRequestWorker * worker) {
 
     worker->deleteLater();
 
-    emit variablesVariableNameGetSignal(output);
+    emit v1VariablesVariableNameGetSignal(output);
     
 }
 } /* namespace Swagger */

@@ -28,7 +28,9 @@ void
 SWGCorrelation::init() {
     correlationCoefficient = 0.0;
     cause = new QString("");
+    originalCause = new QString("");
     effect = new QString("");
+    originalEffect = new QString("");
     onsetDelay = 0.0;
     durationOfAction = 0.0;
     numberOfPairs = 0.0;
@@ -39,6 +41,13 @@ SWGCorrelation::init() {
     causalityFactor = 0.0;
     causeCategory = new QString("");
     effectCategory = new QString("");
+    valuePredictingHighOutcome = 0.0;
+    valuePredictingLowOutcome = 0.0;
+    optimalPearsonProduct = 0.0;
+    averageVote = 0.0;
+    userVote = 0.0;
+    causeUnit = new QString("");
+    causeUnitId = NULL;
     
 }
 
@@ -50,8 +59,14 @@ SWGCorrelation::cleanup() {
     if(cause != NULL) {
         delete cause;
     }
+    if(originalCause != NULL) {
+        delete originalCause;
+    }
     if(effect != NULL) {
         delete effect;
+    }
+    if(originalEffect != NULL) {
+        delete originalEffect;
     }
     if(onsetDelay != NULL) {
         delete onsetDelay;
@@ -83,6 +98,25 @@ SWGCorrelation::cleanup() {
     if(effectCategory != NULL) {
         delete effectCategory;
     }
+    if(valuePredictingHighOutcome != NULL) {
+        delete valuePredictingHighOutcome;
+    }
+    if(valuePredictingLowOutcome != NULL) {
+        delete valuePredictingLowOutcome;
+    }
+    if(optimalPearsonProduct != NULL) {
+        delete optimalPearsonProduct;
+    }
+    if(averageVote != NULL) {
+        delete averageVote;
+    }
+    if(userVote != NULL) {
+        delete userVote;
+    }
+    if(causeUnit != NULL) {
+        delete causeUnit;
+    }
+    
     
 }
 
@@ -99,7 +133,9 @@ void
 SWGCorrelation::fromJsonObject(QJsonObject &pJson) {
     setValue(&correlationCoefficient, pJson["correlationCoefficient"], "SWGNumber", "SWGNumber");
     setValue(&cause, pJson["cause"], "QString", "QString");
+    setValue(&originalCause, pJson["originalCause"], "QString", "QString");
     setValue(&effect, pJson["effect"], "QString", "QString");
+    setValue(&originalEffect, pJson["originalEffect"], "QString", "QString");
     setValue(&onsetDelay, pJson["onsetDelay"], "double", "double");
     setValue(&durationOfAction, pJson["durationOfAction"], "SWGNumber", "SWGNumber");
     setValue(&numberOfPairs, pJson["numberOfPairs"], "SWGNumber", "SWGNumber");
@@ -110,6 +146,13 @@ SWGCorrelation::fromJsonObject(QJsonObject &pJson) {
     setValue(&causalityFactor, pJson["causalityFactor"], "SWGNumber", "SWGNumber");
     setValue(&causeCategory, pJson["causeCategory"], "QString", "QString");
     setValue(&effectCategory, pJson["effectCategory"], "QString", "QString");
+    setValue(&valuePredictingHighOutcome, pJson["valuePredictingHighOutcome"], "SWGNumber", "SWGNumber");
+    setValue(&valuePredictingLowOutcome, pJson["valuePredictingLowOutcome"], "SWGNumber", "SWGNumber");
+    setValue(&optimalPearsonProduct, pJson["optimalPearsonProduct"], "SWGNumber", "SWGNumber");
+    setValue(&averageVote, pJson["averageVote"], "SWGNumber", "SWGNumber");
+    setValue(&userVote, pJson["userVote"], "SWGNumber", "SWGNumber");
+    setValue(&causeUnit, pJson["causeUnit"], "QString", "QString");
+    setValue(&causeUnitId, pJson["causeUnitId"], "qint32", "");
     
 }
 
@@ -140,7 +183,19 @@ SWGCorrelation::asJsonObject() {
     
     
     
+    toJsonValue(QString("originalCause"), originalCause, obj, QString("QString"));
+    
+    
+    
+    
+    
     toJsonValue(QString("effect"), effect, obj, QString("QString"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("originalEffect"), originalEffect, obj, QString("QString"));
     
     
     
@@ -205,6 +260,43 @@ SWGCorrelation::asJsonObject() {
     
     
     
+    
+    toJsonValue(QString("valuePredictingHighOutcome"), valuePredictingHighOutcome, obj, QString("SWGNumber"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("valuePredictingLowOutcome"), valuePredictingLowOutcome, obj, QString("SWGNumber"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("optimalPearsonProduct"), optimalPearsonProduct, obj, QString("SWGNumber"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("averageVote"), averageVote, obj, QString("SWGNumber"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("userVote"), userVote, obj, QString("SWGNumber"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("causeUnit"), causeUnit, obj, QString("QString"));
+    
+    
+    
+    obj->insert("causeUnitId", QJsonValue(causeUnitId));
+    
 
     return obj;
 }
@@ -228,12 +320,30 @@ SWGCorrelation::setCause(QString* cause) {
 }
 
 QString*
+SWGCorrelation::getOriginalCause() {
+    return originalCause;
+}
+void
+SWGCorrelation::setOriginalCause(QString* originalCause) {
+    this->originalCause = originalCause;
+}
+
+QString*
 SWGCorrelation::getEffect() {
     return effect;
 }
 void
 SWGCorrelation::setEffect(QString* effect) {
     this->effect = effect;
+}
+
+QString*
+SWGCorrelation::getOriginalEffect() {
+    return originalEffect;
+}
+void
+SWGCorrelation::setOriginalEffect(QString* originalEffect) {
+    this->originalEffect = originalEffect;
 }
 
 double*
@@ -324,6 +434,69 @@ SWGCorrelation::getEffectCategory() {
 void
 SWGCorrelation::setEffectCategory(QString* effectCategory) {
     this->effectCategory = effectCategory;
+}
+
+SWGNumber*
+SWGCorrelation::getValuePredictingHighOutcome() {
+    return valuePredictingHighOutcome;
+}
+void
+SWGCorrelation::setValuePredictingHighOutcome(SWGNumber* valuePredictingHighOutcome) {
+    this->valuePredictingHighOutcome = valuePredictingHighOutcome;
+}
+
+SWGNumber*
+SWGCorrelation::getValuePredictingLowOutcome() {
+    return valuePredictingLowOutcome;
+}
+void
+SWGCorrelation::setValuePredictingLowOutcome(SWGNumber* valuePredictingLowOutcome) {
+    this->valuePredictingLowOutcome = valuePredictingLowOutcome;
+}
+
+SWGNumber*
+SWGCorrelation::getOptimalPearsonProduct() {
+    return optimalPearsonProduct;
+}
+void
+SWGCorrelation::setOptimalPearsonProduct(SWGNumber* optimalPearsonProduct) {
+    this->optimalPearsonProduct = optimalPearsonProduct;
+}
+
+SWGNumber*
+SWGCorrelation::getAverageVote() {
+    return averageVote;
+}
+void
+SWGCorrelation::setAverageVote(SWGNumber* averageVote) {
+    this->averageVote = averageVote;
+}
+
+SWGNumber*
+SWGCorrelation::getUserVote() {
+    return userVote;
+}
+void
+SWGCorrelation::setUserVote(SWGNumber* userVote) {
+    this->userVote = userVote;
+}
+
+QString*
+SWGCorrelation::getCauseUnit() {
+    return causeUnit;
+}
+void
+SWGCorrelation::setCauseUnit(QString* causeUnit) {
+    this->causeUnit = causeUnit;
+}
+
+qint32
+SWGCorrelation::getCauseUnitId() {
+    return causeUnitId;
+}
+void
+SWGCorrelation::setCauseUnitId(qint32 causeUnitId) {
+    this->causeUnitId = causeUnitId;
 }
 
 

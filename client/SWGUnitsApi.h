@@ -22,19 +22,19 @@ public:
     QString host;
     QString basePath;
 
-    void unitCategoriesGet();
-    void unitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName);
-    void unitsVariableGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName, QString* variable);
+    void v1UnitCategoriesGet();
+    void v1UnitsGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName);
+    void v1UnitsVariableGet(QString* unitName, QString* abbreviatedUnitName, QString* categoryName, QString* variable);
     
 private:
-    void unitCategoriesGetCallback (HttpRequestWorker * worker);
-    void unitsGetCallback (HttpRequestWorker * worker);
-    void unitsVariableGetCallback (HttpRequestWorker * worker);
+    void v1UnitCategoriesGetCallback (HttpRequestWorker * worker);
+    void v1UnitsGetCallback (HttpRequestWorker * worker);
+    void v1UnitsVariableGetCallback (HttpRequestWorker * worker);
     
 signals:
-    void unitCategoriesGetSignal(SWGUnitCategory* summary);
-    void unitsGetSignal(QList<SWGUnit*>* summary);
-    void unitsVariableGetSignal(QList<SWGUnit*>* summary);
+    void v1UnitCategoriesGetSignal(SWGUnitCategory* summary);
+    void v1UnitsGetSignal(QList<SWGUnit*>* summary);
+    void v1UnitsVariableGetSignal(QList<SWGUnit*>* summary);
     
 };
 }

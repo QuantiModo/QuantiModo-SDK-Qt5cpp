@@ -3,6 +3,8 @@
 
 
 #include "SWGCommonResponse.h"
+#include "SWGHumanTime.h"
+#include "SWGConnectorInstruction.h"
 #include "SWGConnector.h"
 #include "SWGConnectorInfo.h"
 #include "SWGConnectorInfoHistoryItem.h"
@@ -35,6 +37,12 @@ namespace Swagger {
   inline void* create(QString type) {
     if(QString("SWGCommonResponse").compare(type) == 0) {
       return new SWGCommonResponse();
+    }
+    if(QString("SWGHumanTime").compare(type) == 0) {
+      return new SWGHumanTime();
+    }
+    if(QString("SWGConnectorInstruction").compare(type) == 0) {
+      return new SWGConnectorInstruction();
     }
     if(QString("SWGConnector").compare(type) == 0) {
       return new SWGConnector();
