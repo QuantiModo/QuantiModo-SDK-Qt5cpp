@@ -23,7 +23,7 @@ public:
     QString host;
     QString basePath;
 
-    void v1Connect.jsGet(QString* t);
+    void v1Connect.jsGet(QString* access token, QString* mashape key);
     void v1ConnectMobileGet(QString* t);
     void v1ConnectorsListGet();
     void v1ConnectorsConnectorConnectGet(QString* connector);

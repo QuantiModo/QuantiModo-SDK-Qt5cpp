@@ -16,7 +16,7 @@ SWGConnectorsApi::SWGConnectorsApi(QString host, QString basePath) {
 }
 
 void
-SWGConnectorsApi::v1Connect.jsGet(QString* t) {
+SWGConnectorsApi::v1Connect.jsGet(QString* access token, QString* mashape key) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/connect.js");
 
@@ -28,9 +28,21 @@ SWGConnectorsApi::v1Connect.jsGet(QString* t) {
       fullPath.append("&");
     else 
       fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("t"))
+    fullPath.append(QUrl::toPercentEncoding("access token"))
         .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(t)));
+        .append(QUrl::toPercentEncoding(stringValue(access token)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("mashape key"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(mashape key)));
     
 
     

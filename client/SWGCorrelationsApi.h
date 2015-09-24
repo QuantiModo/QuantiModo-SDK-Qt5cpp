@@ -25,7 +25,7 @@ public:
     QString host;
     QString basePath;
 
-    void v1CorrelationsGet(QString* effect, QString* cause, qint32 limit, qint32 offset, qint32 sort);
+    void v1CorrelationsGet(QString* effect, QString* cause, QString* correlationCoefficient, QString* onsetDelay, QString* durationOfAction, QString* lastUpdated, qint32 limit, qint32 offset, qint32 sort);
     void v1CorrelationsPost(SWGPostCorrelation body);
     void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameCausesGet(qint32 organizationId, qint32 userId, QString* variableName, QString* organizationToken, QString* includePublic);
     void v1OrganizationsOrganizationIdUsersUserIdVariablesVariableNameEffectsGet(qint32 organizationId, qint32 userId, QString* variableName, QString* organizationToken, QString* includePublic);

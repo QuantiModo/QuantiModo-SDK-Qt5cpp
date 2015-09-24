@@ -25,10 +25,10 @@ public:
     QString basePath;
 
     void v1PublicVariablesGet();
-    void v1PublicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort);
+    void v1PublicVariablesSearchSearchGet(QString* search, qint32 limit, qint32 offset, qint32 sort);
     void v1UserVariablesPost(SWGUserVariables sharingData);
     void v1VariableCategoriesGet();
-    void v1VariablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort);
+    void v1VariablesGet(qint32 userId, QString* category, QString* name, QString* lastUpdated, QString* source, QString* latestMeasurementTime, QString* numberOfMeasurements, QString* lastSource, qint32 limit, qint32 offset, qint32 sort);
     void v1VariablesPost(SWGVariablesNew variableName);
     void v1VariablesSearchSearchGet(QString* search, QString* categoryName, QString* source, qint32 limit, qint32 offset);
     void v1VariablesVariableNameGet(QString* variableName);

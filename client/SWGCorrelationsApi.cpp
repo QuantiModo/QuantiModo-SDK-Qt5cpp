@@ -16,7 +16,7 @@ SWGCorrelationsApi::SWGCorrelationsApi(QString host, QString basePath) {
 }
 
 void
-SWGCorrelationsApi::v1CorrelationsGet(QString* effect, QString* cause, qint32 limit, qint32 offset, qint32 sort) {
+SWGCorrelationsApi::v1CorrelationsGet(QString* effect, QString* cause, QString* correlationCoefficient, QString* onsetDelay, QString* durationOfAction, QString* lastUpdated, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/correlations");
 
@@ -43,6 +43,54 @@ SWGCorrelationsApi::v1CorrelationsGet(QString* effect, QString* cause, qint32 li
     fullPath.append(QUrl::toPercentEncoding("cause"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(cause)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("correlationCoefficient"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(correlationCoefficient)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("onsetDelay"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(onsetDelay)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("durationOfAction"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(durationOfAction)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("lastUpdated"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(lastUpdated)));
     
 
     

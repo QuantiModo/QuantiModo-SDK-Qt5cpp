@@ -68,7 +68,7 @@ SWGVariablesApi::v1PublicVariablesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariablesApi::v1PublicVariablesSearchSearchGet(QString* search, QString* effectOrCause, qint32 limit, qint32 offset, qint32 sort) {
+SWGVariablesApi::v1PublicVariablesSearchSearchGet(QString* search, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/public/variables/search/{search}");
 
@@ -77,18 +77,6 @@ SWGVariablesApi::v1PublicVariablesSearchSearchGet(QString* search, QString* effe
     fullPath.replace(searchPathParam, stringValue(search));
     
 
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("effectOrCause"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(effectOrCause)));
-    
-
-    
     
     
     if(fullPath.indexOf("?") > 0) 
@@ -278,7 +266,7 @@ SWGVariablesApi::v1VariableCategoriesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariablesApi::v1VariablesGet(qint32 userId, QString* category, qint32 limit, qint32 offset, qint32 sort) {
+SWGVariablesApi::v1VariablesGet(qint32 userId, QString* category, QString* name, QString* lastUpdated, QString* source, QString* latestMeasurementTime, QString* numberOfMeasurements, QString* lastSource, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/variables");
 
@@ -305,6 +293,78 @@ SWGVariablesApi::v1VariablesGet(qint32 userId, QString* category, qint32 limit, 
     fullPath.append(QUrl::toPercentEncoding("category"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(category)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("name"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(name)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("lastUpdated"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(lastUpdated)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("source"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(source)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("latestMeasurementTime"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(latestMeasurementTime)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("numberOfMeasurements"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(numberOfMeasurements)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("lastSource"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(lastSource)));
     
 
     

@@ -116,7 +116,7 @@ SWGMeasurementsApi::v1MeasurementSourcesPostCallback(HttpRequestWorker * worker)
     emit v1MeasurementSourcesPostSignal();
 }
 void
-SWGMeasurementsApi::v1MeasurementsGet(QString* variableName, QString* unit, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone, qint32 limit, qint32 offset, qint32 sort) {
+SWGMeasurementsApi::v1MeasurementsGet(QString* variableName, QString* source, QString* value, QString* lastUpdated, QString* unit, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone, qint32 limit, qint32 offset, qint32 sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/v1/measurements");
 
@@ -131,6 +131,42 @@ SWGMeasurementsApi::v1MeasurementsGet(QString* variableName, QString* unit, QStr
     fullPath.append(QUrl::toPercentEncoding("variableName"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(variableName)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("source"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(source)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("value"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(value)));
+    
+
+    
+    
+    
+    if(fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("lastUpdated"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(lastUpdated)));
     
 
     

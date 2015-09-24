@@ -26,7 +26,7 @@ public:
 
     void v1MeasurementSourcesGet();
     void v1MeasurementSourcesPost(SWGMeasurementSource name);
-    void v1MeasurementsGet(QString* variableName, QString* unit, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone, qint32 limit, qint32 offset, qint32 sort);
+    void v1MeasurementsGet(QString* variableName, QString* source, QString* value, QString* lastUpdated, QString* unit, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone, qint32 limit, qint32 offset, qint32 sort);
     void v1MeasurementsPost(SWGMeasurementSet measurements);
     void v1MeasurementsDailyGet(QString* variableName, QString* abbreviatedUnitName, QString* startTime, QString* endTime, qint32 groupingWidth, QString* groupingTimezone, qint32 limit, qint32 offset, qint32 sort);
     void v1MeasurementsRangeGet(QString* sources, qint32 user);
