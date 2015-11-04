@@ -26,16 +26,15 @@ SWGConnector::~SWGConnector() {
 
 void
 SWGConnector::init() {
-    id = NULL;
+    id = 0;
     name = new QString("");
-    displayName = new QString("");
+    display_name = new QString("");
     image = new QString("");
-    getItUrl = new QString("");
-    connected = new QString("");
-    connectInstructions = new QString("");
-    lastUpdate = NULL;
-    totalMeasurementsInLastUpdate = NULL;
-    noDataYet = false;
+    get_it_url = new QString("");
+    short_description = new QString("");
+    long_description = new QString("");
+    enabled = false;
+    oauth = false;
     
 }
 
@@ -45,22 +44,21 @@ SWGConnector::cleanup() {
     if(name != NULL) {
         delete name;
     }
-    if(displayName != NULL) {
-        delete displayName;
+    if(display_name != NULL) {
+        delete display_name;
     }
     if(image != NULL) {
         delete image;
     }
-    if(getItUrl != NULL) {
-        delete getItUrl;
+    if(get_it_url != NULL) {
+        delete get_it_url;
     }
-    if(connected != NULL) {
-        delete connected;
+    if(short_description != NULL) {
+        delete short_description;
     }
-    if(connectInstructions != NULL) {
-        delete connectInstructions;
+    if(long_description != NULL) {
+        delete long_description;
     }
-    
     
     
     
@@ -79,14 +77,13 @@ void
 SWGConnector::fromJsonObject(QJsonObject &pJson) {
     setValue(&id, pJson["id"], "qint32", "");
     setValue(&name, pJson["name"], "QString", "QString");
-    setValue(&displayName, pJson["displayName"], "QString", "QString");
+    setValue(&display_name, pJson["display_name"], "QString", "QString");
     setValue(&image, pJson["image"], "QString", "QString");
-    setValue(&getItUrl, pJson["getItUrl"], "QString", "QString");
-    setValue(&connected, pJson["connected"], "QString", "QString");
-    setValue(&connectInstructions, pJson["connectInstructions"], "QString", "QString");
-    setValue(&lastUpdate, pJson["lastUpdate"], "qint32", "");
-    setValue(&totalMeasurementsInLastUpdate, pJson["totalMeasurementsInLastUpdate"], "qint32", "");
-    setValue(&noDataYet, pJson["noDataYet"], "bool", "");
+    setValue(&get_it_url, pJson["get_it_url"], "QString", "QString");
+    setValue(&short_description, pJson["short_description"], "QString", "QString");
+    setValue(&long_description, pJson["long_description"], "QString", "QString");
+    setValue(&enabled, pJson["enabled"], "bool", "");
+    setValue(&oauth, pJson["oauth"], "bool", "");
     
 }
 
@@ -112,7 +109,7 @@ SWGConnector::asJsonObject() {
     
     
     
-    toJsonValue(QString("displayName"), displayName, obj, QString("QString"));
+    toJsonValue(QString("display_name"), display_name, obj, QString("QString"));
     
     
     
@@ -124,25 +121,24 @@ SWGConnector::asJsonObject() {
     
     
     
-    toJsonValue(QString("getItUrl"), getItUrl, obj, QString("QString"));
+    toJsonValue(QString("get_it_url"), get_it_url, obj, QString("QString"));
     
     
     
     
     
-    toJsonValue(QString("connected"), connected, obj, QString("QString"));
+    toJsonValue(QString("short_description"), short_description, obj, QString("QString"));
     
     
     
     
     
-    toJsonValue(QString("connectInstructions"), connectInstructions, obj, QString("QString"));
+    toJsonValue(QString("long_description"), long_description, obj, QString("QString"));
     
     
     
-    obj->insert("lastUpdate", QJsonValue(lastUpdate));
-    obj->insert("totalMeasurementsInLastUpdate", QJsonValue(totalMeasurementsInLastUpdate));
-    obj->insert("noDataYet", QJsonValue(noDataYet));
+    obj->insert("enabled", QJsonValue(enabled));
+    obj->insert("oauth", QJsonValue(oauth));
     
 
     return obj;
@@ -168,11 +164,11 @@ SWGConnector::setName(QString* name) {
 
 QString*
 SWGConnector::getDisplayName() {
-    return displayName;
+    return display_name;
 }
 void
-SWGConnector::setDisplayName(QString* displayName) {
-    this->displayName = displayName;
+SWGConnector::setDisplayName(QString* display_name) {
+    this->display_name = display_name;
 }
 
 QString*
@@ -186,56 +182,47 @@ SWGConnector::setImage(QString* image) {
 
 QString*
 SWGConnector::getGetItUrl() {
-    return getItUrl;
+    return get_it_url;
 }
 void
-SWGConnector::setGetItUrl(QString* getItUrl) {
-    this->getItUrl = getItUrl;
+SWGConnector::setGetItUrl(QString* get_it_url) {
+    this->get_it_url = get_it_url;
 }
 
 QString*
-SWGConnector::getConnected() {
-    return connected;
+SWGConnector::getShortDescription() {
+    return short_description;
 }
 void
-SWGConnector::setConnected(QString* connected) {
-    this->connected = connected;
+SWGConnector::setShortDescription(QString* short_description) {
+    this->short_description = short_description;
 }
 
 QString*
-SWGConnector::getConnectInstructions() {
-    return connectInstructions;
+SWGConnector::getLongDescription() {
+    return long_description;
 }
 void
-SWGConnector::setConnectInstructions(QString* connectInstructions) {
-    this->connectInstructions = connectInstructions;
-}
-
-qint32
-SWGConnector::getLastUpdate() {
-    return lastUpdate;
-}
-void
-SWGConnector::setLastUpdate(qint32 lastUpdate) {
-    this->lastUpdate = lastUpdate;
-}
-
-qint32
-SWGConnector::getTotalMeasurementsInLastUpdate() {
-    return totalMeasurementsInLastUpdate;
-}
-void
-SWGConnector::setTotalMeasurementsInLastUpdate(qint32 totalMeasurementsInLastUpdate) {
-    this->totalMeasurementsInLastUpdate = totalMeasurementsInLastUpdate;
+SWGConnector::setLongDescription(QString* long_description) {
+    this->long_description = long_description;
 }
 
 bool
-SWGConnector::getNoDataYet() {
-    return noDataYet;
+SWGConnector::getEnabled() {
+    return enabled;
 }
 void
-SWGConnector::setNoDataYet(bool noDataYet) {
-    this->noDataYet = noDataYet;
+SWGConnector::setEnabled(bool enabled) {
+    this->enabled = enabled;
+}
+
+bool
+SWGConnector::getOauth() {
+    return oauth;
+}
+void
+SWGConnector::setOauth(bool oauth) {
+    this->oauth = oauth;
 }
 
 

@@ -10,9 +10,8 @@
 #include <QJsonObject>
 
 
+#include "QDateTime.h"
 #include <QString>
-#include <QList>
-#include "SWGConversionStep.h"
 
 #include "SWGObject.h"
 
@@ -32,27 +31,48 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGUnit* fromJson(QString &jsonString);
 
+    qint32 getId();
+    void setId(qint32 id);
+    QString* getClientId();
+    void setClientId(QString* client_id);
     QString* getName();
     void setName(QString* name);
     QString* getAbbreviatedName();
-    void setAbbreviatedName(QString* abbreviatedName);
-    QString* getCategory();
-    void setCategory(QString* category);
-    double* getMinimum();
-    void setMinimum(double* minimum);
-    double* getMaximum();
-    void setMaximum(double* maximum);
-    QList<SWGConversionStep*>* getConversionSteps();
-    void setConversionSteps(QList<SWGConversionStep*>* conversionSteps);
+    void setAbbreviatedName(QString* abbreviated_name);
+    qint32 getCategoryId();
+    void setCategoryId(qint32 category_id);
+    float getMinimumValue();
+    void setMinimumValue(float minimum_value);
+    float getMaximumValue();
+    void setMaximumValue(float maximum_value);
+    qint32 getUpdated();
+    void setUpdated(qint32 updated);
+    qint32 getDefaultUnitId();
+    void setDefaultUnitId(qint32 default_unit_id);
+    float getMultiply();
+    void setMultiply(float multiply);
+    float getAdd();
+    void setAdd(float add);
+    QDateTime* getCreatedAt();
+    void setCreatedAt(QDateTime* created_at);
+    QDateTime* getUpdatedAt();
+    void setUpdatedAt(QDateTime* updated_at);
     
 
 private:
+    qint32 id;
+    QString* client_id;
     QString* name;
-    QString* abbreviatedName;
-    QString* category;
-    double* minimum;
-    double* maximum;
-    QList<SWGConversionStep*>* conversionSteps;
+    QString* abbreviated_name;
+    qint32 category_id;
+    float minimum_value;
+    float maximum_value;
+    qint32 updated;
+    qint32 default_unit_id;
+    float multiply;
+    float add;
+    QDateTime* created_at;
+    QDateTime* updated_at;
     
 };
 

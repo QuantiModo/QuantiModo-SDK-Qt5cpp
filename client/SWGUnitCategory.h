@@ -10,6 +10,7 @@
 #include <QJsonObject>
 
 
+#include "QDateTime.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -30,12 +31,21 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGUnitCategory* fromJson(QString &jsonString);
 
+    qint32 getId();
+    void setId(qint32 id);
     QString* getName();
     void setName(QString* name);
+    QDateTime* getCreatedAt();
+    void setCreatedAt(QDateTime* created_at);
+    QDateTime* getUpdatedAt();
+    void setUpdatedAt(QDateTime* updated_at);
     
 
 private:
+    qint32 id;
     QString* name;
+    QDateTime* created_at;
+    QDateTime* updated_at;
     
 };
 

@@ -26,58 +26,60 @@ SWGMeasurement::~SWGMeasurement() {
 
 void
 SWGMeasurement::init() {
-    variable = new QString("");
-    source = new QString("");
-    timestamp = 0L;
-    startTime = new QString("");
-    humanTime = new SWGHumanTime();
-    value = 0.0;
-    unit = new QString("");
-    originalValue = NULL;
-    storedValue = 0.0;
-    storedAbbreviatedUnitName = new QString("");
-    originalAbbreviatedUnitName = new QString("");
-    abbreviatedUnitName = new QString("");
+    id = NULL;
+    user_id = 0;
+    client_id = new QString("");
+    connector_id = 0;
+    variable_id = 0;
+    source_id = 0;
+    start_time = 0;
+    value = 0.0f;
+    unit_id = 0;
+    original_value = 0.0f;
+    original_unit_id = 0;
+    duration = 0;
     note = new QString("");
+    latitude = 0.0f;
+    longitude = 0.0f;
+    location = new QString("");
+    created_at = NULL;
+    updated_at = NULL;
+    error = new QString("");
     
 }
 
 void
 SWGMeasurement::cleanup() {
-    if(variable != NULL) {
-        delete variable;
-    }
-    if(source != NULL) {
-        delete source;
+    
+    
+    if(client_id != NULL) {
+        delete client_id;
     }
     
-    if(startTime != NULL) {
-        delete startTime;
-    }
-    if(humanTime != NULL) {
-        delete humanTime;
-    }
-    if(value != NULL) {
-        delete value;
-    }
-    if(unit != NULL) {
-        delete unit;
-    }
     
-    if(storedValue != NULL) {
-        delete storedValue;
-    }
-    if(storedAbbreviatedUnitName != NULL) {
-        delete storedAbbreviatedUnitName;
-    }
-    if(originalAbbreviatedUnitName != NULL) {
-        delete originalAbbreviatedUnitName;
-    }
-    if(abbreviatedUnitName != NULL) {
-        delete abbreviatedUnitName;
-    }
+    
+    
+    
+    
+    
+    
+    
     if(note != NULL) {
         delete note;
+    }
+    
+    
+    if(location != NULL) {
+        delete location;
+    }
+    if(created_at != NULL) {
+        delete created_at;
+    }
+    if(updated_at != NULL) {
+        delete updated_at;
+    }
+    if(error != NULL) {
+        delete error;
     }
     
 }
@@ -93,19 +95,25 @@ SWGMeasurement::fromJson(QString &json) {
 
 void
 SWGMeasurement::fromJsonObject(QJsonObject &pJson) {
-    setValue(&variable, pJson["variable"], "QString", "QString");
-    setValue(&source, pJson["source"], "QString", "QString");
-    setValue(&timestamp, pJson["timestamp"], "qint64", "");
-    setValue(&startTime, pJson["startTime"], "QString", "QString");
-    setValue(&humanTime, pJson["humanTime"], "SWGHumanTime", "SWGHumanTime");
-    setValue(&value, pJson["value"], "double", "double");
-    setValue(&unit, pJson["unit"], "QString", "QString");
-    setValue(&originalValue, pJson["originalValue"], "qint32", "");
-    setValue(&storedValue, pJson["storedValue"], "double", "double");
-    setValue(&storedAbbreviatedUnitName, pJson["storedAbbreviatedUnitName"], "QString", "QString");
-    setValue(&originalAbbreviatedUnitName, pJson["originalAbbreviatedUnitName"], "QString", "QString");
-    setValue(&abbreviatedUnitName, pJson["abbreviatedUnitName"], "QString", "QString");
+    setValue(&id, pJson["id"], "qint32", "");
+    setValue(&user_id, pJson["user_id"], "qint32", "");
+    setValue(&client_id, pJson["client_id"], "QString", "QString");
+    setValue(&connector_id, pJson["connector_id"], "qint32", "");
+    setValue(&variable_id, pJson["variable_id"], "qint32", "");
+    setValue(&source_id, pJson["source_id"], "qint32", "");
+    setValue(&start_time, pJson["start_time"], "qint32", "");
+    setValue(&value, pJson["value"], "float", "");
+    setValue(&unit_id, pJson["unit_id"], "qint32", "");
+    setValue(&original_value, pJson["original_value"], "float", "");
+    setValue(&original_unit_id, pJson["original_unit_id"], "qint32", "");
+    setValue(&duration, pJson["duration"], "qint32", "");
     setValue(&note, pJson["note"], "QString", "QString");
+    setValue(&latitude, pJson["latitude"], "float", "");
+    setValue(&longitude, pJson["longitude"], "float", "");
+    setValue(&location, pJson["location"], "QString", "QString");
+    setValue(&created_at, pJson["created_at"], "QDateTime", "QDateTime");
+    setValue(&updated_at, pJson["updated_at"], "QDateTime", "QDateTime");
+    setValue(&error, pJson["error"], "QString", "QString");
     
 }
 
@@ -122,71 +130,52 @@ SWGMeasurement::asJson ()
 QJsonObject*
 SWGMeasurement::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
+    obj->insert("id", QJsonValue(id));
+    obj->insert("user_id", QJsonValue(user_id));
     
     
-    toJsonValue(QString("variable"), variable, obj, QString("QString"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("source"), source, obj, QString("QString"));
+    toJsonValue(QString("client_id"), client_id, obj, QString("QString"));
     
     
     
-    obj->insert("timestamp", QJsonValue(timestamp));
-    
-    
-    toJsonValue(QString("startTime"), startTime, obj, QString("QString"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("humanTime"), humanTime, obj, QString("SWGHumanTime"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("value"), value, obj, QString("double"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("unit"), unit, obj, QString("QString"));
-    
-    
-    
-    obj->insert("originalValue", QJsonValue(originalValue));
-    
-    
-    toJsonValue(QString("storedValue"), storedValue, obj, QString("double"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("storedAbbreviatedUnitName"), storedAbbreviatedUnitName, obj, QString("QString"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("originalAbbreviatedUnitName"), originalAbbreviatedUnitName, obj, QString("QString"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("abbreviatedUnitName"), abbreviatedUnitName, obj, QString("QString"));
-    
-    
-    
+    obj->insert("connector_id", QJsonValue(connector_id));
+    obj->insert("variable_id", QJsonValue(variable_id));
+    obj->insert("source_id", QJsonValue(source_id));
+    obj->insert("start_time", QJsonValue(start_time));
+    obj->insert("value", QJsonValue(value));
+    obj->insert("unit_id", QJsonValue(unit_id));
+    obj->insert("original_value", QJsonValue(original_value));
+    obj->insert("original_unit_id", QJsonValue(original_unit_id));
+    obj->insert("duration", QJsonValue(duration));
     
     
     toJsonValue(QString("note"), note, obj, QString("QString"));
+    
+    
+    
+    obj->insert("latitude", QJsonValue(latitude));
+    obj->insert("longitude", QJsonValue(longitude));
+    
+    
+    toJsonValue(QString("location"), location, obj, QString("QString"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("created_at"), created_at, obj, QString("QDateTime"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("updated_at"), updated_at, obj, QString("QDateTime"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("error"), error, obj, QString("QString"));
     
     
     
@@ -195,112 +184,112 @@ SWGMeasurement::asJsonObject() {
     return obj;
 }
 
-QString*
-SWGMeasurement::getVariable() {
-    return variable;
+qint32
+SWGMeasurement::getId() {
+    return id;
 }
 void
-SWGMeasurement::setVariable(QString* variable) {
-    this->variable = variable;
+SWGMeasurement::setId(qint32 id) {
+    this->id = id;
+}
+
+qint32
+SWGMeasurement::getUserId() {
+    return user_id;
+}
+void
+SWGMeasurement::setUserId(qint32 user_id) {
+    this->user_id = user_id;
 }
 
 QString*
-SWGMeasurement::getSource() {
-    return source;
+SWGMeasurement::getClientId() {
+    return client_id;
 }
 void
-SWGMeasurement::setSource(QString* source) {
-    this->source = source;
+SWGMeasurement::setClientId(QString* client_id) {
+    this->client_id = client_id;
 }
 
-qint64
-SWGMeasurement::getTimestamp() {
-    return timestamp;
+qint32
+SWGMeasurement::getConnectorId() {
+    return connector_id;
 }
 void
-SWGMeasurement::setTimestamp(qint64 timestamp) {
-    this->timestamp = timestamp;
+SWGMeasurement::setConnectorId(qint32 connector_id) {
+    this->connector_id = connector_id;
 }
 
-QString*
+qint32
+SWGMeasurement::getVariableId() {
+    return variable_id;
+}
+void
+SWGMeasurement::setVariableId(qint32 variable_id) {
+    this->variable_id = variable_id;
+}
+
+qint32
+SWGMeasurement::getSourceId() {
+    return source_id;
+}
+void
+SWGMeasurement::setSourceId(qint32 source_id) {
+    this->source_id = source_id;
+}
+
+qint32
 SWGMeasurement::getStartTime() {
-    return startTime;
+    return start_time;
 }
 void
-SWGMeasurement::setStartTime(QString* startTime) {
-    this->startTime = startTime;
+SWGMeasurement::setStartTime(qint32 start_time) {
+    this->start_time = start_time;
 }
 
-SWGHumanTime*
-SWGMeasurement::getHumanTime() {
-    return humanTime;
-}
-void
-SWGMeasurement::setHumanTime(SWGHumanTime* humanTime) {
-    this->humanTime = humanTime;
-}
-
-double*
+float
 SWGMeasurement::getValue() {
     return value;
 }
 void
-SWGMeasurement::setValue(double* value) {
+SWGMeasurement::setValue(float value) {
     this->value = value;
 }
 
-QString*
-SWGMeasurement::getUnit() {
-    return unit;
+qint32
+SWGMeasurement::getUnitId() {
+    return unit_id;
 }
 void
-SWGMeasurement::setUnit(QString* unit) {
-    this->unit = unit;
+SWGMeasurement::setUnitId(qint32 unit_id) {
+    this->unit_id = unit_id;
+}
+
+float
+SWGMeasurement::getOriginalValue() {
+    return original_value;
+}
+void
+SWGMeasurement::setOriginalValue(float original_value) {
+    this->original_value = original_value;
 }
 
 qint32
-SWGMeasurement::getOriginalValue() {
-    return originalValue;
+SWGMeasurement::getOriginalUnitId() {
+    return original_unit_id;
 }
 void
-SWGMeasurement::setOriginalValue(qint32 originalValue) {
-    this->originalValue = originalValue;
+SWGMeasurement::setOriginalUnitId(qint32 original_unit_id) {
+    this->original_unit_id = original_unit_id;
 }
 
-double*
-SWGMeasurement::getStoredValue() {
-    return storedValue;
+qint32
+SWGMeasurement::getDuration() {
+    return duration;
 }
 void
-SWGMeasurement::setStoredValue(double* storedValue) {
-    this->storedValue = storedValue;
-}
-
-QString*
-SWGMeasurement::getStoredAbbreviatedUnitName() {
-    return storedAbbreviatedUnitName;
-}
-void
-SWGMeasurement::setStoredAbbreviatedUnitName(QString* storedAbbreviatedUnitName) {
-    this->storedAbbreviatedUnitName = storedAbbreviatedUnitName;
-}
-
-QString*
-SWGMeasurement::getOriginalAbbreviatedUnitName() {
-    return originalAbbreviatedUnitName;
-}
-void
-SWGMeasurement::setOriginalAbbreviatedUnitName(QString* originalAbbreviatedUnitName) {
-    this->originalAbbreviatedUnitName = originalAbbreviatedUnitName;
-}
-
-QString*
-SWGMeasurement::getAbbreviatedUnitName() {
-    return abbreviatedUnitName;
-}
-void
-SWGMeasurement::setAbbreviatedUnitName(QString* abbreviatedUnitName) {
-    this->abbreviatedUnitName = abbreviatedUnitName;
+SWGMeasurement::setDuration(qint32 duration) {
+    this->duration = duration;
 }
 
 QString*
@@ -310,6 +299,60 @@ SWGMeasurement::getNote() {
 void
 SWGMeasurement::setNote(QString* note) {
     this->note = note;
+}
+
+float
+SWGMeasurement::getLatitude() {
+    return latitude;
+}
+void
+SWGMeasurement::setLatitude(float latitude) {
+    this->latitude = latitude;
+}
+
+float
+SWGMeasurement::getLongitude() {
+    return longitude;
+}
+void
+SWGMeasurement::setLongitude(float longitude) {
+    this->longitude = longitude;
+}
+
+QString*
+SWGMeasurement::getLocation() {
+    return location;
+}
+void
+SWGMeasurement::setLocation(QString* location) {
+    this->location = location;
+}
+
+QDateTime*
+SWGMeasurement::getCreatedAt() {
+    return created_at;
+}
+void
+SWGMeasurement::setCreatedAt(QDateTime* created_at) {
+    this->created_at = created_at;
+}
+
+QDateTime*
+SWGMeasurement::getUpdatedAt() {
+    return updated_at;
+}
+void
+SWGMeasurement::setUpdatedAt(QDateTime* updated_at) {
+    this->updated_at = updated_at;
+}
+
+QString*
+SWGMeasurement::getError() {
+    return error;
+}
+void
+SWGMeasurement::setError(QString* error) {
+    this->error = error;
 }
 
 

@@ -35,34 +35,31 @@ public:
     QString* getName();
     void setName(QString* name);
     QString* getDisplayName();
-    void setDisplayName(QString* displayName);
+    void setDisplayName(QString* display_name);
     QString* getImage();
     void setImage(QString* image);
     QString* getGetItUrl();
-    void setGetItUrl(QString* getItUrl);
-    QString* getConnected();
-    void setConnected(QString* connected);
-    QString* getConnectInstructions();
-    void setConnectInstructions(QString* connectInstructions);
-    qint32 getLastUpdate();
-    void setLastUpdate(qint32 lastUpdate);
-    qint32 getTotalMeasurementsInLastUpdate();
-    void setTotalMeasurementsInLastUpdate(qint32 totalMeasurementsInLastUpdate);
-    bool getNoDataYet();
-    void setNoDataYet(bool noDataYet);
+    void setGetItUrl(QString* get_it_url);
+    QString* getShortDescription();
+    void setShortDescription(QString* short_description);
+    QString* getLongDescription();
+    void setLongDescription(QString* long_description);
+    bool getEnabled();
+    void setEnabled(bool enabled);
+    bool getOauth();
+    void setOauth(bool oauth);
     
 
 private:
     qint32 id;
     QString* name;
-    QString* displayName;
+    QString* display_name;
     QString* image;
-    QString* getItUrl;
-    QString* connected;
-    QString* connectInstructions;
-    qint32 lastUpdate;
-    qint32 totalMeasurementsInLastUpdate;
-    bool noDataYet;
+    QString* get_it_url;
+    QString* short_description;
+    QString* long_description;
+    bool enabled;
+    bool oauth;
     
 };
 
