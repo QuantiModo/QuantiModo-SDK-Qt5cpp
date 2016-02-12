@@ -16,7 +16,7 @@ SWGConnectorApi::SWGConnectorApi(QString host, QString basePath) {
 }
 
 void
-SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* image, QString* getItUrl, QString* shortDescription, QString* longDescription, bool enabled, bool oauth, qint32 limit, qint32 offset, QString* sort) {
+SWGConnectorApi::connectorsGet(QString* accessToken, QString* name, QString* displayName, QString* image, QString* getItUrl, QString* shortDescription, QString* longDescription, bool enabled, bool oauth, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors");
 
@@ -24,7 +24,19 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +156,7 @@ SWGConnectorApi::connectorsGet(QString* name, QString* displayName, QString* ima
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -189,7 +201,7 @@ SWGConnectorApi::connectorsGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_5* output = static_cast<SWGInline_response_200_5*>(create(json, QString("SWGInline_response_200_5")));
+    SWGInline_response_200_15* output = static_cast<SWGInline_response_200_15*>(create(json, QString("SWGInline_response_200_15")));
     
     
     
@@ -200,12 +212,24 @@ SWGConnectorApi::connectorsGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGConnectorApi::connectorsPost(SWGConnector body) {
+SWGConnectorApi::connectorsPost(QString* accessToken, SWGConnector body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -246,7 +270,7 @@ SWGConnectorApi::connectorsPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_6* output = static_cast<SWGInline_response_200_6*>(create(json, QString("SWGInline_response_200_6")));
+    SWGInline_response_200_16* output = static_cast<SWGInline_response_200_16*>(create(json, QString("SWGInline_response_200_16")));
     
     
     
@@ -257,7 +281,7 @@ SWGConnectorApi::connectorsPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGConnectorApi::connectorsIdGet(qint32 id) {
+SWGConnectorApi::connectorsIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors/{id}");
 
@@ -266,6 +290,18 @@ SWGConnectorApi::connectorsIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -301,7 +337,7 @@ SWGConnectorApi::connectorsIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_6* output = static_cast<SWGInline_response_200_6*>(create(json, QString("SWGInline_response_200_6")));
+    SWGInline_response_200_16* output = static_cast<SWGInline_response_200_16*>(create(json, QString("SWGInline_response_200_16")));
     
     
     
@@ -312,7 +348,7 @@ SWGConnectorApi::connectorsIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGConnectorApi::connectorsIdPut(qint32 id, SWGConnector body) {
+SWGConnectorApi::connectorsIdPut(qint32 id, QString* accessToken, SWGConnector body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors/{id}");
 
@@ -321,6 +357,18 @@ SWGConnectorApi::connectorsIdPut(qint32 id, SWGConnector body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -372,7 +420,7 @@ SWGConnectorApi::connectorsIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGConnectorApi::connectorsIdDelete(qint32 id) {
+SWGConnectorApi::connectorsIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/connectors/{id}");
 
@@ -381,6 +429,18 @@ SWGConnectorApi::connectorsIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

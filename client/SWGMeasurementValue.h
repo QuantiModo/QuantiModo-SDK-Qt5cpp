@@ -10,6 +10,7 @@
 #include <QJsonObject>
 
 
+#include <QString>
 
 #include "SWGObject.h"
 
@@ -29,15 +30,18 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGMeasurementValue* fromJson(QString &jsonString);
 
-    qint64 getStartTime();
-    void setStartTime(qint64 start_time);
+    QString* getStartTime();
+    void setStartTime(QString* start_time);
     float getValue();
     void setValue(float value);
+    QString* getNote();
+    void setNote(QString* note);
     
 
 private:
-    qint64 start_time;
+    QString* start_time;
     float value;
+    QString* note;
     
 };
 

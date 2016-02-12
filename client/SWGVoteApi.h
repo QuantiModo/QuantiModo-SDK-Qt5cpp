@@ -4,8 +4,8 @@
 #include "SWGHttpRequest.h"
 
 #include <QString>
-#include "SWGInline_response_200_29.h"
-#include "SWGInline_response_200_30.h"
+#include "SWGInline_response_200_11.h"
+#include "SWGInline_response_200_36.h"
 #include "SWGVote.h"
 #include "SWGInline_response_200_2.h"
 
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 effectId, qint32 value, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void votesPost(SWGVote body);
-    void votesIdGet(qint32 id);
-    void votesIdPut(qint32 id, SWGVote body);
-    void votesIdDelete(qint32 id);
+    void votesGet(QString* accessToken, QString* clientId, qint32 userId, qint32 causeId, qint32 effectId, qint32 value, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void votesPost(QString* accessToken, SWGVote body);
+    void votesIdGet(qint32 id, QString* accessToken);
+    void votesIdPut(qint32 id, QString* accessToken, SWGVote body);
+    void votesIdDelete(qint32 id, QString* accessToken);
     
 private:
     void votesGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void votesIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void votesGetSignal(SWGInline_response_200_29* summary);
-    void votesPostSignal(SWGInline_response_200_30* summary);
-    void votesIdGetSignal(SWGInline_response_200_30* summary);
+    void votesGetSignal(SWGInline_response_200_11* summary);
+    void votesPostSignal(SWGInline_response_200_36* summary);
+    void votesIdGetSignal(SWGInline_response_200_36* summary);
     void votesIdPutSignal(SWGInline_response_200_2* summary);
     void votesIdDeleteSignal(SWGInline_response_200_2* summary);
     

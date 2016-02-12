@@ -3,10 +3,10 @@
 
 #include "SWGHttpRequest.h"
 
-#include "SWGInline_response_200_17.h"
 #include <QString>
 #include "SWGNumber.h"
-#include "SWGInline_response_200_18.h"
+#include "SWGInline_response_200_26.h"
+#include "SWGInline_response_200_27.h"
 #include "SWGUnit.h"
 #include "SWGInline_response_200_2.h"
 
@@ -25,11 +25,11 @@ public:
     QString host;
     QString basePath;
 
-    void unitsGet(QString* clientId, QString* name, QString* abbreviatedName, bool categoryId, SWGNumber* minimumValue, SWGNumber* maximumValue, qint32 updated, SWGNumber* multiply, SWGNumber* add, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void unitsPost(SWGUnit body);
-    void unitsIdGet(qint32 id);
-    void unitsIdPut(qint32 id, SWGUnit body);
-    void unitsIdDelete(qint32 id);
+    void unitsGet(QString* accessToken, QString* clientId, QString* name, QString* abbreviatedName, qint32 categoryId, SWGNumber* minimumValue, SWGNumber* maximumValue, qint32 updated, qint32 defaultUnitId, SWGNumber* multiply, SWGNumber* add, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void unitsPost(QString* accessToken, SWGUnit body);
+    void unitsIdGet(qint32 id, QString* accessToken);
+    void unitsIdPut(qint32 id, QString* accessToken, SWGUnit body);
+    void unitsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void unitsGetCallback (HttpRequestWorker * worker);
@@ -39,9 +39,9 @@ private:
     void unitsIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void unitsGetSignal(SWGInline_response_200_17* summary);
-    void unitsPostSignal(SWGInline_response_200_18* summary);
-    void unitsIdGetSignal(SWGInline_response_200_18* summary);
+    void unitsGetSignal(SWGInline_response_200_26* summary);
+    void unitsPostSignal(SWGInline_response_200_27* summary);
+    void unitsIdGetSignal(SWGInline_response_200_27* summary);
     void unitsIdPutSignal(SWGInline_response_200_2* summary);
     void unitsIdDeleteSignal(SWGInline_response_200_2* summary);
     

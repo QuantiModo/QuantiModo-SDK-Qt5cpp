@@ -16,7 +16,7 @@ SWGVariableUserSourceApi::SWGVariableUserSourceApi(QString host, QString basePat
 }
 
 void
-SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userId, qint32 timestamp, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGVariableUserSourceApi::variableUserSourcesGet(QString* accessToken, qint32 variableId, qint32 userId, qint32 timestamp, qint32 earliestMeasurementTime, qint32 latestMeasurementTime, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSources");
 
@@ -24,7 +24,19 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,31 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("earliestMeasurementTime"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(earliestMeasurementTime)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("latestMeasurementTime"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(latestMeasurementTime)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +108,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +120,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +132,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +144,7 @@ SWGVariableUserSourceApi::variableUserSourcesGet(qint32 variableId, qint32 userI
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -153,7 +189,7 @@ SWGVariableUserSourceApi::variableUserSourcesGetCallback(HttpRequestWorker * wor
     
     
     QString json(worker->response);
-    SWGInline_response_200_25* output = static_cast<SWGInline_response_200_25*>(create(json, QString("SWGInline_response_200_25")));
+    SWGInline_response_200_10* output = static_cast<SWGInline_response_200_10*>(create(json, QString("SWGInline_response_200_10")));
     
     
     
@@ -164,12 +200,24 @@ SWGVariableUserSourceApi::variableUserSourcesGetCallback(HttpRequestWorker * wor
     
 }
 void
-SWGVariableUserSourceApi::variableUserSourcesPost(SWGVariableUserSource body) {
+SWGVariableUserSourceApi::variableUserSourcesPost(QString* accessToken, SWGVariableUserSource body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSources");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -210,7 +258,7 @@ SWGVariableUserSourceApi::variableUserSourcesPostCallback(HttpRequestWorker * wo
     
     
     QString json(worker->response);
-    SWGInline_response_200_26* output = static_cast<SWGInline_response_200_26*>(create(json, QString("SWGInline_response_200_26")));
+    SWGInline_response_200_33* output = static_cast<SWGInline_response_200_33*>(create(json, QString("SWGInline_response_200_33")));
     
     
     
@@ -221,7 +269,7 @@ SWGVariableUserSourceApi::variableUserSourcesPostCallback(HttpRequestWorker * wo
     
 }
 void
-SWGVariableUserSourceApi::variableUserSourcesIdGet(qint32 id, qint32 sourceId) {
+SWGVariableUserSourceApi::variableUserSourcesIdGet(qint32 id, qint32 sourceId, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSources/{id}");
 
@@ -232,7 +280,19 @@ SWGVariableUserSourceApi::variableUserSourcesIdGet(qint32 id, qint32 sourceId) {
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -277,7 +337,7 @@ SWGVariableUserSourceApi::variableUserSourcesIdGetCallback(HttpRequestWorker * w
     
     
     QString json(worker->response);
-    SWGInline_response_200_26* output = static_cast<SWGInline_response_200_26*>(create(json, QString("SWGInline_response_200_26")));
+    SWGInline_response_200_33* output = static_cast<SWGInline_response_200_33*>(create(json, QString("SWGInline_response_200_33")));
     
     
     
@@ -288,7 +348,7 @@ SWGVariableUserSourceApi::variableUserSourcesIdGetCallback(HttpRequestWorker * w
     
 }
 void
-SWGVariableUserSourceApi::variableUserSourcesIdPut(qint32 id, qint32 sourceId, SWGVariableUserSource body) {
+SWGVariableUserSourceApi::variableUserSourcesIdPut(qint32 id, qint32 sourceId, QString* accessToken, SWGVariableUserSource body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSources/{id}");
 
@@ -299,7 +359,19 @@ SWGVariableUserSourceApi::variableUserSourcesIdPut(qint32 id, qint32 sourceId, S
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -360,7 +432,7 @@ SWGVariableUserSourceApi::variableUserSourcesIdPutCallback(HttpRequestWorker * w
     
 }
 void
-SWGVariableUserSourceApi::variableUserSourcesIdDelete(qint32 id, qint32 sourceId) {
+SWGVariableUserSourceApi::variableUserSourcesIdDelete(qint32 id, qint32 sourceId, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableUserSources/{id}");
 
@@ -371,7 +443,19 @@ SWGVariableUserSourceApi::variableUserSourcesIdDelete(qint32 id, qint32 sourceId
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");

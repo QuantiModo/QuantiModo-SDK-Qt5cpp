@@ -10,8 +10,8 @@
 #include <QJsonObject>
 
 
+#include "SWGMeasurement.h"
 #include <QList>
-#include "SWGConnector.h"
 
 #include "SWGObject.h"
 
@@ -31,14 +31,14 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGInline_response_200_5* fromJson(QString &jsonString);
 
-    QList<SWGConnector*>* getData();
-    void setData(QList<SWGConnector*>* data);
+    QList<SWGMeasurement*>* getData();
+    void setData(QList<SWGMeasurement*>* data);
     bool getSuccess();
     void setSuccess(bool success);
     
 
 private:
-    QList<SWGConnector*>* data;
+    QList<SWGMeasurement*>* data;
     bool success;
     
 };

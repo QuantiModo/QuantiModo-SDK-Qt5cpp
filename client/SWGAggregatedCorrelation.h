@@ -83,6 +83,8 @@ public:
     void setReversePearsonCorrelationCoefficient(float reverse_pearson_correlation_coefficient);
     float getPredictivePearsonCorrelationCoefficient();
     void setPredictivePearsonCorrelationCoefficient(float predictive_pearson_correlation_coefficient);
+    QString* getDataSource();
+    void setDataSource(QString* data_source);
     
 
 private:
@@ -112,6 +114,7 @@ private:
     QDateTime* last_successful_update_time;
     float reverse_pearson_correlation_coefficient;
     float predictive_pearson_correlation_coefficient;
+    QString* data_source;
     
 };
 

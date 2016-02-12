@@ -10,7 +10,8 @@
 #include <QJsonObject>
 
 
-#include "SWGConnection.h"
+#include "SWGCredential.h"
+#include <QList>
 
 #include "SWGObject.h"
 
@@ -30,14 +31,14 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGInline_response_200_4* fromJson(QString &jsonString);
 
-    SWGConnection* getData();
-    void setData(SWGConnection* data);
+    QList<SWGCredential*>* getData();
+    void setData(QList<SWGCredential*>* data);
     bool getSuccess();
     void setSuccess(bool success);
     
 
 private:
-    SWGConnection* data;
+    QList<SWGCredential*>* data;
     bool success;
     
 };

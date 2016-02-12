@@ -35,6 +35,8 @@ SWGConnector::init() {
     long_description = new QString("");
     enabled = false;
     oauth = false;
+    created_at = NULL;
+    updated_at = NULL;
     
 }
 
@@ -61,6 +63,12 @@ SWGConnector::cleanup() {
     }
     
     
+    if(created_at != NULL) {
+        delete created_at;
+    }
+    if(updated_at != NULL) {
+        delete updated_at;
+    }
     
 }
 
@@ -84,6 +92,8 @@ SWGConnector::fromJsonObject(QJsonObject &pJson) {
     setValue(&long_description, pJson["long_description"], "QString", "QString");
     setValue(&enabled, pJson["enabled"], "bool", "");
     setValue(&oauth, pJson["oauth"], "bool", "");
+    setValue(&created_at, pJson["created_at"], "QDateTime", "QDateTime");
+    setValue(&updated_at, pJson["updated_at"], "QDateTime", "QDateTime");
     
 }
 
@@ -139,6 +149,18 @@ SWGConnector::asJsonObject() {
     
     obj->insert("enabled", QJsonValue(enabled));
     obj->insert("oauth", QJsonValue(oauth));
+    
+    
+    toJsonValue(QString("created_at"), created_at, obj, QString("QDateTime"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("updated_at"), updated_at, obj, QString("QDateTime"));
+    
+    
+    
     
 
     return obj;
@@ -223,6 +245,24 @@ SWGConnector::getOauth() {
 void
 SWGConnector::setOauth(bool oauth) {
     this->oauth = oauth;
+}
+
+QDateTime*
+SWGConnector::getCreatedAt() {
+    return created_at;
+}
+void
+SWGConnector::setCreatedAt(QDateTime* created_at) {
+    this->created_at = created_at;
+}
+
+QDateTime*
+SWGConnector::getUpdatedAt() {
+    return updated_at;
+}
+void
+SWGConnector::setUpdatedAt(QDateTime* updated_at) {
+    this->updated_at = updated_at;
 }
 
 

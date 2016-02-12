@@ -16,7 +16,7 @@ SWGCorrelationApi::SWGCorrelationApi(QString host, QString basePath) {
 }
 
 void
-SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* qmScore, QString* error, QString* createdAt, QString* updatedAt, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort) {
+SWGCorrelationApi::correlationsGet(QString* accessToken, qint32 timestamp, qint32 userId, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* qmScore, QString* error, QString* createdAt, QString* updatedAt, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/correlations");
 
@@ -24,7 +24,19 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +156,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +168,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +180,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +192,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -192,7 +204,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -204,7 +216,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -216,7 +228,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -228,7 +240,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -240,7 +252,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -252,7 +264,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -264,7 +276,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -276,7 +288,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -288,7 +300,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -300,7 +312,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -312,7 +324,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -324,7 +336,7 @@ SWGCorrelationApi::correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* c
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -369,7 +381,7 @@ SWGCorrelationApi::correlationsGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_7* output = static_cast<SWGInline_response_200_7*>(create(json, QString("SWGInline_response_200_7")));
+    SWGInline_response_200_17* output = static_cast<SWGInline_response_200_17*>(create(json, QString("SWGInline_response_200_17")));
     
     
     
@@ -380,12 +392,24 @@ SWGCorrelationApi::correlationsGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCorrelationApi::correlationsPost(SWGCorrelation body) {
+SWGCorrelationApi::correlationsPost(QString* accessToken, SWGCorrelation body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/correlations");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -426,7 +450,7 @@ SWGCorrelationApi::correlationsPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_8* output = static_cast<SWGInline_response_200_8*>(create(json, QString("SWGInline_response_200_8")));
+    SWGInline_response_200_18* output = static_cast<SWGInline_response_200_18*>(create(json, QString("SWGInline_response_200_18")));
     
     
     
@@ -437,7 +461,7 @@ SWGCorrelationApi::correlationsPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCorrelationApi::correlationsIdGet(qint32 id) {
+SWGCorrelationApi::correlationsIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/correlations/{id}");
 
@@ -446,6 +470,18 @@ SWGCorrelationApi::correlationsIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -481,7 +517,7 @@ SWGCorrelationApi::correlationsIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_8* output = static_cast<SWGInline_response_200_8*>(create(json, QString("SWGInline_response_200_8")));
+    SWGInline_response_200_18* output = static_cast<SWGInline_response_200_18*>(create(json, QString("SWGInline_response_200_18")));
     
     
     
@@ -492,7 +528,7 @@ SWGCorrelationApi::correlationsIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCorrelationApi::correlationsIdPut(qint32 id, SWGCorrelation body) {
+SWGCorrelationApi::correlationsIdPut(qint32 id, QString* accessToken, SWGCorrelation body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/correlations/{id}");
 
@@ -501,6 +537,18 @@ SWGCorrelationApi::correlationsIdPut(qint32 id, SWGCorrelation body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -552,7 +600,7 @@ SWGCorrelationApi::correlationsIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCorrelationApi::correlationsIdDelete(qint32 id) {
+SWGCorrelationApi::correlationsIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/correlations/{id}");
 
@@ -561,6 +609,18 @@ SWGCorrelationApi::correlationsIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

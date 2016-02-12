@@ -16,7 +16,7 @@ SWGSourceApi::SWGSourceApi(QString host, QString basePath) {
 }
 
 void
-SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGSourceApi::sourcesGet(QString* accessToken, QString* clientId, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/sources");
 
@@ -24,7 +24,19 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGSourceApi::sourcesGet(QString* clientId, QString* name, QString* createdAt, Q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -141,7 +153,7 @@ SWGSourceApi::sourcesGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_13* output = static_cast<SWGInline_response_200_13*>(create(json, QString("SWGInline_response_200_13")));
+    SWGInline_response_200_21* output = static_cast<SWGInline_response_200_21*>(create(json, QString("SWGInline_response_200_21")));
     
     
     
@@ -152,12 +164,24 @@ SWGSourceApi::sourcesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGSourceApi::sourcesPost(SWGSource body) {
+SWGSourceApi::sourcesPost(QString* accessToken, SWGSource body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/sources");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -198,7 +222,7 @@ SWGSourceApi::sourcesPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_14* output = static_cast<SWGInline_response_200_14*>(create(json, QString("SWGInline_response_200_14")));
+    SWGInline_response_200_22* output = static_cast<SWGInline_response_200_22*>(create(json, QString("SWGInline_response_200_22")));
     
     
     
@@ -209,7 +233,7 @@ SWGSourceApi::sourcesPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGSourceApi::sourcesIdGet(qint32 id) {
+SWGSourceApi::sourcesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/sources/{id}");
 
@@ -218,6 +242,18 @@ SWGSourceApi::sourcesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -253,7 +289,7 @@ SWGSourceApi::sourcesIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_14* output = static_cast<SWGInline_response_200_14*>(create(json, QString("SWGInline_response_200_14")));
+    SWGInline_response_200_22* output = static_cast<SWGInline_response_200_22*>(create(json, QString("SWGInline_response_200_22")));
     
     
     
@@ -264,7 +300,7 @@ SWGSourceApi::sourcesIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGSourceApi::sourcesIdPut(qint32 id, SWGSource body) {
+SWGSourceApi::sourcesIdPut(qint32 id, QString* accessToken, SWGSource body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/sources/{id}");
 
@@ -273,6 +309,18 @@ SWGSourceApi::sourcesIdPut(qint32 id, SWGSource body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -324,7 +372,7 @@ SWGSourceApi::sourcesIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGSourceApi::sourcesIdDelete(qint32 id) {
+SWGSourceApi::sourcesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/sources/{id}");
 
@@ -333,6 +381,18 @@ SWGSourceApi::sourcesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

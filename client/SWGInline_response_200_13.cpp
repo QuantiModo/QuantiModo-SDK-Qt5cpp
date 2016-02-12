@@ -26,7 +26,7 @@ SWGInline_response_200_13::~SWGInline_response_200_13() {
 
 void
 SWGInline_response_200_13::init() {
-    data = new QList<SWGSource*>();
+    data = new SWGCommonVariableRelationship();
     success = false;
     
 }
@@ -34,10 +34,6 @@ SWGInline_response_200_13::init() {
 void
 SWGInline_response_200_13::cleanup() {
     if(data != NULL) {
-        QList<SWGSource*>* arr = data;
-        foreach(SWGSource* o, *arr) {
-            delete o;
-        }
         delete data;
     }
     
@@ -55,7 +51,7 @@ SWGInline_response_200_13::fromJson(QString &json) {
 
 void
 SWGInline_response_200_13::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGSource");
+    setValue(&data, pJson["data"], "SWGCommonVariableRelationship", "SWGCommonVariableRelationship");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,11 +71,8 @@ SWGInline_response_200_13::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGSource*>* dataList = data;
-    QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGSource");
-
-    obj->insert("data", dataJsonArray);
+    toJsonValue(QString("data"), data, obj, QString("SWGCommonVariableRelationship"));
+    
     
     
     obj->insert("success", QJsonValue(success));
@@ -88,12 +81,12 @@ SWGInline_response_200_13::asJsonObject() {
     return obj;
 }
 
-QList<SWGSource*>*
+SWGCommonVariableRelationship*
 SWGInline_response_200_13::getData() {
     return data;
 }
 void
-SWGInline_response_200_13::setData(QList<SWGSource*>* data) {
+SWGInline_response_200_13::setData(SWGCommonVariableRelationship* data) {
     this->data = data;
 }
 

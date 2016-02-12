@@ -27,6 +27,7 @@ SWGUserVariable::~SWGUserVariable() {
 void
 SWGUserVariable::init() {
     parent_id = 0;
+    user_id = 0;
     client_id = new QString("");
     variable_id = 0;
     default_unit_id = 0;
@@ -55,7 +56,7 @@ SWGUserVariable::init() {
     last_successful_update_time = NULL;
     standard_deviation = 0.0f;
     variance = 0.0f;
-    minimum_recorded_daily_value = 0.0f;
+    minimum_recorded_value = 0.0f;
     maximum_recorded_daily_value = 0.0f;
     mean = 0.0f;
     median = 0.0f;
@@ -68,6 +69,8 @@ SWGUserVariable::init() {
     latitude = 0.0f;
     longitude = 0.0f;
     location = new QString("");
+    experiment_start_time = NULL;
+    experiment_end_time = NULL;
     created_at = NULL;
     updated_at = NULL;
     outcome = false;
@@ -83,6 +86,7 @@ SWGUserVariable::init() {
 
 void
 SWGUserVariable::cleanup() {
+    
     
     if(client_id != NULL) {
         delete client_id;
@@ -137,6 +141,12 @@ SWGUserVariable::cleanup() {
     if(location != NULL) {
         delete location;
     }
+    if(experiment_start_time != NULL) {
+        delete experiment_start_time;
+    }
+    if(experiment_end_time != NULL) {
+        delete experiment_end_time;
+    }
     if(created_at != NULL) {
         delete created_at;
     }
@@ -168,6 +178,7 @@ SWGUserVariable::fromJson(QString &json) {
 void
 SWGUserVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&parent_id, pJson["parent_id"], "qint32", "");
+    setValue(&user_id, pJson["user_id"], "qint32", "");
     setValue(&client_id, pJson["client_id"], "QString", "QString");
     setValue(&variable_id, pJson["variable_id"], "qint32", "");
     setValue(&default_unit_id, pJson["default_unit_id"], "qint32", "");
@@ -196,7 +207,7 @@ SWGUserVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&last_successful_update_time, pJson["last_successful_update_time"], "QDateTime", "QDateTime");
     setValue(&standard_deviation, pJson["standard_deviation"], "float", "");
     setValue(&variance, pJson["variance"], "float", "");
-    setValue(&minimum_recorded_daily_value, pJson["minimum_recorded_daily_value"], "float", "");
+    setValue(&minimum_recorded_value, pJson["minimum_recorded_value"], "float", "");
     setValue(&maximum_recorded_daily_value, pJson["maximum_recorded_daily_value"], "float", "");
     setValue(&mean, pJson["mean"], "float", "");
     setValue(&median, pJson["median"], "float", "");
@@ -209,6 +220,8 @@ SWGUserVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&latitude, pJson["latitude"], "float", "");
     setValue(&longitude, pJson["longitude"], "float", "");
     setValue(&location, pJson["location"], "QString", "QString");
+    setValue(&experiment_start_time, pJson["experiment_start_time"], "QDateTime", "QDateTime");
+    setValue(&experiment_end_time, pJson["experiment_end_time"], "QDateTime", "QDateTime");
     setValue(&created_at, pJson["created_at"], "QDateTime", "QDateTime");
     setValue(&updated_at, pJson["updated_at"], "QDateTime", "QDateTime");
     setValue(&outcome, pJson["outcome"], "bool", "");
@@ -236,6 +249,7 @@ QJsonObject*
 SWGUserVariable::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     obj->insert("parent_id", QJsonValue(parent_id));
+    obj->insert("user_id", QJsonValue(user_id));
     
     
     toJsonValue(QString("client_id"), client_id, obj, QString("QString"));
@@ -289,7 +303,7 @@ SWGUserVariable::asJsonObject() {
     
     obj->insert("standard_deviation", QJsonValue(standard_deviation));
     obj->insert("variance", QJsonValue(variance));
-    obj->insert("minimum_recorded_daily_value", QJsonValue(minimum_recorded_daily_value));
+    obj->insert("minimum_recorded_value", QJsonValue(minimum_recorded_value));
     obj->insert("maximum_recorded_daily_value", QJsonValue(maximum_recorded_daily_value));
     obj->insert("mean", QJsonValue(mean));
     obj->insert("median", QJsonValue(median));
@@ -304,6 +318,18 @@ SWGUserVariable::asJsonObject() {
     
     
     toJsonValue(QString("location"), location, obj, QString("QString"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("experiment_start_time"), experiment_start_time, obj, QString("QDateTime"));
+    
+    
+    
+    
+    
+    toJsonValue(QString("experiment_end_time"), experiment_end_time, obj, QString("QDateTime"));
     
     
     
@@ -344,6 +370,15 @@ SWGUserVariable::getParentId() {
 void
 SWGUserVariable::setParentId(qint32 parent_id) {
     this->parent_id = parent_id;
+}
+
+qint32
+SWGUserVariable::getUserId() {
+    return user_id;
+}
+void
+SWGUserVariable::setUserId(qint32 user_id) {
+    this->user_id = user_id;
 }
 
 QString*
@@ -599,12 +634,12 @@ SWGUserVariable::setVariance(float variance) {
 }
 
 float
-SWGUserVariable::getMinimumRecordedDailyValue() {
-    return minimum_recorded_daily_value;
+SWGUserVariable::getMinimumRecordedValue() {
+    return minimum_recorded_value;
 }
 void
-SWGUserVariable::setMinimumRecordedDailyValue(float minimum_recorded_daily_value) {
-    this->minimum_recorded_daily_value = minimum_recorded_daily_value;
+SWGUserVariable::setMinimumRecordedValue(float minimum_recorded_value) {
+    this->minimum_recorded_value = minimum_recorded_value;
 }
 
 float
@@ -713,6 +748,24 @@ SWGUserVariable::getLocation() {
 void
 SWGUserVariable::setLocation(QString* location) {
     this->location = location;
+}
+
+QDateTime*
+SWGUserVariable::getExperimentStartTime() {
+    return experiment_start_time;
+}
+void
+SWGUserVariable::setExperimentStartTime(QDateTime* experiment_start_time) {
+    this->experiment_start_time = experiment_start_time;
+}
+
+QDateTime*
+SWGUserVariable::getExperimentEndTime() {
+    return experiment_end_time;
+}
+void
+SWGUserVariable::setExperimentEndTime(QDateTime* experiment_end_time) {
+    this->experiment_end_time = experiment_end_time;
 }
 
 QDateTime*

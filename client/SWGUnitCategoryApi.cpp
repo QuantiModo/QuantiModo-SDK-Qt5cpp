@@ -16,7 +16,7 @@ SWGUnitCategoryApi::SWGUnitCategoryApi(QString host, QString basePath) {
 }
 
 void
-SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGUnitCategoryApi::unitCategoriesGet(QString* accessToken, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/unitCategories");
 
@@ -24,7 +24,19 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGUnitCategoryApi::unitCategoriesGet(QString* name, QString* createdAt, QString
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -129,7 +141,7 @@ SWGUnitCategoryApi::unitCategoriesGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_15* output = static_cast<SWGInline_response_200_15*>(create(json, QString("SWGInline_response_200_15")));
+    SWGInline_response_200_24* output = static_cast<SWGInline_response_200_24*>(create(json, QString("SWGInline_response_200_24")));
     
     
     
@@ -140,12 +152,24 @@ SWGUnitCategoryApi::unitCategoriesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitCategoryApi::unitCategoriesPost(SWGUnitCategory body) {
+SWGUnitCategoryApi::unitCategoriesPost(QString* accessToken, SWGUnitCategory body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/unitCategories");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -186,7 +210,7 @@ SWGUnitCategoryApi::unitCategoriesPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_16* output = static_cast<SWGInline_response_200_16*>(create(json, QString("SWGInline_response_200_16")));
+    SWGInline_response_200_25* output = static_cast<SWGInline_response_200_25*>(create(json, QString("SWGInline_response_200_25")));
     
     
     
@@ -197,7 +221,7 @@ SWGUnitCategoryApi::unitCategoriesPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitCategoryApi::unitCategoriesIdGet(qint32 id) {
+SWGUnitCategoryApi::unitCategoriesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/unitCategories/{id}");
 
@@ -206,6 +230,18 @@ SWGUnitCategoryApi::unitCategoriesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -241,7 +277,7 @@ SWGUnitCategoryApi::unitCategoriesIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_16* output = static_cast<SWGInline_response_200_16*>(create(json, QString("SWGInline_response_200_16")));
+    SWGInline_response_200_25* output = static_cast<SWGInline_response_200_25*>(create(json, QString("SWGInline_response_200_25")));
     
     
     
@@ -252,7 +288,7 @@ SWGUnitCategoryApi::unitCategoriesIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitCategoryApi::unitCategoriesIdPut(qint32 id, SWGUnitCategory body) {
+SWGUnitCategoryApi::unitCategoriesIdPut(qint32 id, QString* accessToken, SWGUnitCategory body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/unitCategories/{id}");
 
@@ -261,6 +297,18 @@ SWGUnitCategoryApi::unitCategoriesIdPut(qint32 id, SWGUnitCategory body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -312,7 +360,7 @@ SWGUnitCategoryApi::unitCategoriesIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitCategoryApi::unitCategoriesIdDelete(qint32 id) {
+SWGUnitCategoryApi::unitCategoriesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/unitCategories/{id}");
 
@@ -321,6 +369,18 @@ SWGUnitCategoryApi::unitCategoriesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

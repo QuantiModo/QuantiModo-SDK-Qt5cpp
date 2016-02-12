@@ -26,7 +26,7 @@ SWGInline_response_200_18::~SWGInline_response_200_18() {
 
 void
 SWGInline_response_200_18::init() {
-    data = new SWGUnit();
+    data = new SWGCorrelation();
     success = false;
     
 }
@@ -51,7 +51,7 @@ SWGInline_response_200_18::fromJson(QString &json) {
 
 void
 SWGInline_response_200_18::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGUnit", "SWGUnit");
+    setValue(&data, pJson["data"], "SWGCorrelation", "SWGCorrelation");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,7 +71,7 @@ SWGInline_response_200_18::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGUnit"));
+    toJsonValue(QString("data"), data, obj, QString("SWGCorrelation"));
     
     
     
@@ -81,12 +81,12 @@ SWGInline_response_200_18::asJsonObject() {
     return obj;
 }
 
-SWGUnit*
+SWGCorrelation*
 SWGInline_response_200_18::getData() {
     return data;
 }
 void
-SWGInline_response_200_18::setData(SWGUnit* data) {
+SWGInline_response_200_18::setData(SWGCorrelation* data) {
     this->data = data;
 }
 

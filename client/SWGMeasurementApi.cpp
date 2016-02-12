@@ -16,7 +16,7 @@ SWGMeasurementApi::SWGMeasurementApi(QString host, QString basePath) {
 }
 
 void
-SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 connectorId, qint32 variableId, qint32 startTime, SWGNumber* value, SWGNumber* originalValue, qint32 duration, QString* note, SWGNumber* latitude, SWGNumber* longitude, QString* location, QString* createdAt, QString* updatedAt, QString* error, qint32 limit, qint32 offset, QString* sort) {
+SWGMeasurementApi::measurementsGet(QString* accessToken, qint32 userId, QString* clientId, qint32 connectorId, qint32 variableId, qint32 sourceId, QString* startTime, SWGNumber* value, qint32 unitId, SWGNumber* originalValue, qint32 originalUnitId, qint32 duration, QString* note, SWGNumber* latitude, SWGNumber* longitude, QString* location, QString* createdAt, QString* updatedAt, QString* error, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements");
 
@@ -24,7 +24,19 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,19 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("sourceId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(sourceId)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +108,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +120,19 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("unitId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(unitId)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +144,19 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("originalUnitId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(originalUnitId)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +168,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +180,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +192,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +204,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +216,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +228,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -192,7 +240,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -204,7 +252,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -216,7 +264,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -228,7 +276,7 @@ SWGMeasurementApi::measurementsGet(qint32 userId, QString* clientId, qint32 conn
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -273,7 +321,7 @@ SWGMeasurementApi::measurementsGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_11* output = static_cast<SWGInline_response_200_11*>(create(json, QString("SWGInline_response_200_11")));
+    SWGInline_response_200_5* output = static_cast<SWGInline_response_200_5*>(create(json, QString("SWGInline_response_200_5")));
     
     
     
@@ -284,12 +332,24 @@ SWGMeasurementApi::measurementsGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGMeasurementApi::measurementsPost(SWGMeasurementPost body) {
+SWGMeasurementApi::measurementsPost(QString* accessToken, SWGMeasurementPost body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -330,7 +390,7 @@ SWGMeasurementApi::measurementsPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_11* output = static_cast<SWGInline_response_200_11*>(create(json, QString("SWGInline_response_200_11")));
+    SWGInline_response_200_5* output = static_cast<SWGInline_response_200_5*>(create(json, QString("SWGInline_response_200_5")));
     
     
     
@@ -341,12 +401,24 @@ SWGMeasurementApi::measurementsPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGMeasurementApi::measurementsCsvGet() {
+SWGMeasurementApi::measurementsCsvGet(QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/csv");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -393,12 +465,24 @@ SWGMeasurementApi::measurementsCsvGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGMeasurementApi::measurementsRequestCsvPost() {
+SWGMeasurementApi::measurementsRequestCsvPost(QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/request_csv");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -445,7 +529,7 @@ SWGMeasurementApi::measurementsRequestCsvPostCallback(HttpRequestWorker * worker
     
 }
 void
-SWGMeasurementApi::measurementsIdGet(qint32 id) {
+SWGMeasurementApi::measurementsIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/{id}");
 
@@ -454,6 +538,18 @@ SWGMeasurementApi::measurementsIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -489,7 +585,7 @@ SWGMeasurementApi::measurementsIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_12* output = static_cast<SWGInline_response_200_12*>(create(json, QString("SWGInline_response_200_12")));
+    SWGInline_response_200_20* output = static_cast<SWGInline_response_200_20*>(create(json, QString("SWGInline_response_200_20")));
     
     
     
@@ -500,7 +596,7 @@ SWGMeasurementApi::measurementsIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGMeasurementApi::measurementsIdPut(qint32 id, SWGMeasurement body) {
+SWGMeasurementApi::measurementsIdPut(qint32 id, QString* accessToken, SWGMeasurement body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/{id}");
 
@@ -509,6 +605,18 @@ SWGMeasurementApi::measurementsIdPut(qint32 id, SWGMeasurement body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -560,7 +668,7 @@ SWGMeasurementApi::measurementsIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGMeasurementApi::measurementsIdDelete(qint32 id) {
+SWGMeasurementApi::measurementsIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/measurements/{id}");
 
@@ -569,6 +677,18 @@ SWGMeasurementApi::measurementsIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

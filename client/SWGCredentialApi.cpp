@@ -16,7 +16,7 @@ SWGCredentialApi::SWGCredentialApi(QString host, QString basePath) {
 }
 
 void
-SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* attrValue, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGCredentialApi::credentialsGet(QString* accessToken, qint32 userId, qint32 connectorId, QString* attrKey, QString* attrValue, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/credentials");
 
@@ -24,7 +24,31 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("userId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(userId)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +60,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +72,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +84,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +96,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +108,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +120,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +132,7 @@ SWGCredentialApi::credentialsGet(bool connectorId, QString* attrKey, QString* at
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -153,7 +177,7 @@ SWGCredentialApi::credentialsGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_9* output = static_cast<SWGInline_response_200_9*>(create(json, QString("SWGInline_response_200_9")));
+    SWGInline_response_200_4* output = static_cast<SWGInline_response_200_4*>(create(json, QString("SWGInline_response_200_4")));
     
     
     
@@ -164,12 +188,24 @@ SWGCredentialApi::credentialsGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCredentialApi::credentialsPost(SWGCredential body) {
+SWGCredentialApi::credentialsPost(QString* accessToken, SWGCredential body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/credentials");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -210,7 +246,7 @@ SWGCredentialApi::credentialsPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_10* output = static_cast<SWGInline_response_200_10*>(create(json, QString("SWGInline_response_200_10")));
+    SWGInline_response_200_19* output = static_cast<SWGInline_response_200_19*>(create(json, QString("SWGInline_response_200_19")));
     
     
     
@@ -221,7 +257,7 @@ SWGCredentialApi::credentialsPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCredentialApi::credentialsIdGet(qint32 id, QString* attrKey) {
+SWGCredentialApi::credentialsIdGet(qint32 id, QString* attrKey, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/credentials/{id}");
 
@@ -232,7 +268,19 @@ SWGCredentialApi::credentialsIdGet(qint32 id, QString* attrKey) {
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -277,7 +325,7 @@ SWGCredentialApi::credentialsIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_10* output = static_cast<SWGInline_response_200_10*>(create(json, QString("SWGInline_response_200_10")));
+    SWGInline_response_200_19* output = static_cast<SWGInline_response_200_19*>(create(json, QString("SWGInline_response_200_19")));
     
     
     
@@ -288,7 +336,7 @@ SWGCredentialApi::credentialsIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCredentialApi::credentialsIdPut(qint32 id, QString* attrKey, SWGCredential body) {
+SWGCredentialApi::credentialsIdPut(qint32 id, QString* attrKey, QString* accessToken, SWGCredential body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/credentials/{id}");
 
@@ -299,7 +347,19 @@ SWGCredentialApi::credentialsIdPut(qint32 id, QString* attrKey, SWGCredential bo
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -360,7 +420,7 @@ SWGCredentialApi::credentialsIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGCredentialApi::credentialsIdDelete(qint32 id, QString* attrKey) {
+SWGCredentialApi::credentialsIdDelete(qint32 id, QString* attrKey, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/credentials/{id}");
 
@@ -371,7 +431,19 @@ SWGCredentialApi::credentialsIdDelete(qint32 id, QString* attrKey) {
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");

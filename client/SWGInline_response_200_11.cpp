@@ -26,7 +26,7 @@ SWGInline_response_200_11::~SWGInline_response_200_11() {
 
 void
 SWGInline_response_200_11::init() {
-    data = new QList<SWGMeasurement*>();
+    data = new QList<SWGVote*>();
     success = false;
     
 }
@@ -34,8 +34,8 @@ SWGInline_response_200_11::init() {
 void
 SWGInline_response_200_11::cleanup() {
     if(data != NULL) {
-        QList<SWGMeasurement*>* arr = data;
-        foreach(SWGMeasurement* o, *arr) {
+        QList<SWGVote*>* arr = data;
+        foreach(SWGVote* o, *arr) {
             delete o;
         }
         delete data;
@@ -55,7 +55,7 @@ SWGInline_response_200_11::fromJson(QString &json) {
 
 void
 SWGInline_response_200_11::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGMeasurement");
+    setValue(&data, pJson["data"], "QList", "SWGVote");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,9 +75,9 @@ SWGInline_response_200_11::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGMeasurement*>* dataList = data;
+    QList<SWGVote*>* dataList = data;
     QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGMeasurement");
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGVote");
 
     obj->insert("data", dataJsonArray);
     
@@ -88,12 +88,12 @@ SWGInline_response_200_11::asJsonObject() {
     return obj;
 }
 
-QList<SWGMeasurement*>*
+QList<SWGVote*>*
 SWGInline_response_200_11::getData() {
     return data;
 }
 void
-SWGInline_response_200_11::setData(QList<SWGMeasurement*>* data) {
+SWGInline_response_200_11::setData(QList<SWGVote*>* data) {
     this->data = data;
 }
 

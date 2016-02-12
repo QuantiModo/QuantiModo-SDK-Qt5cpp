@@ -10,6 +10,7 @@
 #include <QJsonObject>
 
 
+#include "QDateTime.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -48,6 +49,10 @@ public:
     void setEnabled(bool enabled);
     bool getOauth();
     void setOauth(bool oauth);
+    QDateTime* getCreatedAt();
+    void setCreatedAt(QDateTime* created_at);
+    QDateTime* getUpdatedAt();
+    void setUpdatedAt(QDateTime* updated_at);
     
 
 private:
@@ -60,6 +65,8 @@ private:
     QString* long_description;
     bool enabled;
     bool oauth;
+    QDateTime* created_at;
+    QDateTime* updated_at;
     
 };
 

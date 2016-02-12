@@ -16,7 +16,7 @@ SWGVariableCategoryApi::SWGVariableCategoryApi(QString host, QString basePath) {
 }
 
 void
-SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 durationOfAction, qint32 onsetDelay, QString* combinationOperation, qint32 updated, bool causeOnly, qint32 public, bool outcome, QString* createdAt, QString* updatedAt, QString* imageUrl, qint32 defaultUnitId, qint32 limit, qint32 offset, QString* sort) {
+SWGVariableCategoryApi::variableCategoriesGet(QString* accessToken, QString* name, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 durationOfAction, qint32 onsetDelay, QString* combinationOperation, qint32 updated, bool causeOnly, qint32 public, bool outcome, QString* createdAt, QString* updatedAt, QString* imageUrl, qint32 defaultUnitId, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories");
 
@@ -24,7 +24,19 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +156,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +168,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +180,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +192,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -192,7 +204,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -204,7 +216,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -216,7 +228,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -228,7 +240,7 @@ SWGVariableCategoryApi::variableCategoriesGet(QString* name, SWGNumber* fillingV
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -273,7 +285,7 @@ SWGVariableCategoryApi::variableCategoriesGetCallback(HttpRequestWorker * worker
     
     
     QString json(worker->response);
-    SWGInline_response_200_23* output = static_cast<SWGInline_response_200_23*>(create(json, QString("SWGInline_response_200_23")));
+    SWGInline_response_200_31* output = static_cast<SWGInline_response_200_31*>(create(json, QString("SWGInline_response_200_31")));
     
     
     
@@ -284,12 +296,24 @@ SWGVariableCategoryApi::variableCategoriesGetCallback(HttpRequestWorker * worker
     
 }
 void
-SWGVariableCategoryApi::variableCategoriesPost(SWGVariableCategory body) {
+SWGVariableCategoryApi::variableCategoriesPost(QString* accessToken, SWGVariableCategory body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -330,7 +354,7 @@ SWGVariableCategoryApi::variableCategoriesPostCallback(HttpRequestWorker * worke
     
     
     QString json(worker->response);
-    SWGInline_response_200_24* output = static_cast<SWGInline_response_200_24*>(create(json, QString("SWGInline_response_200_24")));
+    SWGInline_response_200_32* output = static_cast<SWGInline_response_200_32*>(create(json, QString("SWGInline_response_200_32")));
     
     
     
@@ -341,7 +365,7 @@ SWGVariableCategoryApi::variableCategoriesPostCallback(HttpRequestWorker * worke
     
 }
 void
-SWGVariableCategoryApi::variableCategoriesIdGet(qint32 id) {
+SWGVariableCategoryApi::variableCategoriesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories/{id}");
 
@@ -350,6 +374,18 @@ SWGVariableCategoryApi::variableCategoriesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -385,7 +421,7 @@ SWGVariableCategoryApi::variableCategoriesIdGetCallback(HttpRequestWorker * work
     
     
     QString json(worker->response);
-    SWGInline_response_200_24* output = static_cast<SWGInline_response_200_24*>(create(json, QString("SWGInline_response_200_24")));
+    SWGInline_response_200_32* output = static_cast<SWGInline_response_200_32*>(create(json, QString("SWGInline_response_200_32")));
     
     
     
@@ -396,7 +432,7 @@ SWGVariableCategoryApi::variableCategoriesIdGetCallback(HttpRequestWorker * work
     
 }
 void
-SWGVariableCategoryApi::variableCategoriesIdPut(qint32 id, SWGVariableCategory body) {
+SWGVariableCategoryApi::variableCategoriesIdPut(qint32 id, QString* accessToken, SWGVariableCategory body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories/{id}");
 
@@ -405,6 +441,18 @@ SWGVariableCategoryApi::variableCategoriesIdPut(qint32 id, SWGVariableCategory b
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -456,7 +504,7 @@ SWGVariableCategoryApi::variableCategoriesIdPutCallback(HttpRequestWorker * work
     
 }
 void
-SWGVariableCategoryApi::variableCategoriesIdDelete(qint32 id) {
+SWGVariableCategoryApi::variableCategoriesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variableCategories/{id}");
 
@@ -465,6 +513,18 @@ SWGVariableCategoryApi::variableCategoriesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

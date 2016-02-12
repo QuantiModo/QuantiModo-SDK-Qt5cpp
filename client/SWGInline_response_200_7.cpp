@@ -26,7 +26,7 @@ SWGInline_response_200_7::~SWGInline_response_200_7() {
 
 void
 SWGInline_response_200_7::init() {
-    data = new QList<SWGCorrelation*>();
+    data = new QList<SWGUpdate*>();
     success = false;
     
 }
@@ -34,8 +34,8 @@ SWGInline_response_200_7::init() {
 void
 SWGInline_response_200_7::cleanup() {
     if(data != NULL) {
-        QList<SWGCorrelation*>* arr = data;
-        foreach(SWGCorrelation* o, *arr) {
+        QList<SWGUpdate*>* arr = data;
+        foreach(SWGUpdate* o, *arr) {
             delete o;
         }
         delete data;
@@ -55,7 +55,7 @@ SWGInline_response_200_7::fromJson(QString &json) {
 
 void
 SWGInline_response_200_7::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGCorrelation");
+    setValue(&data, pJson["data"], "QList", "SWGUpdate");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,9 +75,9 @@ SWGInline_response_200_7::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGCorrelation*>* dataList = data;
+    QList<SWGUpdate*>* dataList = data;
     QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGCorrelation");
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGUpdate");
 
     obj->insert("data", dataJsonArray);
     
@@ -88,12 +88,12 @@ SWGInline_response_200_7::asJsonObject() {
     return obj;
 }
 
-QList<SWGCorrelation*>*
+QList<SWGUpdate*>*
 SWGInline_response_200_7::getData() {
     return data;
 }
 void
-SWGInline_response_200_7::setData(QList<SWGCorrelation*>* data) {
+SWGInline_response_200_7::setData(QList<SWGUpdate*>* data) {
     this->data = data;
 }
 

@@ -26,7 +26,7 @@ SWGInline_response_200_15::~SWGInline_response_200_15() {
 
 void
 SWGInline_response_200_15::init() {
-    data = new QList<SWGUnitCategory*>();
+    data = new QList<SWGConnector*>();
     success = false;
     
 }
@@ -34,8 +34,8 @@ SWGInline_response_200_15::init() {
 void
 SWGInline_response_200_15::cleanup() {
     if(data != NULL) {
-        QList<SWGUnitCategory*>* arr = data;
-        foreach(SWGUnitCategory* o, *arr) {
+        QList<SWGConnector*>* arr = data;
+        foreach(SWGConnector* o, *arr) {
             delete o;
         }
         delete data;
@@ -55,7 +55,7 @@ SWGInline_response_200_15::fromJson(QString &json) {
 
 void
 SWGInline_response_200_15::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGUnitCategory");
+    setValue(&data, pJson["data"], "QList", "SWGConnector");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,9 +75,9 @@ SWGInline_response_200_15::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGUnitCategory*>* dataList = data;
+    QList<SWGConnector*>* dataList = data;
     QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGUnitCategory");
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGConnector");
 
     obj->insert("data", dataJsonArray);
     
@@ -88,12 +88,12 @@ SWGInline_response_200_15::asJsonObject() {
     return obj;
 }
 
-QList<SWGUnitCategory*>*
+QList<SWGConnector*>*
 SWGInline_response_200_15::getData() {
     return data;
 }
 void
-SWGInline_response_200_15::setData(QList<SWGUnitCategory*>* data) {
+SWGInline_response_200_15::setData(QList<SWGConnector*>* data) {
     this->data = data;
 }
 

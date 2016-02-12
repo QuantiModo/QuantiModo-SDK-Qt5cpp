@@ -52,6 +52,7 @@ SWGAggregatedCorrelation::init() {
     last_successful_update_time = NULL;
     reverse_pearson_correlation_coefficient = 0.0f;
     predictive_pearson_correlation_coefficient = 0.0f;
+    data_source = new QString("");
     
 }
 
@@ -95,6 +96,9 @@ SWGAggregatedCorrelation::cleanup() {
     }
     
     
+    if(data_source != NULL) {
+        delete data_source;
+    }
     
 }
 
@@ -135,6 +139,7 @@ SWGAggregatedCorrelation::fromJsonObject(QJsonObject &pJson) {
     setValue(&last_successful_update_time, pJson["last_successful_update_time"], "QDateTime", "QDateTime");
     setValue(&reverse_pearson_correlation_coefficient, pJson["reverse_pearson_correlation_coefficient"], "float", "");
     setValue(&predictive_pearson_correlation_coefficient, pJson["predictive_pearson_correlation_coefficient"], "float", "");
+    setValue(&data_source, pJson["data_source"], "QString", "QString");
     
 }
 
@@ -207,6 +212,12 @@ SWGAggregatedCorrelation::asJsonObject() {
     
     obj->insert("reverse_pearson_correlation_coefficient", QJsonValue(reverse_pearson_correlation_coefficient));
     obj->insert("predictive_pearson_correlation_coefficient", QJsonValue(predictive_pearson_correlation_coefficient));
+    
+    
+    toJsonValue(QString("data_source"), data_source, obj, QString("QString"));
+    
+    
+    
     
 
     return obj;
@@ -444,6 +455,15 @@ SWGAggregatedCorrelation::getPredictivePearsonCorrelationCoefficient() {
 void
 SWGAggregatedCorrelation::setPredictivePearsonCorrelationCoefficient(float predictive_pearson_correlation_coefficient) {
     this->predictive_pearson_correlation_coefficient = predictive_pearson_correlation_coefficient;
+}
+
+QString*
+SWGAggregatedCorrelation::getDataSource() {
+    return data_source;
+}
+void
+SWGAggregatedCorrelation::setDataSource(QString* data_source) {
+    this->data_source = data_source;
 }
 
 

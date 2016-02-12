@@ -26,6 +26,7 @@ SWGCredential::~SWGCredential() {
 
 void
 SWGCredential::init() {
+    user_id = NULL;
     connector_id = NULL;
     attr_key = new QString("");
     attr_value = new QString("");
@@ -36,6 +37,7 @@ SWGCredential::init() {
 
 void
 SWGCredential::cleanup() {
+    
     
     if(attr_key != NULL) {
         delete attr_key;
@@ -63,6 +65,7 @@ SWGCredential::fromJson(QString &json) {
 
 void
 SWGCredential::fromJsonObject(QJsonObject &pJson) {
+    setValue(&user_id, pJson["user_id"], "qint32", "");
     setValue(&connector_id, pJson["connector_id"], "qint32", "");
     setValue(&attr_key, pJson["attr_key"], "QString", "QString");
     setValue(&attr_value, pJson["attr_value"], "QString", "QString");
@@ -84,6 +87,7 @@ SWGCredential::asJson ()
 QJsonObject*
 SWGCredential::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
+    obj->insert("user_id", QJsonValue(user_id));
     obj->insert("connector_id", QJsonValue(connector_id));
     
     
@@ -112,6 +116,15 @@ SWGCredential::asJsonObject() {
     
 
     return obj;
+}
+
+qint32
+SWGCredential::getUserId() {
+    return user_id;
+}
+void
+SWGCredential::setUserId(qint32 user_id) {
+    this->user_id = user_id;
 }
 
 qint32

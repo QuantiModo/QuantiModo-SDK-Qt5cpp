@@ -26,15 +26,21 @@ SWGMeasurementValue::~SWGMeasurementValue() {
 
 void
 SWGMeasurementValue::init() {
-    start_time = 0L;
+    start_time = new QString("");
     value = 0.0f;
+    note = new QString("");
     
 }
 
 void
 SWGMeasurementValue::cleanup() {
+    if(start_time != NULL) {
+        delete start_time;
+    }
     
-    
+    if(note != NULL) {
+        delete note;
+    }
     
 }
 
@@ -49,8 +55,9 @@ SWGMeasurementValue::fromJson(QString &json) {
 
 void
 SWGMeasurementValue::fromJsonObject(QJsonObject &pJson) {
-    setValue(&start_time, pJson["start_time"], "qint64", "");
+    setValue(&start_time, pJson["start_time"], "QString", "QString");
     setValue(&value, pJson["value"], "float", "");
+    setValue(&note, pJson["note"], "QString", "QString");
     
 }
 
@@ -67,19 +74,30 @@ SWGMeasurementValue::asJson ()
 QJsonObject*
 SWGMeasurementValue::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
-    obj->insert("start_time", QJsonValue(start_time));
+    
+    
+    toJsonValue(QString("start_time"), start_time, obj, QString("QString"));
+    
+    
+    
     obj->insert("value", QJsonValue(value));
+    
+    
+    toJsonValue(QString("note"), note, obj, QString("QString"));
+    
+    
+    
     
 
     return obj;
 }
 
-qint64
+QString*
 SWGMeasurementValue::getStartTime() {
     return start_time;
 }
 void
-SWGMeasurementValue::setStartTime(qint64 start_time) {
+SWGMeasurementValue::setStartTime(QString* start_time) {
     this->start_time = start_time;
 }
 
@@ -90,6 +108,15 @@ SWGMeasurementValue::getValue() {
 void
 SWGMeasurementValue::setValue(float value) {
     this->value = value;
+}
+
+QString*
+SWGMeasurementValue::getNote() {
+    return note;
+}
+void
+SWGMeasurementValue::setNote(QString* note) {
+    this->note = note;
 }
 
 

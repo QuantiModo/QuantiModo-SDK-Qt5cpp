@@ -26,7 +26,7 @@ SWGInline_response_200_29::~SWGInline_response_200_29() {
 
 void
 SWGInline_response_200_29::init() {
-    data = new QList<SWGVote*>();
+    data = new SWGUserVariableRelationship();
     success = false;
     
 }
@@ -34,10 +34,6 @@ SWGInline_response_200_29::init() {
 void
 SWGInline_response_200_29::cleanup() {
     if(data != NULL) {
-        QList<SWGVote*>* arr = data;
-        foreach(SWGVote* o, *arr) {
-            delete o;
-        }
         delete data;
     }
     
@@ -55,7 +51,7 @@ SWGInline_response_200_29::fromJson(QString &json) {
 
 void
 SWGInline_response_200_29::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGVote");
+    setValue(&data, pJson["data"], "SWGUserVariableRelationship", "SWGUserVariableRelationship");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,11 +71,8 @@ SWGInline_response_200_29::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGVote*>* dataList = data;
-    QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGVote");
-
-    obj->insert("data", dataJsonArray);
+    toJsonValue(QString("data"), data, obj, QString("SWGUserVariableRelationship"));
+    
     
     
     obj->insert("success", QJsonValue(success));
@@ -88,12 +81,12 @@ SWGInline_response_200_29::asJsonObject() {
     return obj;
 }
 
-QList<SWGVote*>*
+SWGUserVariableRelationship*
 SWGInline_response_200_29::getData() {
     return data;
 }
 void
-SWGInline_response_200_29::setData(QList<SWGVote*>* data) {
+SWGInline_response_200_29::setData(SWGUserVariableRelationship* data) {
     this->data = data;
 }
 

@@ -4,9 +4,9 @@
 #include "SWGHttpRequest.h"
 
 #include <QString>
-#include "SWGInline_response_200_19.h"
+#include "SWGInline_response_200_7.h"
 #include "SWGUpdate.h"
-#include "SWGInline_response_200_20.h"
+#include "SWGInline_response_200_28.h"
 #include "SWGInline_response_200_2.h"
 
 #include <QObject>
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasurements, bool success, QString* message, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void updatesPost(SWGUpdate body);
-    void updatesIdGet(qint32 id);
-    void updatesIdPut(qint32 id, SWGUpdate body);
-    void updatesIdDelete(qint32 id);
+    void updatesGet(QString* accessToken, qint32 userId, qint32 connectorId, qint32 numberOfMeasurements, bool success, QString* message, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void updatesPost(QString* accessToken, SWGUpdate body);
+    void updatesIdGet(qint32 id, QString* accessToken);
+    void updatesIdPut(qint32 id, QString* accessToken, SWGUpdate body);
+    void updatesIdDelete(qint32 id, QString* accessToken);
     
 private:
     void updatesGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void updatesIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void updatesGetSignal(SWGInline_response_200_19* summary);
-    void updatesPostSignal(SWGInline_response_200_20* summary);
-    void updatesIdGetSignal(SWGInline_response_200_20* summary);
+    void updatesGetSignal(SWGInline_response_200_7* summary);
+    void updatesPostSignal(SWGInline_response_200_28* summary);
+    void updatesIdGetSignal(SWGInline_response_200_28* summary);
     void updatesIdPutSignal(SWGInline_response_200_2* summary);
     void updatesIdDeleteSignal(SWGInline_response_200_2* summary);
     

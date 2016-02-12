@@ -26,7 +26,7 @@ SWGInline_response_200_19::~SWGInline_response_200_19() {
 
 void
 SWGInline_response_200_19::init() {
-    data = new QList<SWGUpdate*>();
+    data = new SWGCredential();
     success = false;
     
 }
@@ -34,10 +34,6 @@ SWGInline_response_200_19::init() {
 void
 SWGInline_response_200_19::cleanup() {
     if(data != NULL) {
-        QList<SWGUpdate*>* arr = data;
-        foreach(SWGUpdate* o, *arr) {
-            delete o;
-        }
         delete data;
     }
     
@@ -55,7 +51,7 @@ SWGInline_response_200_19::fromJson(QString &json) {
 
 void
 SWGInline_response_200_19::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "QList", "SWGUpdate");
+    setValue(&data, pJson["data"], "SWGCredential", "SWGCredential");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -75,11 +71,8 @@ SWGInline_response_200_19::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    QList<SWGUpdate*>* dataList = data;
-    QJsonArray dataJsonArray;
-    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGUpdate");
-
-    obj->insert("data", dataJsonArray);
+    toJsonValue(QString("data"), data, obj, QString("SWGCredential"));
+    
     
     
     obj->insert("success", QJsonValue(success));
@@ -88,12 +81,12 @@ SWGInline_response_200_19::asJsonObject() {
     return obj;
 }
 
-QList<SWGUpdate*>*
+SWGCredential*
 SWGInline_response_200_19::getData() {
     return data;
 }
 void
-SWGInline_response_200_19::setData(QList<SWGUpdate*>* data) {
+SWGInline_response_200_19::setData(SWGCredential* data) {
     this->data = data;
 }
 

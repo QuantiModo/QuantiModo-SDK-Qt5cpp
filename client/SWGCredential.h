@@ -31,6 +31,8 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGCredential* fromJson(QString &jsonString);
 
+    qint32 getUserId();
+    void setUserId(qint32 user_id);
     qint32 getConnectorId();
     void setConnectorId(qint32 connector_id);
     QString* getAttrKey();
@@ -44,6 +46,7 @@ public:
     
 
 private:
+    qint32 user_id;
     qint32 connector_id;
     QString* attr_key;
     QString* attr_value;

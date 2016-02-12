@@ -26,7 +26,7 @@ SWGInline_response_200_16::~SWGInline_response_200_16() {
 
 void
 SWGInline_response_200_16::init() {
-    data = new SWGUnitCategory();
+    data = new SWGConnector();
     success = false;
     
 }
@@ -51,7 +51,7 @@ SWGInline_response_200_16::fromJson(QString &json) {
 
 void
 SWGInline_response_200_16::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGUnitCategory", "SWGUnitCategory");
+    setValue(&data, pJson["data"], "SWGConnector", "SWGConnector");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,7 +71,7 @@ SWGInline_response_200_16::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGUnitCategory"));
+    toJsonValue(QString("data"), data, obj, QString("SWGConnector"));
     
     
     
@@ -81,12 +81,12 @@ SWGInline_response_200_16::asJsonObject() {
     return obj;
 }
 
-SWGUnitCategory*
+SWGConnector*
 SWGInline_response_200_16::getData() {
     return data;
 }
 void
-SWGInline_response_200_16::setData(SWGUnitCategory* data) {
+SWGInline_response_200_16::setData(SWGConnector* data) {
     this->data = data;
 }
 

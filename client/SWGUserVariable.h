@@ -33,6 +33,8 @@ public:
 
     qint32 getParentId();
     void setParentId(qint32 parent_id);
+    qint32 getUserId();
+    void setUserId(qint32 user_id);
     QString* getClientId();
     void setClientId(QString* client_id);
     qint32 getVariableId();
@@ -89,8 +91,8 @@ public:
     void setStandardDeviation(float standard_deviation);
     float getVariance();
     void setVariance(float variance);
-    float getMinimumRecordedDailyValue();
-    void setMinimumRecordedDailyValue(float minimum_recorded_daily_value);
+    float getMinimumRecordedValue();
+    void setMinimumRecordedValue(float minimum_recorded_value);
     float getMaximumRecordedDailyValue();
     void setMaximumRecordedDailyValue(float maximum_recorded_daily_value);
     float getMean();
@@ -115,6 +117,10 @@ public:
     void setLongitude(float longitude);
     QString* getLocation();
     void setLocation(QString* location);
+    QDateTime* getExperimentStartTime();
+    void setExperimentStartTime(QDateTime* experiment_start_time);
+    QDateTime* getExperimentEndTime();
+    void setExperimentEndTime(QDateTime* experiment_end_time);
     QDateTime* getCreatedAt();
     void setCreatedAt(QDateTime* created_at);
     QDateTime* getUpdatedAt();
@@ -139,6 +145,7 @@ public:
 
 private:
     qint32 parent_id;
+    qint32 user_id;
     QString* client_id;
     qint32 variable_id;
     qint32 default_unit_id;
@@ -167,7 +174,7 @@ private:
     QDateTime* last_successful_update_time;
     float standard_deviation;
     float variance;
-    float minimum_recorded_daily_value;
+    float minimum_recorded_value;
     float maximum_recorded_daily_value;
     float mean;
     float median;
@@ -180,6 +187,8 @@ private:
     float latitude;
     float longitude;
     QString* location;
+    QDateTime* experiment_start_time;
+    QDateTime* experiment_end_time;
     QDateTime* created_at;
     QDateTime* updated_at;
     bool outcome;

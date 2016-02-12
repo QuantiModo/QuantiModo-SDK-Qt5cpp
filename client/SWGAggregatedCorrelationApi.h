@@ -3,8 +3,8 @@
 
 #include "SWGHttpRequest.h"
 
-#include "SWGNumber.h"
 #include <QString>
+#include "SWGNumber.h"
 #include "SWGInline_response_200.h"
 #include "SWGAggregatedCorrelation.h"
 #include "SWGInline_response_200_1.h"
@@ -25,11 +25,11 @@ public:
     QString host;
     QString basePath;
 
-    void aggregatedCorrelationsGet(SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, qint32 numberOfUsers, qint32 numberOfCorrelations, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* aggregateQmScore, QString* createdAt, QString* updatedAt, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort);
-    void aggregatedCorrelationsPost(SWGAggregatedCorrelation body);
-    void aggregatedCorrelationsIdGet(qint32 id);
-    void aggregatedCorrelationsIdPut(qint32 id, SWGAggregatedCorrelation body);
-    void aggregatedCorrelationsIdDelete(qint32 id);
+    void aggregatedCorrelationsGet(QString* accessToken, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, qint32 numberOfUsers, qint32 numberOfCorrelations, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* aggregateQmScore, QString* createdAt, QString* updatedAt, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort);
+    void aggregatedCorrelationsPost(QString* accessToken, SWGAggregatedCorrelation body);
+    void aggregatedCorrelationsIdGet(qint32 id, QString* accessToken);
+    void aggregatedCorrelationsIdPut(qint32 id, QString* accessToken, SWGAggregatedCorrelation body);
+    void aggregatedCorrelationsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void aggregatedCorrelationsGetCallback (HttpRequestWorker * worker);

@@ -26,7 +26,7 @@ SWGInline_response_200_6::~SWGInline_response_200_6() {
 
 void
 SWGInline_response_200_6::init() {
-    data = new SWGConnector();
+    data = new QList<SWGTrackingReminder*>();
     success = false;
     
 }
@@ -34,6 +34,10 @@ SWGInline_response_200_6::init() {
 void
 SWGInline_response_200_6::cleanup() {
     if(data != NULL) {
+        QList<SWGTrackingReminder*>* arr = data;
+        foreach(SWGTrackingReminder* o, *arr) {
+            delete o;
+        }
         delete data;
     }
     
@@ -51,7 +55,7 @@ SWGInline_response_200_6::fromJson(QString &json) {
 
 void
 SWGInline_response_200_6::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGConnector", "SWGConnector");
+    setValue(&data, pJson["data"], "QList", "SWGTrackingReminder");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,8 +75,11 @@ SWGInline_response_200_6::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGConnector"));
-    
+    QList<SWGTrackingReminder*>* dataList = data;
+    QJsonArray dataJsonArray;
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGTrackingReminder");
+
+    obj->insert("data", dataJsonArray);
     
     
     obj->insert("success", QJsonValue(success));
@@ -81,12 +88,12 @@ SWGInline_response_200_6::asJsonObject() {
     return obj;
 }
 
-SWGConnector*
+QList<SWGTrackingReminder*>*
 SWGInline_response_200_6::getData() {
     return data;
 }
 void
-SWGInline_response_200_6::setData(SWGConnector* data) {
+SWGInline_response_200_6::setData(QList<SWGTrackingReminder*>* data) {
     this->data = data;
 }
 

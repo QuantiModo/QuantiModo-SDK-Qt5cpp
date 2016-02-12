@@ -3,10 +3,10 @@
 
 #include "SWGHttpRequest.h"
 
-#include "SWGNumber.h"
+#include "SWGInline_response_200_17.h"
 #include <QString>
-#include "SWGInline_response_200_7.h"
-#include "SWGInline_response_200_8.h"
+#include "SWGNumber.h"
+#include "SWGInline_response_200_18.h"
 #include "SWGCorrelation.h"
 #include "SWGInline_response_200_2.h"
 
@@ -25,11 +25,11 @@ public:
     QString host;
     QString basePath;
 
-    void correlationsGet(qint32 timestamp, qint32 userId, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* qmScore, QString* error, QString* createdAt, QString* updatedAt, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort);
-    void correlationsPost(SWGCorrelation body);
-    void correlationsIdGet(qint32 id);
-    void correlationsIdPut(qint32 id, SWGCorrelation body);
-    void correlationsIdDelete(qint32 id);
+    void correlationsGet(QString* accessToken, qint32 timestamp, qint32 userId, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* qmScore, QString* error, QString* createdAt, QString* updatedAt, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort);
+    void correlationsPost(QString* accessToken, SWGCorrelation body);
+    void correlationsIdGet(qint32 id, QString* accessToken);
+    void correlationsIdPut(qint32 id, QString* accessToken, SWGCorrelation body);
+    void correlationsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void correlationsGetCallback (HttpRequestWorker * worker);
@@ -39,9 +39,9 @@ private:
     void correlationsIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void correlationsGetSignal(SWGInline_response_200_7* summary);
-    void correlationsPostSignal(SWGInline_response_200_8* summary);
-    void correlationsIdGetSignal(SWGInline_response_200_8* summary);
+    void correlationsGetSignal(SWGInline_response_200_17* summary);
+    void correlationsPostSignal(SWGInline_response_200_18* summary);
+    void correlationsIdGetSignal(SWGInline_response_200_18* summary);
     void correlationsIdPutSignal(SWGInline_response_200_2* summary);
     void correlationsIdDeleteSignal(SWGInline_response_200_2* summary);
     

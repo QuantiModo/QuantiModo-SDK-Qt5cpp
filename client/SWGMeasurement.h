@@ -43,8 +43,8 @@ public:
     void setVariableId(qint32 variable_id);
     qint32 getSourceId();
     void setSourceId(qint32 source_id);
-    qint32 getStartTime();
-    void setStartTime(qint32 start_time);
+    QString* getStartTime();
+    void setStartTime(QString* start_time);
     float getValue();
     void setValue(float value);
     qint32 getUnitId();
@@ -78,7 +78,7 @@ private:
     qint32 connector_id;
     qint32 variable_id;
     qint32 source_id;
-    qint32 start_time;
+    QString* start_time;
     float value;
     qint32 unit_id;
     float original_value;

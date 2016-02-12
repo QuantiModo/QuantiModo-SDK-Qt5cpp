@@ -5,10 +5,10 @@
 
 #include <QString>
 #include "SWGNumber.h"
-#include "SWGInline_response_200_11.h"
+#include "SWGInline_response_200_5.h"
 #include "SWGMeasurementPost.h"
 #include "SWGHttpRequest.h"
-#include "SWGInline_response_200_12.h"
+#include "SWGInline_response_200_20.h"
 #include "SWGMeasurement.h"
 #include "SWGInline_response_200_2.h"
 
@@ -27,13 +27,13 @@ public:
     QString host;
     QString basePath;
 
-    void measurementsGet(qint32 userId, QString* clientId, qint32 connectorId, qint32 variableId, qint32 startTime, SWGNumber* value, SWGNumber* originalValue, qint32 duration, QString* note, SWGNumber* latitude, SWGNumber* longitude, QString* location, QString* createdAt, QString* updatedAt, QString* error, qint32 limit, qint32 offset, QString* sort);
-    void measurementsPost(SWGMeasurementPost body);
-    void measurementsCsvGet();
-    void measurementsRequestCsvPost();
-    void measurementsIdGet(qint32 id);
-    void measurementsIdPut(qint32 id, SWGMeasurement body);
-    void measurementsIdDelete(qint32 id);
+    void measurementsGet(QString* accessToken, qint32 userId, QString* clientId, qint32 connectorId, qint32 variableId, qint32 sourceId, QString* startTime, SWGNumber* value, qint32 unitId, SWGNumber* originalValue, qint32 originalUnitId, qint32 duration, QString* note, SWGNumber* latitude, SWGNumber* longitude, QString* location, QString* createdAt, QString* updatedAt, QString* error, qint32 limit, qint32 offset, QString* sort);
+    void measurementsPost(QString* accessToken, SWGMeasurementPost body);
+    void measurementsCsvGet(QString* accessToken);
+    void measurementsRequestCsvPost(QString* accessToken);
+    void measurementsIdGet(qint32 id, QString* accessToken);
+    void measurementsIdPut(qint32 id, QString* accessToken, SWGMeasurement body);
+    void measurementsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void measurementsGetCallback (HttpRequestWorker * worker);
@@ -45,11 +45,11 @@ private:
     void measurementsIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void measurementsGetSignal(SWGInline_response_200_11* summary);
-    void measurementsPostSignal(SWGInline_response_200_11* summary);
+    void measurementsGetSignal(SWGInline_response_200_5* summary);
+    void measurementsPostSignal(SWGInline_response_200_5* summary);
     void measurementsCsvGetSignal(SWGHttpRequestInputFileElement* summary);
     void measurementsRequestCsvPostSignal(qint32 summary);
-    void measurementsIdGetSignal(SWGInline_response_200_12* summary);
+    void measurementsIdGetSignal(SWGInline_response_200_20* summary);
     void measurementsIdPutSignal(SWGInline_response_200_2* summary);
     void measurementsIdDeleteSignal(SWGInline_response_200_2* summary);
     

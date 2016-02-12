@@ -32,7 +32,7 @@ SWGMeasurement::init() {
     connector_id = 0;
     variable_id = 0;
     source_id = 0;
-    start_time = 0;
+    start_time = new QString("");
     value = 0.0f;
     unit_id = 0;
     original_value = 0.0f;
@@ -58,7 +58,9 @@ SWGMeasurement::cleanup() {
     
     
     
-    
+    if(start_time != NULL) {
+        delete start_time;
+    }
     
     
     
@@ -101,7 +103,7 @@ SWGMeasurement::fromJsonObject(QJsonObject &pJson) {
     setValue(&connector_id, pJson["connector_id"], "qint32", "");
     setValue(&variable_id, pJson["variable_id"], "qint32", "");
     setValue(&source_id, pJson["source_id"], "qint32", "");
-    setValue(&start_time, pJson["start_time"], "qint32", "");
+    setValue(&start_time, pJson["start_time"], "QString", "QString");
     setValue(&value, pJson["value"], "float", "");
     setValue(&unit_id, pJson["unit_id"], "qint32", "");
     setValue(&original_value, pJson["original_value"], "float", "");
@@ -141,7 +143,12 @@ SWGMeasurement::asJsonObject() {
     obj->insert("connector_id", QJsonValue(connector_id));
     obj->insert("variable_id", QJsonValue(variable_id));
     obj->insert("source_id", QJsonValue(source_id));
-    obj->insert("start_time", QJsonValue(start_time));
+    
+    
+    toJsonValue(QString("start_time"), start_time, obj, QString("QString"));
+    
+    
+    
     obj->insert("value", QJsonValue(value));
     obj->insert("unit_id", QJsonValue(unit_id));
     obj->insert("original_value", QJsonValue(original_value));
@@ -238,12 +245,12 @@ SWGMeasurement::setSourceId(qint32 source_id) {
     this->source_id = source_id;
 }
 
-qint32
+QString*
 SWGMeasurement::getStartTime() {
     return start_time;
 }
 void
-SWGMeasurement::setStartTime(qint32 start_time) {
+SWGMeasurement::setStartTime(QString* start_time) {
     this->start_time = start_time;
 }
 

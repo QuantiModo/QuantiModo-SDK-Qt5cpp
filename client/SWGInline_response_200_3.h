@@ -10,8 +10,8 @@
 #include <QJsonObject>
 
 
-#include <QList>
 #include "SWGConnection.h"
+#include <QList>
 
 #include "SWGObject.h"
 

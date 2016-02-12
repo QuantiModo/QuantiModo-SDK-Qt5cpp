@@ -3,9 +3,9 @@
 
 #include "SWGHttpRequest.h"
 
-#include "SWGInline_response_200_15.h"
+#include "SWGInline_response_200_24.h"
 #include <QString>
-#include "SWGInline_response_200_16.h"
+#include "SWGInline_response_200_25.h"
 #include "SWGUnitCategory.h"
 #include "SWGInline_response_200_2.h"
 
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void unitCategoriesGet(QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void unitCategoriesPost(SWGUnitCategory body);
-    void unitCategoriesIdGet(qint32 id);
-    void unitCategoriesIdPut(qint32 id, SWGUnitCategory body);
-    void unitCategoriesIdDelete(qint32 id);
+    void unitCategoriesGet(QString* accessToken, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void unitCategoriesPost(QString* accessToken, SWGUnitCategory body);
+    void unitCategoriesIdGet(qint32 id, QString* accessToken);
+    void unitCategoriesIdPut(qint32 id, QString* accessToken, SWGUnitCategory body);
+    void unitCategoriesIdDelete(qint32 id, QString* accessToken);
     
 private:
     void unitCategoriesGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void unitCategoriesIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void unitCategoriesGetSignal(SWGInline_response_200_15* summary);
-    void unitCategoriesPostSignal(SWGInline_response_200_16* summary);
-    void unitCategoriesIdGetSignal(SWGInline_response_200_16* summary);
+    void unitCategoriesGetSignal(SWGInline_response_200_24* summary);
+    void unitCategoriesPostSignal(SWGInline_response_200_25* summary);
+    void unitCategoriesIdGetSignal(SWGInline_response_200_25* summary);
     void unitCategoriesIdPutSignal(SWGInline_response_200_2* summary);
     void unitCategoriesIdDeleteSignal(SWGInline_response_200_2* summary);
     

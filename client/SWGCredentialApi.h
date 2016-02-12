@@ -4,9 +4,9 @@
 #include "SWGHttpRequest.h"
 
 #include <QString>
-#include "SWGInline_response_200_9.h"
+#include "SWGInline_response_200_4.h"
 #include "SWGCredential.h"
-#include "SWGInline_response_200_10.h"
+#include "SWGInline_response_200_19.h"
 #include "SWGInline_response_200_2.h"
 
 #include <QObject>
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void credentialsGet(bool connectorId, QString* attrKey, QString* attrValue, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void credentialsPost(SWGCredential body);
-    void credentialsIdGet(qint32 id, QString* attrKey);
-    void credentialsIdPut(qint32 id, QString* attrKey, SWGCredential body);
-    void credentialsIdDelete(qint32 id, QString* attrKey);
+    void credentialsGet(QString* accessToken, qint32 userId, qint32 connectorId, QString* attrKey, QString* attrValue, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void credentialsPost(QString* accessToken, SWGCredential body);
+    void credentialsIdGet(qint32 id, QString* attrKey, QString* accessToken);
+    void credentialsIdPut(qint32 id, QString* attrKey, QString* accessToken, SWGCredential body);
+    void credentialsIdDelete(qint32 id, QString* attrKey, QString* accessToken);
     
 private:
     void credentialsGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void credentialsIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void credentialsGetSignal(SWGInline_response_200_9* summary);
-    void credentialsPostSignal(SWGInline_response_200_10* summary);
-    void credentialsIdGetSignal(SWGInline_response_200_10* summary);
+    void credentialsGetSignal(SWGInline_response_200_4* summary);
+    void credentialsPostSignal(SWGInline_response_200_19* summary);
+    void credentialsIdGetSignal(SWGInline_response_200_19* summary);
     void credentialsIdPutSignal(SWGInline_response_200_2* summary);
     void credentialsIdDeleteSignal(SWGInline_response_200_2* summary);
     

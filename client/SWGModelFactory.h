@@ -5,6 +5,7 @@
 #include "SWGMeasurementValue.h"
 #include "SWGMeasurementPost.h"
 #include "SWGAggregatedCorrelation.h"
+#include "SWGCommonVariableRelationship.h"
 #include "SWGConnection.h"
 #include "SWGConnector.h"
 #include "SWGCorrelation.h"
@@ -12,11 +13,13 @@
 #include "SWGMeasurement.h"
 #include "SWGMeasurementExport.h"
 #include "SWGSource.h"
+#include "SWGTrackingReminder.h"
 #include "SWGUnit.h"
 #include "SWGUnitCategory.h"
 #include "SWGUnitConversion.h"
 #include "SWGUpdate.h"
 #include "SWGUserVariable.h"
+#include "SWGUserVariableRelationship.h"
 #include "SWGVariable.h"
 #include "SWGVariableCategory.h"
 #include "SWGVariableUserSource.h"
@@ -52,6 +55,12 @@
 #include "SWGInline_response_200_28.h"
 #include "SWGInline_response_200_29.h"
 #include "SWGInline_response_200_30.h"
+#include "SWGInline_response_200_31.h"
+#include "SWGInline_response_200_32.h"
+#include "SWGInline_response_200_33.h"
+#include "SWGInline_response_200_34.h"
+#include "SWGInline_response_200_35.h"
+#include "SWGInline_response_200_36.h"
 
 namespace Swagger {
   inline void* create(QString type) {
@@ -63,6 +72,9 @@ namespace Swagger {
     }
     if(QString("SWGAggregatedCorrelation").compare(type) == 0) {
       return new SWGAggregatedCorrelation();
+    }
+    if(QString("SWGCommonVariableRelationship").compare(type) == 0) {
+      return new SWGCommonVariableRelationship();
     }
     if(QString("SWGConnection").compare(type) == 0) {
       return new SWGConnection();
@@ -85,6 +97,9 @@ namespace Swagger {
     if(QString("SWGSource").compare(type) == 0) {
       return new SWGSource();
     }
+    if(QString("SWGTrackingReminder").compare(type) == 0) {
+      return new SWGTrackingReminder();
+    }
     if(QString("SWGUnit").compare(type) == 0) {
       return new SWGUnit();
     }
@@ -99,6 +114,9 @@ namespace Swagger {
     }
     if(QString("SWGUserVariable").compare(type) == 0) {
       return new SWGUserVariable();
+    }
+    if(QString("SWGUserVariableRelationship").compare(type) == 0) {
+      return new SWGUserVariableRelationship();
     }
     if(QString("SWGVariable").compare(type) == 0) {
       return new SWGVariable();
@@ -204,6 +222,24 @@ namespace Swagger {
     }
     if(QString("SWGInline_response_200_30").compare(type) == 0) {
       return new SWGInline_response_200_30();
+    }
+    if(QString("SWGInline_response_200_31").compare(type) == 0) {
+      return new SWGInline_response_200_31();
+    }
+    if(QString("SWGInline_response_200_32").compare(type) == 0) {
+      return new SWGInline_response_200_32();
+    }
+    if(QString("SWGInline_response_200_33").compare(type) == 0) {
+      return new SWGInline_response_200_33();
+    }
+    if(QString("SWGInline_response_200_34").compare(type) == 0) {
+      return new SWGInline_response_200_34();
+    }
+    if(QString("SWGInline_response_200_35").compare(type) == 0) {
+      return new SWGInline_response_200_35();
+    }
+    if(QString("SWGInline_response_200_36").compare(type) == 0) {
+      return new SWGInline_response_200_36();
     }
     
     return NULL;

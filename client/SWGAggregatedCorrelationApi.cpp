@@ -16,7 +16,7 @@ SWGAggregatedCorrelationApi::SWGAggregatedCorrelationApi(QString host, QString b
 }
 
 void
-SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, SWGNumber* vote, qint32 numberOfUsers, qint32 numberOfCorrelations, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* aggregateQmScore, QString* createdAt, QString* updatedAt, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort) {
+SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(QString* accessToken, SWGNumber* correlation, qint32 causeId, qint32 effectId, qint32 onsetDelay, qint32 durationOfAction, qint32 numberOfPairs, SWGNumber* valuePredictingHighOutcome, SWGNumber* valuePredictingLowOutcome, SWGNumber* optimalPearsonProduct, qint32 numberOfUsers, qint32 numberOfCorrelations, SWGNumber* statisticalSignificance, QString* causeUnit, qint32 causeUnitId, qint32 causeChanges, qint32 effectChanges, SWGNumber* aggregateQmScore, QString* createdAt, QString* updatedAt, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, SWGNumber* reversePearsonCorrelationCoefficient, SWGNumber* predictivePearsonCorrelationCoefficient, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/aggregatedCorrelations");
 
@@ -24,7 +24,19 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,19 +144,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("vote"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(vote)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +156,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +168,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +180,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -192,7 +192,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -204,7 +204,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -216,7 +216,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -228,7 +228,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -240,7 +240,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -252,7 +252,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -264,7 +264,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -276,7 +276,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -288,7 +288,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -300,7 +300,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -312,7 +312,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -324,7 +324,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -336,7 +336,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -348,7 +348,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGet(SWGNumber* correlation, q
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -404,12 +404,24 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsGetCallback(HttpRequestWorker
     
 }
 void
-SWGAggregatedCorrelationApi::aggregatedCorrelationsPost(SWGAggregatedCorrelation body) {
+SWGAggregatedCorrelationApi::aggregatedCorrelationsPost(QString* accessToken, SWGAggregatedCorrelation body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/aggregatedCorrelations");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -461,7 +473,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsPostCallback(HttpRequestWorke
     
 }
 void
-SWGAggregatedCorrelationApi::aggregatedCorrelationsIdGet(qint32 id) {
+SWGAggregatedCorrelationApi::aggregatedCorrelationsIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/aggregatedCorrelations/{id}");
 
@@ -470,6 +482,18 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -516,7 +540,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsIdGetCallback(HttpRequestWork
     
 }
 void
-SWGAggregatedCorrelationApi::aggregatedCorrelationsIdPut(qint32 id, SWGAggregatedCorrelation body) {
+SWGAggregatedCorrelationApi::aggregatedCorrelationsIdPut(qint32 id, QString* accessToken, SWGAggregatedCorrelation body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/aggregatedCorrelations/{id}");
 
@@ -525,6 +549,18 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsIdPut(qint32 id, SWGAggregate
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -576,7 +612,7 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsIdPutCallback(HttpRequestWork
     
 }
 void
-SWGAggregatedCorrelationApi::aggregatedCorrelationsIdDelete(qint32 id) {
+SWGAggregatedCorrelationApi::aggregatedCorrelationsIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/aggregatedCorrelations/{id}");
 
@@ -585,6 +621,18 @@ SWGAggregatedCorrelationApi::aggregatedCorrelationsIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

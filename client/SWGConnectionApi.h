@@ -5,7 +5,7 @@
 
 #include <QString>
 #include "SWGInline_response_200_3.h"
-#include "SWGInline_response_200_4.h"
+#include "SWGInline_response_200_14.h"
 #include "SWGConnection.h"
 #include "SWGInline_response_200_2.h"
 
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void connectionsGet(qint32 userId, qint32 connectorId, QString* connectStatus, QString* connectError, QString* updateRequestedAt, QString* updateStatus, QString* updateError, QString* lastSuccessfulUpdatedAt, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void connectionsPost(SWGConnection body);
-    void connectionsIdGet(qint32 id);
-    void connectionsIdPut(qint32 id, SWGConnection body);
-    void connectionsIdDelete(qint32 id);
+    void connectionsGet(QString* accessToken, qint32 userId, qint32 connectorId, QString* connectStatus, QString* connectError, QString* updateRequestedAt, QString* updateStatus, QString* updateError, QString* lastSuccessfulUpdatedAt, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void connectionsPost(QString* accessToken, SWGConnection body);
+    void connectionsIdGet(qint32 id, QString* accessToken);
+    void connectionsIdPut(qint32 id, QString* accessToken, SWGConnection body);
+    void connectionsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void connectionsGetCallback (HttpRequestWorker * worker);
@@ -39,8 +39,8 @@ private:
     
 signals:
     void connectionsGetSignal(SWGInline_response_200_3* summary);
-    void connectionsPostSignal(SWGInline_response_200_4* summary);
-    void connectionsIdGetSignal(SWGInline_response_200_4* summary);
+    void connectionsPostSignal(SWGInline_response_200_14* summary);
+    void connectionsIdGetSignal(SWGInline_response_200_14* summary);
     void connectionsIdPutSignal(SWGInline_response_200_2* summary);
     void connectionsIdDeleteSignal(SWGInline_response_200_2* summary);
     

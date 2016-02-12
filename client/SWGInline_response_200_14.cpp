@@ -26,7 +26,7 @@ SWGInline_response_200_14::~SWGInline_response_200_14() {
 
 void
 SWGInline_response_200_14::init() {
-    data = new SWGSource();
+    data = new SWGConnection();
     success = false;
     
 }
@@ -51,7 +51,7 @@ SWGInline_response_200_14::fromJson(QString &json) {
 
 void
 SWGInline_response_200_14::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGSource", "SWGSource");
+    setValue(&data, pJson["data"], "SWGConnection", "SWGConnection");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,7 +71,7 @@ SWGInline_response_200_14::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGSource"));
+    toJsonValue(QString("data"), data, obj, QString("SWGConnection"));
     
     
     
@@ -81,12 +81,12 @@ SWGInline_response_200_14::asJsonObject() {
     return obj;
 }
 
-SWGSource*
+SWGConnection*
 SWGInline_response_200_14::getData() {
     return data;
 }
 void
-SWGInline_response_200_14::setData(SWGSource* data) {
+SWGInline_response_200_14::setData(SWGConnection* data) {
     this->data = data;
 }
 

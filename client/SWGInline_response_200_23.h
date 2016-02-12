@@ -10,8 +10,7 @@
 #include <QJsonObject>
 
 
-#include <QList>
-#include "SWGVariableCategory.h"
+#include "SWGTrackingReminder.h"
 
 #include "SWGObject.h"
 
@@ -31,14 +30,14 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGInline_response_200_23* fromJson(QString &jsonString);
 
-    QList<SWGVariableCategory*>* getData();
-    void setData(QList<SWGVariableCategory*>* data);
+    SWGTrackingReminder* getData();
+    void setData(SWGTrackingReminder* data);
     bool getSuccess();
     void setSuccess(bool success);
     
 
 private:
-    QList<SWGVariableCategory*>* data;
+    SWGTrackingReminder* data;
     bool success;
     
 };

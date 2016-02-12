@@ -10,7 +10,8 @@
 #include <QJsonObject>
 
 
-#include "SWGCorrelation.h"
+#include "SWGUserVariableRelationship.h"
+#include <QList>
 
 #include "SWGObject.h"
 
@@ -30,14 +31,14 @@ public:
     void fromJsonObject(QJsonObject &json);
     SWGInline_response_200_8* fromJson(QString &jsonString);
 
-    SWGCorrelation* getData();
-    void setData(SWGCorrelation* data);
+    QList<SWGUserVariableRelationship*>* getData();
+    void setData(QList<SWGUserVariableRelationship*>* data);
     bool getSuccess();
     void setSuccess(bool success);
     
 
 private:
-    SWGCorrelation* data;
+    QList<SWGUserVariableRelationship*>* data;
     bool success;
     
 };

@@ -16,7 +16,7 @@ SWGVariableApi::SWGVariableApi(QString host, QString basePath) {
 }
 
 void
-SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QString* name, qint32 variableCategoryId, qint32 defaultUnitId, QString* combinationOperation, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 onsetDelay, qint32 durationOfAction, qint32 public, bool causeOnly, SWGNumber* mostCommonValue, qint32 mostCommonUnitId, SWGNumber* standardDeviation, SWGNumber* variance, SWGNumber* mean, SWGNumber* median, SWGNumber* numberOfMeasurements, SWGNumber* numberOfUniqueValues, SWGNumber* skewness, SWGNumber* kurtosis, SWGNumber* latitude, SWGNumber* longitude, QString* location, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, QString* createdAt, QString* updatedAt, QString* productUrl, QString* imageUrl, SWGNumber* price, qint32 numberOfUserVariables, bool outcome, SWGNumber* minimumRecordedValue, SWGNumber* maximumRecordedValue, qint32 limit, qint32 offset, QString* sort) {
+SWGVariableApi::variablesGet(QString* accessToken, qint32 id, QString* clientId, qint32 parentId, QString* name, qint32 variableCategoryId, qint32 defaultUnitId, QString* combinationOperation, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 onsetDelay, qint32 durationOfAction, qint32 public, bool causeOnly, SWGNumber* mostCommonValue, qint32 mostCommonUnitId, SWGNumber* standardDeviation, SWGNumber* variance, SWGNumber* mean, SWGNumber* median, SWGNumber* numberOfMeasurements, SWGNumber* numberOfUniqueValues, SWGNumber* skewness, SWGNumber* kurtosis, QString* status, QString* errorMessage, QString* lastSuccessfulUpdateTime, QString* createdAt, QString* updatedAt, QString* productUrl, QString* imageUrl, SWGNumber* price, qint32 numberOfUserVariables, bool outcome, SWGNumber* minimumRecordedValue, SWGNumber* maximumRecordedValue, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables");
 
@@ -24,7 +24,19 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +156,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +168,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +180,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +192,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -192,7 +204,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -204,7 +216,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -216,7 +228,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -228,7 +240,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -240,7 +252,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -252,7 +264,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -264,7 +276,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -276,7 +288,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -288,7 +300,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -300,7 +312,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -312,43 +324,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("latitude"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(latitude)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("longitude"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(longitude)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
-      fullPath.append("&");
-    else 
-      fullPath.append("?");
-    fullPath.append(QUrl::toPercentEncoding("location"))
-        .append("=")
-        .append(QUrl::toPercentEncoding(stringValue(location)));
-    
-
-    
-    
-    
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -360,7 +336,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -372,7 +348,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -384,7 +360,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -396,7 +372,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -408,7 +384,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -420,7 +396,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -432,7 +408,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -444,7 +420,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -456,7 +432,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -468,7 +444,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -480,7 +456,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -492,7 +468,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -504,7 +480,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -516,7 +492,7 @@ SWGVariableApi::variablesGet(qint32 id, QString* clientId, qint32 parentId, QStr
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -561,7 +537,7 @@ SWGVariableApi::variablesGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_27* output = static_cast<SWGInline_response_200_27*>(create(json, QString("SWGInline_response_200_27")));
+    SWGInline_response_200_34* output = static_cast<SWGInline_response_200_34*>(create(json, QString("SWGInline_response_200_34")));
     
     
     
@@ -572,12 +548,24 @@ SWGVariableApi::variablesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariableApi::variablesPost(SWGVariable body) {
+SWGVariableApi::variablesPost(QString* accessToken, SWGVariable body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -618,7 +606,7 @@ SWGVariableApi::variablesPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_28* output = static_cast<SWGInline_response_200_28*>(create(json, QString("SWGInline_response_200_28")));
+    SWGInline_response_200_35* output = static_cast<SWGInline_response_200_35*>(create(json, QString("SWGInline_response_200_35")));
     
     
     
@@ -629,7 +617,7 @@ SWGVariableApi::variablesPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariableApi::variablesIdGet(qint32 id) {
+SWGVariableApi::variablesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables/{id}");
 
@@ -638,6 +626,18 @@ SWGVariableApi::variablesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -673,7 +673,7 @@ SWGVariableApi::variablesIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_28* output = static_cast<SWGInline_response_200_28*>(create(json, QString("SWGInline_response_200_28")));
+    SWGInline_response_200_35* output = static_cast<SWGInline_response_200_35*>(create(json, QString("SWGInline_response_200_35")));
     
     
     
@@ -684,7 +684,7 @@ SWGVariableApi::variablesIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariableApi::variablesIdPut(qint32 id, SWGVariable body) {
+SWGVariableApi::variablesIdPut(qint32 id, QString* accessToken, SWGVariable body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables/{id}");
 
@@ -693,6 +693,18 @@ SWGVariableApi::variablesIdPut(qint32 id, SWGVariable body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -744,7 +756,7 @@ SWGVariableApi::variablesIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVariableApi::variablesIdDelete(qint32 id) {
+SWGVariableApi::variablesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/variables/{id}");
 
@@ -753,6 +765,18 @@ SWGVariableApi::variablesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

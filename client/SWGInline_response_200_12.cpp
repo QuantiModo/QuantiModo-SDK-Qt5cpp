@@ -26,7 +26,7 @@ SWGInline_response_200_12::~SWGInline_response_200_12() {
 
 void
 SWGInline_response_200_12::init() {
-    data = new SWGMeasurement();
+    data = new QList<SWGCommonVariableRelationship*>();
     success = false;
     
 }
@@ -34,6 +34,10 @@ SWGInline_response_200_12::init() {
 void
 SWGInline_response_200_12::cleanup() {
     if(data != NULL) {
+        QList<SWGCommonVariableRelationship*>* arr = data;
+        foreach(SWGCommonVariableRelationship* o, *arr) {
+            delete o;
+        }
         delete data;
     }
     
@@ -51,7 +55,7 @@ SWGInline_response_200_12::fromJson(QString &json) {
 
 void
 SWGInline_response_200_12::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGMeasurement", "SWGMeasurement");
+    setValue(&data, pJson["data"], "QList", "SWGCommonVariableRelationship");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,8 +75,11 @@ SWGInline_response_200_12::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGMeasurement"));
-    
+    QList<SWGCommonVariableRelationship*>* dataList = data;
+    QJsonArray dataJsonArray;
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGCommonVariableRelationship");
+
+    obj->insert("data", dataJsonArray);
     
     
     obj->insert("success", QJsonValue(success));
@@ -81,12 +88,12 @@ SWGInline_response_200_12::asJsonObject() {
     return obj;
 }
 
-SWGMeasurement*
+QList<SWGCommonVariableRelationship*>*
 SWGInline_response_200_12::getData() {
     return data;
 }
 void
-SWGInline_response_200_12::setData(SWGMeasurement* data) {
+SWGInline_response_200_12::setData(QList<SWGCommonVariableRelationship*>* data) {
     this->data = data;
 }
 

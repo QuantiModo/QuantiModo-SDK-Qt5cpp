@@ -16,7 +16,7 @@ SWGUnitApi::SWGUnitApi(QString host, QString basePath) {
 }
 
 void
-SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName, bool categoryId, SWGNumber* minimumValue, SWGNumber* maximumValue, qint32 updated, SWGNumber* multiply, SWGNumber* add, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGUnitApi::unitsGet(QString* accessToken, QString* clientId, QString* name, QString* abbreviatedName, qint32 categoryId, SWGNumber* minimumValue, SWGNumber* maximumValue, qint32 updated, qint32 defaultUnitId, SWGNumber* multiply, SWGNumber* add, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/units");
 
@@ -24,7 +24,19 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,19 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("defaultUnitId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(defaultUnitId)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +144,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +156,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -144,7 +168,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -156,7 +180,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -168,7 +192,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -180,7 +204,7 @@ SWGUnitApi::unitsGet(QString* clientId, QString* name, QString* abbreviatedName,
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -225,7 +249,7 @@ SWGUnitApi::unitsGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_17* output = static_cast<SWGInline_response_200_17*>(create(json, QString("SWGInline_response_200_17")));
+    SWGInline_response_200_26* output = static_cast<SWGInline_response_200_26*>(create(json, QString("SWGInline_response_200_26")));
     
     
     
@@ -236,12 +260,24 @@ SWGUnitApi::unitsGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitApi::unitsPost(SWGUnit body) {
+SWGUnitApi::unitsPost(QString* accessToken, SWGUnit body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/units");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -282,7 +318,7 @@ SWGUnitApi::unitsPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_18* output = static_cast<SWGInline_response_200_18*>(create(json, QString("SWGInline_response_200_18")));
+    SWGInline_response_200_27* output = static_cast<SWGInline_response_200_27*>(create(json, QString("SWGInline_response_200_27")));
     
     
     
@@ -293,7 +329,7 @@ SWGUnitApi::unitsPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitApi::unitsIdGet(qint32 id) {
+SWGUnitApi::unitsIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/units/{id}");
 
@@ -302,6 +338,18 @@ SWGUnitApi::unitsIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -337,7 +385,7 @@ SWGUnitApi::unitsIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_18* output = static_cast<SWGInline_response_200_18*>(create(json, QString("SWGInline_response_200_18")));
+    SWGInline_response_200_27* output = static_cast<SWGInline_response_200_27*>(create(json, QString("SWGInline_response_200_27")));
     
     
     
@@ -348,7 +396,7 @@ SWGUnitApi::unitsIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitApi::unitsIdPut(qint32 id, SWGUnit body) {
+SWGUnitApi::unitsIdPut(qint32 id, QString* accessToken, SWGUnit body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/units/{id}");
 
@@ -357,6 +405,18 @@ SWGUnitApi::unitsIdPut(qint32 id, SWGUnit body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -408,7 +468,7 @@ SWGUnitApi::unitsIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUnitApi::unitsIdDelete(qint32 id) {
+SWGUnitApi::unitsIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/units/{id}");
 
@@ -417,6 +477,18 @@ SWGUnitApi::unitsIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

@@ -4,8 +4,8 @@
 #include "SWGHttpRequest.h"
 
 #include <QString>
-#include "SWGInline_response_200_13.h"
-#include "SWGInline_response_200_14.h"
+#include "SWGInline_response_200_21.h"
+#include "SWGInline_response_200_22.h"
 #include "SWGSource.h"
 #include "SWGInline_response_200_2.h"
 
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void sourcesGet(QString* clientId, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
-    void sourcesPost(SWGSource body);
-    void sourcesIdGet(qint32 id);
-    void sourcesIdPut(qint32 id, SWGSource body);
-    void sourcesIdDelete(qint32 id);
+    void sourcesGet(QString* accessToken, QString* clientId, QString* name, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort);
+    void sourcesPost(QString* accessToken, SWGSource body);
+    void sourcesIdGet(qint32 id, QString* accessToken);
+    void sourcesIdPut(qint32 id, QString* accessToken, SWGSource body);
+    void sourcesIdDelete(qint32 id, QString* accessToken);
     
 private:
     void sourcesGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void sourcesIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void sourcesGetSignal(SWGInline_response_200_13* summary);
-    void sourcesPostSignal(SWGInline_response_200_14* summary);
-    void sourcesIdGetSignal(SWGInline_response_200_14* summary);
+    void sourcesGetSignal(SWGInline_response_200_21* summary);
+    void sourcesPostSignal(SWGInline_response_200_22* summary);
+    void sourcesIdGetSignal(SWGInline_response_200_22* summary);
     void sourcesIdPutSignal(SWGInline_response_200_2* summary);
     void sourcesIdDeleteSignal(SWGInline_response_200_2* summary);
     

@@ -26,7 +26,7 @@ SWGInline_response_200_26::~SWGInline_response_200_26() {
 
 void
 SWGInline_response_200_26::init() {
-    data = new SWGVariableUserSource();
+    data = new QList<SWGUnit*>();
     success = false;
     
 }
@@ -34,6 +34,10 @@ SWGInline_response_200_26::init() {
 void
 SWGInline_response_200_26::cleanup() {
     if(data != NULL) {
+        QList<SWGUnit*>* arr = data;
+        foreach(SWGUnit* o, *arr) {
+            delete o;
+        }
         delete data;
     }
     
@@ -51,7 +55,7 @@ SWGInline_response_200_26::fromJson(QString &json) {
 
 void
 SWGInline_response_200_26::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGVariableUserSource", "SWGVariableUserSource");
+    setValue(&data, pJson["data"], "QList", "SWGUnit");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,8 +75,11 @@ SWGInline_response_200_26::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGVariableUserSource"));
-    
+    QList<SWGUnit*>* dataList = data;
+    QJsonArray dataJsonArray;
+    toJsonArray((QList<void*>*)data, &dataJsonArray, "data", "SWGUnit");
+
+    obj->insert("data", dataJsonArray);
     
     
     obj->insert("success", QJsonValue(success));
@@ -81,12 +88,12 @@ SWGInline_response_200_26::asJsonObject() {
     return obj;
 }
 
-SWGVariableUserSource*
+QList<SWGUnit*>*
 SWGInline_response_200_26::getData() {
     return data;
 }
 void
-SWGInline_response_200_26::setData(SWGVariableUserSource* data) {
+SWGInline_response_200_26::setData(QList<SWGUnit*>* data) {
     this->data = data;
 }
 

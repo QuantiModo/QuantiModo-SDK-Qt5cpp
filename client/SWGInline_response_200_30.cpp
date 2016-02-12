@@ -26,7 +26,7 @@ SWGInline_response_200_30::~SWGInline_response_200_30() {
 
 void
 SWGInline_response_200_30::init() {
-    data = new SWGVote();
+    data = new SWGUserVariable();
     success = false;
     
 }
@@ -51,7 +51,7 @@ SWGInline_response_200_30::fromJson(QString &json) {
 
 void
 SWGInline_response_200_30::fromJsonObject(QJsonObject &pJson) {
-    setValue(&data, pJson["data"], "SWGVote", "SWGVote");
+    setValue(&data, pJson["data"], "SWGUserVariable", "SWGUserVariable");
     setValue(&success, pJson["success"], "bool", "");
     
 }
@@ -71,7 +71,7 @@ SWGInline_response_200_30::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     
     
-    toJsonValue(QString("data"), data, obj, QString("SWGVote"));
+    toJsonValue(QString("data"), data, obj, QString("SWGUserVariable"));
     
     
     
@@ -81,12 +81,12 @@ SWGInline_response_200_30::asJsonObject() {
     return obj;
 }
 
-SWGVote*
+SWGUserVariable*
 SWGInline_response_200_30::getData() {
     return data;
 }
 void
-SWGInline_response_200_30::setData(SWGVote* data) {
+SWGInline_response_200_30::setData(SWGUserVariable* data) {
     this->data = data;
 }
 

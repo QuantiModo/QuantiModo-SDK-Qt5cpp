@@ -5,8 +5,8 @@
 
 #include <QString>
 #include "SWGNumber.h"
-#include "SWGInline_response_200_23.h"
-#include "SWGInline_response_200_24.h"
+#include "SWGInline_response_200_31.h"
+#include "SWGInline_response_200_32.h"
 #include "SWGVariableCategory.h"
 #include "SWGInline_response_200_2.h"
 
@@ -25,11 +25,11 @@ public:
     QString host;
     QString basePath;
 
-    void variableCategoriesGet(QString* name, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 durationOfAction, qint32 onsetDelay, QString* combinationOperation, qint32 updated, bool causeOnly, qint32 public, bool outcome, QString* createdAt, QString* updatedAt, QString* imageUrl, qint32 defaultUnitId, qint32 limit, qint32 offset, QString* sort);
-    void variableCategoriesPost(SWGVariableCategory body);
-    void variableCategoriesIdGet(qint32 id);
-    void variableCategoriesIdPut(qint32 id, SWGVariableCategory body);
-    void variableCategoriesIdDelete(qint32 id);
+    void variableCategoriesGet(QString* accessToken, QString* name, SWGNumber* fillingValue, SWGNumber* maximumAllowedValue, SWGNumber* minimumAllowedValue, qint32 durationOfAction, qint32 onsetDelay, QString* combinationOperation, qint32 updated, bool causeOnly, qint32 public, bool outcome, QString* createdAt, QString* updatedAt, QString* imageUrl, qint32 defaultUnitId, qint32 limit, qint32 offset, QString* sort);
+    void variableCategoriesPost(QString* accessToken, SWGVariableCategory body);
+    void variableCategoriesIdGet(qint32 id, QString* accessToken);
+    void variableCategoriesIdPut(qint32 id, QString* accessToken, SWGVariableCategory body);
+    void variableCategoriesIdDelete(qint32 id, QString* accessToken);
     
 private:
     void variableCategoriesGetCallback (HttpRequestWorker * worker);
@@ -39,9 +39,9 @@ private:
     void variableCategoriesIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void variableCategoriesGetSignal(SWGInline_response_200_23* summary);
-    void variableCategoriesPostSignal(SWGInline_response_200_24* summary);
-    void variableCategoriesIdGetSignal(SWGInline_response_200_24* summary);
+    void variableCategoriesGetSignal(SWGInline_response_200_31* summary);
+    void variableCategoriesPostSignal(SWGInline_response_200_32* summary);
+    void variableCategoriesIdGetSignal(SWGInline_response_200_32* summary);
     void variableCategoriesIdPutSignal(SWGInline_response_200_2* summary);
     void variableCategoriesIdDeleteSignal(SWGInline_response_200_2* summary);
     

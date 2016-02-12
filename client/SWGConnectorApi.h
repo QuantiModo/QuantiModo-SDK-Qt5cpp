@@ -3,9 +3,9 @@
 
 #include "SWGHttpRequest.h"
 
+#include "SWGInline_response_200_15.h"
 #include <QString>
-#include "SWGInline_response_200_5.h"
-#include "SWGInline_response_200_6.h"
+#include "SWGInline_response_200_16.h"
 #include "SWGConnector.h"
 #include "SWGInline_response_200_2.h"
 
@@ -24,11 +24,11 @@ public:
     QString host;
     QString basePath;
 
-    void connectorsGet(QString* name, QString* displayName, QString* image, QString* getItUrl, QString* shortDescription, QString* longDescription, bool enabled, bool oauth, qint32 limit, qint32 offset, QString* sort);
-    void connectorsPost(SWGConnector body);
-    void connectorsIdGet(qint32 id);
-    void connectorsIdPut(qint32 id, SWGConnector body);
-    void connectorsIdDelete(qint32 id);
+    void connectorsGet(QString* accessToken, QString* name, QString* displayName, QString* image, QString* getItUrl, QString* shortDescription, QString* longDescription, bool enabled, bool oauth, qint32 limit, qint32 offset, QString* sort);
+    void connectorsPost(QString* accessToken, SWGConnector body);
+    void connectorsIdGet(qint32 id, QString* accessToken);
+    void connectorsIdPut(qint32 id, QString* accessToken, SWGConnector body);
+    void connectorsIdDelete(qint32 id, QString* accessToken);
     
 private:
     void connectorsGetCallback (HttpRequestWorker * worker);
@@ -38,9 +38,9 @@ private:
     void connectorsIdDeleteCallback (HttpRequestWorker * worker);
     
 signals:
-    void connectorsGetSignal(SWGInline_response_200_5* summary);
-    void connectorsPostSignal(SWGInline_response_200_6* summary);
-    void connectorsIdGetSignal(SWGInline_response_200_6* summary);
+    void connectorsGetSignal(SWGInline_response_200_15* summary);
+    void connectorsPostSignal(SWGInline_response_200_16* summary);
+    void connectorsIdGetSignal(SWGInline_response_200_16* summary);
     void connectorsIdPutSignal(SWGInline_response_200_2* summary);
     void connectorsIdDeleteSignal(SWGInline_response_200_2* summary);
     

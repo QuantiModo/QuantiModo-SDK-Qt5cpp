@@ -16,7 +16,7 @@ SWGUpdateApi::SWGUpdateApi(QString host, QString basePath) {
 }
 
 void
-SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasurements, bool success, QString* message, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGUpdateApi::updatesGet(QString* accessToken, qint32 userId, qint32 connectorId, qint32 numberOfMeasurements, bool success, QString* message, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/updates");
 
@@ -24,7 +24,19 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGUpdateApi::updatesGet(qint32 userId, qint32 connectorId, qint32 numberOfMeasu
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -177,7 +189,7 @@ SWGUpdateApi::updatesGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_19* output = static_cast<SWGInline_response_200_19*>(create(json, QString("SWGInline_response_200_19")));
+    SWGInline_response_200_7* output = static_cast<SWGInline_response_200_7*>(create(json, QString("SWGInline_response_200_7")));
     
     
     
@@ -188,12 +200,24 @@ SWGUpdateApi::updatesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUpdateApi::updatesPost(SWGUpdate body) {
+SWGUpdateApi::updatesPost(QString* accessToken, SWGUpdate body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/updates");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -234,7 +258,7 @@ SWGUpdateApi::updatesPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_20* output = static_cast<SWGInline_response_200_20*>(create(json, QString("SWGInline_response_200_20")));
+    SWGInline_response_200_28* output = static_cast<SWGInline_response_200_28*>(create(json, QString("SWGInline_response_200_28")));
     
     
     
@@ -245,7 +269,7 @@ SWGUpdateApi::updatesPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUpdateApi::updatesIdGet(qint32 id) {
+SWGUpdateApi::updatesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/updates/{id}");
 
@@ -254,6 +278,18 @@ SWGUpdateApi::updatesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -289,7 +325,7 @@ SWGUpdateApi::updatesIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_20* output = static_cast<SWGInline_response_200_20*>(create(json, QString("SWGInline_response_200_20")));
+    SWGInline_response_200_28* output = static_cast<SWGInline_response_200_28*>(create(json, QString("SWGInline_response_200_28")));
     
     
     
@@ -300,7 +336,7 @@ SWGUpdateApi::updatesIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUpdateApi::updatesIdPut(qint32 id, SWGUpdate body) {
+SWGUpdateApi::updatesIdPut(qint32 id, QString* accessToken, SWGUpdate body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/updates/{id}");
 
@@ -309,6 +345,18 @@ SWGUpdateApi::updatesIdPut(qint32 id, SWGUpdate body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -360,7 +408,7 @@ SWGUpdateApi::updatesIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGUpdateApi::updatesIdDelete(qint32 id) {
+SWGUpdateApi::updatesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/updates/{id}");
 
@@ -369,6 +417,18 @@ SWGUpdateApi::updatesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();

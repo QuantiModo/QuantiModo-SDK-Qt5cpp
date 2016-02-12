@@ -16,7 +16,7 @@ SWGVoteApi::SWGVoteApi(QString host, QString basePath) {
 }
 
 void
-SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 effectId, qint32 value, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
+SWGVoteApi::votesGet(QString* accessToken, QString* clientId, qint32 userId, qint32 causeId, qint32 effectId, qint32 value, QString* createdAt, QString* updatedAt, qint32 limit, qint32 offset, QString* sort) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/votes");
 
@@ -24,7 +24,19 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
 
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
+    
+    
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -36,7 +48,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -48,7 +60,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -60,7 +72,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -72,7 +84,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -84,7 +96,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -96,7 +108,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -108,7 +120,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -120,7 +132,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -132,7 +144,7 @@ SWGVoteApi::votesGet(QString* clientId, qint32 userId, qint32 causeId, qint32 ef
     
     
     
-    if(fullPath.indexOf("?") > 0) 
+    if (fullPath.indexOf("?") > 0) 
       fullPath.append("&");
     else 
       fullPath.append("?");
@@ -177,7 +189,7 @@ SWGVoteApi::votesGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_29* output = static_cast<SWGInline_response_200_29*>(create(json, QString("SWGInline_response_200_29")));
+    SWGInline_response_200_11* output = static_cast<SWGInline_response_200_11*>(create(json, QString("SWGInline_response_200_11")));
     
     
     
@@ -188,12 +200,24 @@ SWGVoteApi::votesGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVoteApi::votesPost(SWGVote body) {
+SWGVoteApi::votesPost(QString* accessToken, SWGVote body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/votes");
 
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -234,7 +258,7 @@ SWGVoteApi::votesPostCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_30* output = static_cast<SWGInline_response_200_30*>(create(json, QString("SWGInline_response_200_30")));
+    SWGInline_response_200_36* output = static_cast<SWGInline_response_200_36*>(create(json, QString("SWGInline_response_200_36")));
     
     
     
@@ -245,7 +269,7 @@ SWGVoteApi::votesPostCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVoteApi::votesIdGet(qint32 id) {
+SWGVoteApi::votesIdGet(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/votes/{id}");
 
@@ -254,6 +278,18 @@ SWGVoteApi::votesIdGet(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -289,7 +325,7 @@ SWGVoteApi::votesIdGetCallback(HttpRequestWorker * worker) {
     
     
     QString json(worker->response);
-    SWGInline_response_200_30* output = static_cast<SWGInline_response_200_30*>(create(json, QString("SWGInline_response_200_30")));
+    SWGInline_response_200_36* output = static_cast<SWGInline_response_200_36*>(create(json, QString("SWGInline_response_200_36")));
     
     
     
@@ -300,7 +336,7 @@ SWGVoteApi::votesIdGetCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVoteApi::votesIdPut(qint32 id, SWGVote body) {
+SWGVoteApi::votesIdPut(qint32 id, QString* accessToken, SWGVote body) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/votes/{id}");
 
@@ -309,6 +345,18 @@ SWGVoteApi::votesIdPut(qint32 id, SWGVote body) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
@@ -360,7 +408,7 @@ SWGVoteApi::votesIdPutCallback(HttpRequestWorker * worker) {
     
 }
 void
-SWGVoteApi::votesIdDelete(qint32 id) {
+SWGVoteApi::votesIdDelete(qint32 id, QString* accessToken) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/votes/{id}");
 
@@ -369,6 +417,18 @@ SWGVoteApi::votesIdDelete(qint32 id) {
     fullPath.replace(idPathParam, stringValue(id));
     
 
+    
+    
+    if (fullPath.indexOf("?") > 0) 
+      fullPath.append("&");
+    else 
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("accessToken"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(accessToken)));
+    
+
+    
     
 
     HttpRequestWorker *worker = new HttpRequestWorker();
