@@ -1,3 +1,27 @@
+/**
+ * QuantiModo
+ * Welcome to QuantiModo API! QuantiModo makes it easy to retrieve normalized user data from a wide array of devices and applications. [Learn about QuantiModo](https://quantimo.do) or contact us at <api@quantimo.do>.         Before you get started, you will need to: * Sign in/Sign up, and add some data at [https://app.quantimo.do/api/v2/account/connectors](https://app.quantimo.do/api/v2/account/connectors) to try out the API for yourself * Create an app to get your client id and secret at [https://app.quantimo.do/api/v2/apps](https://app.quantimo.do/api/v2/apps) * As long as you're signed in, it will use your browser's cookie for authentication.  However, client applications must use OAuth2 tokens to access the API.     ## Application Endpoints These endpoints give you access to all authorized users' data for that application. ### Getting Application Token Make a `POST` request to `/api/v2/oauth/access_token`         * `grant_type` Must be `client_credentials`.         * `clientId` Your application's clientId.         * `client_secret` Your application's client_secret.         * `redirect_uri` Your application's redirect url.                ## Example Queries ### Query Options The standard query options for QuantiModo API are as described in the table below. These are the available query options in QuantiModo API: <table>            <thead>                <tr>                    <th>Parameter</th>                    <th>Description</th>                </tr>            </thead>            <tbody>                <tr>                    <td>limit</td>                    <td>The LIMIT is used to limit the number of results returned.  So if you have 1000 results, but only want to the first 10, you would set this to 10 and offset to 0. The maximum limit is 200 records.</td>                </tr>                <tr>                    <td>offset</td>                    <td>Suppose you wanted to show results 11-20. You'd set the    offset to 10 and the limit to 10.</td>                </tr>                <tr>                    <td>sort</td>                    <td>Sort by given field. If the field is prefixed with '-', it    will sort in descending order.</td>                </tr>            </tbody>        </table>         ### Pagination Conventions Since the maximum limit is 200 records, to get more than that you'll have to make multiple API calls and page through the results. To retrieve all the data, you can iterate through data by using the `limit` and `offset` query parameters.For example, if you want to retrieve data from 61-80 then you can use a query with the following parameters,         `/v2/variables?limit=20&offset=60`         Generally, you'll be retrieving new or updated user data. To avoid unnecessary API calls, you'll want to store your last refresh time locally.  Initially, it should be set to 0. Then whenever you make a request to get new data, you should limit the returned results to those updated since your last refresh by appending append         `?lastUpdated=(ge)&quot2013-01-D01T01:01:01&quot`         to your request.         Also for better pagination, you can get link to the records of first, last, next and previous page from response headers: * `Total-Count` - Total number of results for given query * `Link-First` - Link to get first page records * `Link-Last` - Link to get last page records * `Link-Prev` - Link to get previous records set * `Link-Next` - Link to get next records set         Remember, response header will be only sent when the record set is available. e.g. You will not get a ```Link-Last``` & ```Link-Next``` when you query for the last page.         ### Filter operators support API supports the following operators with filter parameters: <br> **Comparison operators**         Comparison operators allow you to limit results to those greater than, less than, or equal to a specified value for a specified attribute. These operators can be used with strings, numbers, and dates. The following comparison operators are available: * `gt` for `greater than` comparison * `ge` for `greater than or equal` comparison * `lt` for `less than` comparison * `le` for `less than or equal` comparison         They are included in queries using the following format:         `(<operator>)<value>`         For example, in order to filter value which is greater than 21, the following query parameter should be used:         `?value=(gt)21` <br><br> **Equals/In Operators**         It also allows filtering by the exact value of an attribute or by a set of values, depending on the type of value passed as a query parameter. If the value contains commas, the parameter is split on commas and used as array input for `IN` filtering, otherwise the exact match is applied. In order to only show records which have the value 42, the following query should be used:         `?value=42`         In order to filter records which have value 42 or 43, the following query should be used:         `?value=42,43` <br><br> **Like operators**         Like operators allow filtering using `LIKE` query. This operator is triggered if exact match operator is used, but value contains `%` sign as the first or last character. In order to filter records which category that start with `Food`, the following query should be used:         `?category=Food%` <br><br> **Negation operator**         It is possible to get negated results of a query by prefixed the operator with `!`. Some examples:         `//filter records except those with value are not 42 or 43`<br> `?value=!42,43`         `//filter records with value not greater than 21`<br> `?value=!(ge)21` <br><br> **Multiple constraints for single attribute**         It is possible to apply multiple constraints by providing an array of query filters:         Filter all records which value is greater than 20.2 and less than 20.3<br> `?value[]=(gt)20.2&value[]=(lt)20.3`         Filter all records which value is greater than 20.2 and less than 20.3 but not 20.2778<br> `?value[]=(gt)20.2&value[]=(lt)20.3&value[]=!20.2778`<br><br> 
+ *
+ * OpenAPI spec version: 2.0.6
+ * 
+ *
+ * NOTE: This class is auto generated by the swagger code generator program.
+ * https://github.com/swagger-api/swagger-codegen.git
+ * Do not edit the class manually.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 
 #include "SWGVariable.h"
 
@@ -26,104 +50,100 @@ SWGVariable::~SWGVariable() {
 
 void
 SWGVariable::init() {
-    id = 0;
-    client_id = new QString("");
-    parent_id = 0;
-    name = new QString("");
-    variable_category_id = 0;
-    default_unit_id = 0;
-    combination_operation = new QString("");
-    filling_value = 0.0f;
-    maximum_allowed_value = 0.0f;
-    minimum_allowed_value = 0.0f;
-    onset_delay = 0;
-    duration_of_action = 0;
-    public = 0;
-    cause_only = false;
-    most_common_value = 0.0f;
-    most_common_unit_id = 0;
-    standard_deviation = 0.0f;
-    variance = 0.0f;
-    mean = 0.0f;
-    median = 0.0f;
-    number_of_measurements = 0.0f;
-    number_of_unique_values = 0.0f;
-    skewness = 0.0f;
-    kurtosis = 0.0f;
-    status = new QString("");
-    error_message = new QString("");
-    last_successful_update_time = NULL;
-    created_at = NULL;
-    updated_at = NULL;
-    product_url = new QString("");
-    image_url = new QString("");
-    price = 0.0f;
-    number_of_user_variables = 0;
-    outcome = false;
-    minimum_recorded_value = 0.0f;
-    maximum_recorded_value = 0.0f;
-    
+    id = NULL;
+name = new QString("");
+originalName = new QString("");
+category = new QString("");
+abbreviatedUnitName = new QString("");
+abbreviatedUnitId = NULL;
+sources = new QString("");
+minimumValue = 0.0;
+maximumValue = 0.0;
+combinationOperation = new QString("");
+fillingValue = 0.0;
+joinWith = new QString("");
+joinedVariables = new QList<SWGVariable*>();
+parent = NULL;
+subVariables = new QList<SWGVariable*>();
+onsetDelay = NULL;
+durationOfAction = NULL;
+earliestMeasurementTime = NULL;
+latestMeasurementTime = NULL;
+updated = NULL;
+causeOnly = NULL;
+numberOfCorrelations = NULL;
+outcome = NULL;
+measurementsAtLastAnalysis = NULL;
+numberOfMeasurements = NULL;
+lastUnit = new QString("");
+lastValue = NULL;
+mostCommonValue = NULL;
+mostCommonUnit = new QString("");
+lastSource = NULL;
 }
 
 void
 SWGVariable::cleanup() {
     
-    if(client_id != NULL) {
-        delete client_id;
-    }
-    
-    if(name != NULL) {
+if(name != NULL) {
         delete name;
     }
-    
-    
-    if(combination_operation != NULL) {
-        delete combination_operation;
+if(originalName != NULL) {
+        delete originalName;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    if(status != NULL) {
-        delete status;
+if(category != NULL) {
+        delete category;
     }
-    if(error_message != NULL) {
-        delete error_message;
+if(abbreviatedUnitName != NULL) {
+        delete abbreviatedUnitName;
     }
-    if(last_successful_update_time != NULL) {
-        delete last_successful_update_time;
+
+if(sources != NULL) {
+        delete sources;
     }
-    if(created_at != NULL) {
-        delete created_at;
+
+
+if(combinationOperation != NULL) {
+        delete combinationOperation;
     }
-    if(updated_at != NULL) {
-        delete updated_at;
+
+if(joinWith != NULL) {
+        delete joinWith;
     }
-    if(product_url != NULL) {
-        delete product_url;
+if(joinedVariables != NULL) {
+        QList<SWGVariable*>* arr = joinedVariables;
+        foreach(SWGVariable* o, *arr) {
+            delete o;
+        }
+        delete joinedVariables;
     }
-    if(image_url != NULL) {
-        delete image_url;
+
+if(subVariables != NULL) {
+        QList<SWGVariable*>* arr = subVariables;
+        foreach(SWGVariable* o, *arr) {
+            delete o;
+        }
+        delete subVariables;
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+if(lastUnit != NULL) {
+        delete lastUnit;
+    }
+
+
+if(mostCommonUnit != NULL) {
+        delete mostCommonUnit;
+    }
+
 }
 
 SWGVariable*
@@ -138,42 +158,35 @@ SWGVariable::fromJson(QString &json) {
 void
 SWGVariable::fromJsonObject(QJsonObject &pJson) {
     setValue(&id, pJson["id"], "qint32", "");
-    setValue(&client_id, pJson["client_id"], "QString", "QString");
-    setValue(&parent_id, pJson["parent_id"], "qint32", "");
-    setValue(&name, pJson["name"], "QString", "QString");
-    setValue(&variable_category_id, pJson["variable_category_id"], "qint32", "");
-    setValue(&default_unit_id, pJson["default_unit_id"], "qint32", "");
-    setValue(&combination_operation, pJson["combination_operation"], "QString", "QString");
-    setValue(&filling_value, pJson["filling_value"], "float", "");
-    setValue(&maximum_allowed_value, pJson["maximum_allowed_value"], "float", "");
-    setValue(&minimum_allowed_value, pJson["minimum_allowed_value"], "float", "");
-    setValue(&onset_delay, pJson["onset_delay"], "qint32", "");
-    setValue(&duration_of_action, pJson["duration_of_action"], "qint32", "");
-    setValue(&public, pJson["public"], "qint32", "");
-    setValue(&cause_only, pJson["cause_only"], "bool", "");
-    setValue(&most_common_value, pJson["most_common_value"], "float", "");
-    setValue(&most_common_unit_id, pJson["most_common_unit_id"], "qint32", "");
-    setValue(&standard_deviation, pJson["standard_deviation"], "float", "");
-    setValue(&variance, pJson["variance"], "float", "");
-    setValue(&mean, pJson["mean"], "float", "");
-    setValue(&median, pJson["median"], "float", "");
-    setValue(&number_of_measurements, pJson["number_of_measurements"], "float", "");
-    setValue(&number_of_unique_values, pJson["number_of_unique_values"], "float", "");
-    setValue(&skewness, pJson["skewness"], "float", "");
-    setValue(&kurtosis, pJson["kurtosis"], "float", "");
-    setValue(&status, pJson["status"], "QString", "QString");
-    setValue(&error_message, pJson["error_message"], "QString", "QString");
-    setValue(&last_successful_update_time, pJson["last_successful_update_time"], "QDateTime", "QDateTime");
-    setValue(&created_at, pJson["created_at"], "QDateTime", "QDateTime");
-    setValue(&updated_at, pJson["updated_at"], "QDateTime", "QDateTime");
-    setValue(&product_url, pJson["product_url"], "QString", "QString");
-    setValue(&image_url, pJson["image_url"], "QString", "QString");
-    setValue(&price, pJson["price"], "float", "");
-    setValue(&number_of_user_variables, pJson["number_of_user_variables"], "qint32", "");
-    setValue(&outcome, pJson["outcome"], "bool", "");
-    setValue(&minimum_recorded_value, pJson["minimum_recorded_value"], "float", "");
-    setValue(&maximum_recorded_value, pJson["maximum_recorded_value"], "float", "");
-    
+setValue(&name, pJson["name"], "QString", "QString");
+setValue(&originalName, pJson["originalName"], "QString", "QString");
+setValue(&category, pJson["category"], "QString", "QString");
+setValue(&abbreviatedUnitName, pJson["abbreviatedUnitName"], "QString", "QString");
+setValue(&abbreviatedUnitId, pJson["abbreviatedUnitId"], "qint32", "");
+setValue(&sources, pJson["sources"], "QString", "QString");
+setValue(&minimumValue, pJson["minimumValue"], "double", "");
+setValue(&maximumValue, pJson["maximumValue"], "double", "");
+setValue(&combinationOperation, pJson["combinationOperation"], "QString", "QString");
+setValue(&fillingValue, pJson["fillingValue"], "double", "");
+setValue(&joinWith, pJson["joinWith"], "QString", "QString");
+setValue(&joinedVariables, pJson["joinedVariables"], "QList", "SWGVariable");
+setValue(&parent, pJson["parent"], "qint32", "");
+setValue(&subVariables, pJson["subVariables"], "QList", "SWGVariable");
+setValue(&onsetDelay, pJson["onsetDelay"], "qint32", "");
+setValue(&durationOfAction, pJson["durationOfAction"], "qint32", "");
+setValue(&earliestMeasurementTime, pJson["earliestMeasurementTime"], "qint32", "");
+setValue(&latestMeasurementTime, pJson["latestMeasurementTime"], "qint32", "");
+setValue(&updated, pJson["updated"], "qint32", "");
+setValue(&causeOnly, pJson["causeOnly"], "qint32", "");
+setValue(&numberOfCorrelations, pJson["numberOfCorrelations"], "qint32", "");
+setValue(&outcome, pJson["outcome"], "qint32", "");
+setValue(&measurementsAtLastAnalysis, pJson["measurementsAtLastAnalysis"], "qint32", "");
+setValue(&numberOfMeasurements, pJson["numberOfMeasurements"], "qint32", "");
+setValue(&lastUnit, pJson["lastUnit"], "QString", "QString");
+setValue(&lastValue, pJson["lastValue"], "qint32", "");
+setValue(&mostCommonValue, pJson["mostCommonValue"], "qint32", "");
+setValue(&mostCommonUnit, pJson["mostCommonUnit"], "QString", "QString");
+setValue(&lastSource, pJson["lastSource"], "qint32", "");
 }
 
 QString
@@ -190,92 +203,85 @@ QJsonObject*
 SWGVariable::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
     obj->insert("id", QJsonValue(id));
-    
-    
-    toJsonValue(QString("client_id"), client_id, obj, QString("QString"));
-    
-    
-    
-    obj->insert("parent_id", QJsonValue(parent_id));
-    
+
     
     toJsonValue(QString("name"), name, obj, QString("QString"));
     
+        
+
     
+    toJsonValue(QString("originalName"), originalName, obj, QString("QString"));
     
-    obj->insert("variable_category_id", QJsonValue(variable_category_id));
-    obj->insert("default_unit_id", QJsonValue(default_unit_id));
+        
+
     
+    toJsonValue(QString("category"), category, obj, QString("QString"));
     
-    toJsonValue(QString("combination_operation"), combination_operation, obj, QString("QString"));
+        
+
     
+    toJsonValue(QString("abbreviatedUnitName"), abbreviatedUnitName, obj, QString("QString"));
     
+        
+obj->insert("abbreviatedUnitId", QJsonValue(abbreviatedUnitId));
+
     
-    obj->insert("filling_value", QJsonValue(filling_value));
-    obj->insert("maximum_allowed_value", QJsonValue(maximum_allowed_value));
-    obj->insert("minimum_allowed_value", QJsonValue(minimum_allowed_value));
-    obj->insert("onset_delay", QJsonValue(onset_delay));
-    obj->insert("duration_of_action", QJsonValue(duration_of_action));
-    obj->insert("public", QJsonValue(public));
-    obj->insert("cause_only", QJsonValue(cause_only));
-    obj->insert("most_common_value", QJsonValue(most_common_value));
-    obj->insert("most_common_unit_id", QJsonValue(most_common_unit_id));
-    obj->insert("standard_deviation", QJsonValue(standard_deviation));
-    obj->insert("variance", QJsonValue(variance));
-    obj->insert("mean", QJsonValue(mean));
-    obj->insert("median", QJsonValue(median));
-    obj->insert("number_of_measurements", QJsonValue(number_of_measurements));
-    obj->insert("number_of_unique_values", QJsonValue(number_of_unique_values));
-    obj->insert("skewness", QJsonValue(skewness));
-    obj->insert("kurtosis", QJsonValue(kurtosis));
+    toJsonValue(QString("sources"), sources, obj, QString("QString"));
     
+        
+obj->insert("minimumValue", QJsonValue(minimumValue));
+obj->insert("maximumValue", QJsonValue(maximumValue));
+
     
-    toJsonValue(QString("status"), status, obj, QString("QString"));
+    toJsonValue(QString("combinationOperation"), combinationOperation, obj, QString("QString"));
     
+        
+obj->insert("fillingValue", QJsonValue(fillingValue));
+
     
+    toJsonValue(QString("joinWith"), joinWith, obj, QString("QString"));
     
+        
+
     
+    QList<SWGVariable*>* joinedVariablesList = joinedVariables;
+    QJsonArray joinedVariablesJsonArray;
+    toJsonArray((QList<void*>*)joinedVariables, &joinedVariablesJsonArray, "joinedVariables", "SWGVariable");
+
+    obj->insert("joinedVariables", joinedVariablesJsonArray);
     
-    toJsonValue(QString("error_message"), error_message, obj, QString("QString"));
+obj->insert("parent", QJsonValue(parent));
+
     
+    QList<SWGVariable*>* subVariablesList = subVariables;
+    QJsonArray subVariablesJsonArray;
+    toJsonArray((QList<void*>*)subVariables, &subVariablesJsonArray, "subVariables", "SWGVariable");
+
+    obj->insert("subVariables", subVariablesJsonArray);
     
+obj->insert("onsetDelay", QJsonValue(onsetDelay));
+obj->insert("durationOfAction", QJsonValue(durationOfAction));
+obj->insert("earliestMeasurementTime", QJsonValue(earliestMeasurementTime));
+obj->insert("latestMeasurementTime", QJsonValue(latestMeasurementTime));
+obj->insert("updated", QJsonValue(updated));
+obj->insert("causeOnly", QJsonValue(causeOnly));
+obj->insert("numberOfCorrelations", QJsonValue(numberOfCorrelations));
+obj->insert("outcome", QJsonValue(outcome));
+obj->insert("measurementsAtLastAnalysis", QJsonValue(measurementsAtLastAnalysis));
+obj->insert("numberOfMeasurements", QJsonValue(numberOfMeasurements));
+
     
+    toJsonValue(QString("lastUnit"), lastUnit, obj, QString("QString"));
     
+        
+obj->insert("lastValue", QJsonValue(lastValue));
+obj->insert("mostCommonValue", QJsonValue(mostCommonValue));
+
     
-    toJsonValue(QString("last_successful_update_time"), last_successful_update_time, obj, QString("QDateTime"));
+    toJsonValue(QString("mostCommonUnit"), mostCommonUnit, obj, QString("QString"));
     
-    
-    
-    
-    
-    toJsonValue(QString("created_at"), created_at, obj, QString("QDateTime"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("updated_at"), updated_at, obj, QString("QDateTime"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("product_url"), product_url, obj, QString("QString"));
-    
-    
-    
-    
-    
-    toJsonValue(QString("image_url"), image_url, obj, QString("QString"));
-    
-    
-    
-    obj->insert("price", QJsonValue(price));
-    obj->insert("number_of_user_variables", QJsonValue(number_of_user_variables));
-    obj->insert("outcome", QJsonValue(outcome));
-    obj->insert("minimum_recorded_value", QJsonValue(minimum_recorded_value));
-    obj->insert("maximum_recorded_value", QJsonValue(maximum_recorded_value));
-    
+        
+obj->insert("lastSource", QJsonValue(lastSource));
 
     return obj;
 }
@@ -290,24 +296,6 @@ SWGVariable::setId(qint32 id) {
 }
 
 QString*
-SWGVariable::getClientId() {
-    return client_id;
-}
-void
-SWGVariable::setClientId(QString* client_id) {
-    this->client_id = client_id;
-}
-
-qint32
-SWGVariable::getParentId() {
-    return parent_id;
-}
-void
-SWGVariable::setParentId(qint32 parent_id) {
-    this->parent_id = parent_id;
-}
-
-QString*
 SWGVariable::getName() {
     return name;
 }
@@ -316,292 +304,256 @@ SWGVariable::setName(QString* name) {
     this->name = name;
 }
 
-qint32
-SWGVariable::getVariableCategoryId() {
-    return variable_category_id;
+QString*
+SWGVariable::getOriginalName() {
+    return originalName;
 }
 void
-SWGVariable::setVariableCategoryId(qint32 variable_category_id) {
-    this->variable_category_id = variable_category_id;
+SWGVariable::setOriginalName(QString* originalName) {
+    this->originalName = originalName;
+}
+
+QString*
+SWGVariable::getCategory() {
+    return category;
+}
+void
+SWGVariable::setCategory(QString* category) {
+    this->category = category;
+}
+
+QString*
+SWGVariable::getAbbreviatedUnitName() {
+    return abbreviatedUnitName;
+}
+void
+SWGVariable::setAbbreviatedUnitName(QString* abbreviatedUnitName) {
+    this->abbreviatedUnitName = abbreviatedUnitName;
 }
 
 qint32
-SWGVariable::getDefaultUnitId() {
-    return default_unit_id;
+SWGVariable::getAbbreviatedUnitId() {
+    return abbreviatedUnitId;
 }
 void
-SWGVariable::setDefaultUnitId(qint32 default_unit_id) {
-    this->default_unit_id = default_unit_id;
+SWGVariable::setAbbreviatedUnitId(qint32 abbreviatedUnitId) {
+    this->abbreviatedUnitId = abbreviatedUnitId;
+}
+
+QString*
+SWGVariable::getSources() {
+    return sources;
+}
+void
+SWGVariable::setSources(QString* sources) {
+    this->sources = sources;
+}
+
+double
+SWGVariable::getMinimumValue() {
+    return minimumValue;
+}
+void
+SWGVariable::setMinimumValue(double minimumValue) {
+    this->minimumValue = minimumValue;
+}
+
+double
+SWGVariable::getMaximumValue() {
+    return maximumValue;
+}
+void
+SWGVariable::setMaximumValue(double maximumValue) {
+    this->maximumValue = maximumValue;
 }
 
 QString*
 SWGVariable::getCombinationOperation() {
-    return combination_operation;
+    return combinationOperation;
 }
 void
-SWGVariable::setCombinationOperation(QString* combination_operation) {
-    this->combination_operation = combination_operation;
+SWGVariable::setCombinationOperation(QString* combinationOperation) {
+    this->combinationOperation = combinationOperation;
 }
 
-float
+double
 SWGVariable::getFillingValue() {
-    return filling_value;
+    return fillingValue;
 }
 void
-SWGVariable::setFillingValue(float filling_value) {
-    this->filling_value = filling_value;
+SWGVariable::setFillingValue(double fillingValue) {
+    this->fillingValue = fillingValue;
 }
 
-float
-SWGVariable::getMaximumAllowedValue() {
-    return maximum_allowed_value;
+QString*
+SWGVariable::getJoinWith() {
+    return joinWith;
 }
 void
-SWGVariable::setMaximumAllowedValue(float maximum_allowed_value) {
-    this->maximum_allowed_value = maximum_allowed_value;
+SWGVariable::setJoinWith(QString* joinWith) {
+    this->joinWith = joinWith;
 }
 
-float
-SWGVariable::getMinimumAllowedValue() {
-    return minimum_allowed_value;
+QList<SWGVariable*>*
+SWGVariable::getJoinedVariables() {
+    return joinedVariables;
 }
 void
-SWGVariable::setMinimumAllowedValue(float minimum_allowed_value) {
-    this->minimum_allowed_value = minimum_allowed_value;
+SWGVariable::setJoinedVariables(QList<SWGVariable*>* joinedVariables) {
+    this->joinedVariables = joinedVariables;
+}
+
+qint32
+SWGVariable::getParent() {
+    return parent;
+}
+void
+SWGVariable::setParent(qint32 parent) {
+    this->parent = parent;
+}
+
+QList<SWGVariable*>*
+SWGVariable::getSubVariables() {
+    return subVariables;
+}
+void
+SWGVariable::setSubVariables(QList<SWGVariable*>* subVariables) {
+    this->subVariables = subVariables;
 }
 
 qint32
 SWGVariable::getOnsetDelay() {
-    return onset_delay;
+    return onsetDelay;
 }
 void
-SWGVariable::setOnsetDelay(qint32 onset_delay) {
-    this->onset_delay = onset_delay;
+SWGVariable::setOnsetDelay(qint32 onsetDelay) {
+    this->onsetDelay = onsetDelay;
 }
 
 qint32
 SWGVariable::getDurationOfAction() {
-    return duration_of_action;
+    return durationOfAction;
 }
 void
-SWGVariable::setDurationOfAction(qint32 duration_of_action) {
-    this->duration_of_action = duration_of_action;
+SWGVariable::setDurationOfAction(qint32 durationOfAction) {
+    this->durationOfAction = durationOfAction;
 }
 
 qint32
-SWGVariable::getPublic() {
-    return public;
+SWGVariable::getEarliestMeasurementTime() {
+    return earliestMeasurementTime;
 }
 void
-SWGVariable::setPublic(qint32 public) {
-    this->public = public;
+SWGVariable::setEarliestMeasurementTime(qint32 earliestMeasurementTime) {
+    this->earliestMeasurementTime = earliestMeasurementTime;
 }
 
-bool
+qint32
+SWGVariable::getLatestMeasurementTime() {
+    return latestMeasurementTime;
+}
+void
+SWGVariable::setLatestMeasurementTime(qint32 latestMeasurementTime) {
+    this->latestMeasurementTime = latestMeasurementTime;
+}
+
+qint32
+SWGVariable::getUpdated() {
+    return updated;
+}
+void
+SWGVariable::setUpdated(qint32 updated) {
+    this->updated = updated;
+}
+
+qint32
 SWGVariable::getCauseOnly() {
-    return cause_only;
+    return causeOnly;
 }
 void
-SWGVariable::setCauseOnly(bool cause_only) {
-    this->cause_only = cause_only;
-}
-
-float
-SWGVariable::getMostCommonValue() {
-    return most_common_value;
-}
-void
-SWGVariable::setMostCommonValue(float most_common_value) {
-    this->most_common_value = most_common_value;
+SWGVariable::setCauseOnly(qint32 causeOnly) {
+    this->causeOnly = causeOnly;
 }
 
 qint32
-SWGVariable::getMostCommonUnitId() {
-    return most_common_unit_id;
+SWGVariable::getNumberOfCorrelations() {
+    return numberOfCorrelations;
 }
 void
-SWGVariable::setMostCommonUnitId(qint32 most_common_unit_id) {
-    this->most_common_unit_id = most_common_unit_id;
-}
-
-float
-SWGVariable::getStandardDeviation() {
-    return standard_deviation;
-}
-void
-SWGVariable::setStandardDeviation(float standard_deviation) {
-    this->standard_deviation = standard_deviation;
-}
-
-float
-SWGVariable::getVariance() {
-    return variance;
-}
-void
-SWGVariable::setVariance(float variance) {
-    this->variance = variance;
-}
-
-float
-SWGVariable::getMean() {
-    return mean;
-}
-void
-SWGVariable::setMean(float mean) {
-    this->mean = mean;
-}
-
-float
-SWGVariable::getMedian() {
-    return median;
-}
-void
-SWGVariable::setMedian(float median) {
-    this->median = median;
-}
-
-float
-SWGVariable::getNumberOfMeasurements() {
-    return number_of_measurements;
-}
-void
-SWGVariable::setNumberOfMeasurements(float number_of_measurements) {
-    this->number_of_measurements = number_of_measurements;
-}
-
-float
-SWGVariable::getNumberOfUniqueValues() {
-    return number_of_unique_values;
-}
-void
-SWGVariable::setNumberOfUniqueValues(float number_of_unique_values) {
-    this->number_of_unique_values = number_of_unique_values;
-}
-
-float
-SWGVariable::getSkewness() {
-    return skewness;
-}
-void
-SWGVariable::setSkewness(float skewness) {
-    this->skewness = skewness;
-}
-
-float
-SWGVariable::getKurtosis() {
-    return kurtosis;
-}
-void
-SWGVariable::setKurtosis(float kurtosis) {
-    this->kurtosis = kurtosis;
-}
-
-QString*
-SWGVariable::getStatus() {
-    return status;
-}
-void
-SWGVariable::setStatus(QString* status) {
-    this->status = status;
-}
-
-QString*
-SWGVariable::getErrorMessage() {
-    return error_message;
-}
-void
-SWGVariable::setErrorMessage(QString* error_message) {
-    this->error_message = error_message;
-}
-
-QDateTime*
-SWGVariable::getLastSuccessfulUpdateTime() {
-    return last_successful_update_time;
-}
-void
-SWGVariable::setLastSuccessfulUpdateTime(QDateTime* last_successful_update_time) {
-    this->last_successful_update_time = last_successful_update_time;
-}
-
-QDateTime*
-SWGVariable::getCreatedAt() {
-    return created_at;
-}
-void
-SWGVariable::setCreatedAt(QDateTime* created_at) {
-    this->created_at = created_at;
-}
-
-QDateTime*
-SWGVariable::getUpdatedAt() {
-    return updated_at;
-}
-void
-SWGVariable::setUpdatedAt(QDateTime* updated_at) {
-    this->updated_at = updated_at;
-}
-
-QString*
-SWGVariable::getProductUrl() {
-    return product_url;
-}
-void
-SWGVariable::setProductUrl(QString* product_url) {
-    this->product_url = product_url;
-}
-
-QString*
-SWGVariable::getImageUrl() {
-    return image_url;
-}
-void
-SWGVariable::setImageUrl(QString* image_url) {
-    this->image_url = image_url;
-}
-
-float
-SWGVariable::getPrice() {
-    return price;
-}
-void
-SWGVariable::setPrice(float price) {
-    this->price = price;
+SWGVariable::setNumberOfCorrelations(qint32 numberOfCorrelations) {
+    this->numberOfCorrelations = numberOfCorrelations;
 }
 
 qint32
-SWGVariable::getNumberOfUserVariables() {
-    return number_of_user_variables;
-}
-void
-SWGVariable::setNumberOfUserVariables(qint32 number_of_user_variables) {
-    this->number_of_user_variables = number_of_user_variables;
-}
-
-bool
 SWGVariable::getOutcome() {
     return outcome;
 }
 void
-SWGVariable::setOutcome(bool outcome) {
+SWGVariable::setOutcome(qint32 outcome) {
     this->outcome = outcome;
 }
 
-float
-SWGVariable::getMinimumRecordedValue() {
-    return minimum_recorded_value;
+qint32
+SWGVariable::getMeasurementsAtLastAnalysis() {
+    return measurementsAtLastAnalysis;
 }
 void
-SWGVariable::setMinimumRecordedValue(float minimum_recorded_value) {
-    this->minimum_recorded_value = minimum_recorded_value;
+SWGVariable::setMeasurementsAtLastAnalysis(qint32 measurementsAtLastAnalysis) {
+    this->measurementsAtLastAnalysis = measurementsAtLastAnalysis;
 }
 
-float
-SWGVariable::getMaximumRecordedValue() {
-    return maximum_recorded_value;
+qint32
+SWGVariable::getNumberOfMeasurements() {
+    return numberOfMeasurements;
 }
 void
-SWGVariable::setMaximumRecordedValue(float maximum_recorded_value) {
-    this->maximum_recorded_value = maximum_recorded_value;
+SWGVariable::setNumberOfMeasurements(qint32 numberOfMeasurements) {
+    this->numberOfMeasurements = numberOfMeasurements;
+}
+
+QString*
+SWGVariable::getLastUnit() {
+    return lastUnit;
+}
+void
+SWGVariable::setLastUnit(QString* lastUnit) {
+    this->lastUnit = lastUnit;
+}
+
+qint32
+SWGVariable::getLastValue() {
+    return lastValue;
+}
+void
+SWGVariable::setLastValue(qint32 lastValue) {
+    this->lastValue = lastValue;
+}
+
+qint32
+SWGVariable::getMostCommonValue() {
+    return mostCommonValue;
+}
+void
+SWGVariable::setMostCommonValue(qint32 mostCommonValue) {
+    this->mostCommonValue = mostCommonValue;
+}
+
+QString*
+SWGVariable::getMostCommonUnit() {
+    return mostCommonUnit;
+}
+void
+SWGVariable::setMostCommonUnit(QString* mostCommonUnit) {
+    this->mostCommonUnit = mostCommonUnit;
+}
+
+qint32
+SWGVariable::getLastSource() {
+    return lastSource;
+}
+void
+SWGVariable::setLastSource(qint32 lastSource) {
+    this->lastSource = lastSource;
 }
 
 

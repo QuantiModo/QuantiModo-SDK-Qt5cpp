@@ -1,3 +1,27 @@
+/**
+ * QuantiModo
+ * Welcome to QuantiModo API! QuantiModo makes it easy to retrieve normalized user data from a wide array of devices and applications. [Learn about QuantiModo](https://quantimo.do) or contact us at <api@quantimo.do>.         Before you get started, you will need to: * Sign in/Sign up, and add some data at [https://app.quantimo.do/api/v2/account/connectors](https://app.quantimo.do/api/v2/account/connectors) to try out the API for yourself * Create an app to get your client id and secret at [https://app.quantimo.do/api/v2/apps](https://app.quantimo.do/api/v2/apps) * As long as you're signed in, it will use your browser's cookie for authentication.  However, client applications must use OAuth2 tokens to access the API.     ## Application Endpoints These endpoints give you access to all authorized users' data for that application. ### Getting Application Token Make a `POST` request to `/api/v2/oauth/access_token`         * `grant_type` Must be `client_credentials`.         * `clientId` Your application's clientId.         * `client_secret` Your application's client_secret.         * `redirect_uri` Your application's redirect url.                ## Example Queries ### Query Options The standard query options for QuantiModo API are as described in the table below. These are the available query options in QuantiModo API: <table>            <thead>                <tr>                    <th>Parameter</th>                    <th>Description</th>                </tr>            </thead>            <tbody>                <tr>                    <td>limit</td>                    <td>The LIMIT is used to limit the number of results returned.  So if you have 1000 results, but only want to the first 10, you would set this to 10 and offset to 0. The maximum limit is 200 records.</td>                </tr>                <tr>                    <td>offset</td>                    <td>Suppose you wanted to show results 11-20. You'd set the    offset to 10 and the limit to 10.</td>                </tr>                <tr>                    <td>sort</td>                    <td>Sort by given field. If the field is prefixed with '-', it    will sort in descending order.</td>                </tr>            </tbody>        </table>         ### Pagination Conventions Since the maximum limit is 200 records, to get more than that you'll have to make multiple API calls and page through the results. To retrieve all the data, you can iterate through data by using the `limit` and `offset` query parameters.For example, if you want to retrieve data from 61-80 then you can use a query with the following parameters,         `/v2/variables?limit=20&offset=60`         Generally, you'll be retrieving new or updated user data. To avoid unnecessary API calls, you'll want to store your last refresh time locally.  Initially, it should be set to 0. Then whenever you make a request to get new data, you should limit the returned results to those updated since your last refresh by appending append         `?lastUpdated=(ge)&quot2013-01-D01T01:01:01&quot`         to your request.         Also for better pagination, you can get link to the records of first, last, next and previous page from response headers: * `Total-Count` - Total number of results for given query * `Link-First` - Link to get first page records * `Link-Last` - Link to get last page records * `Link-Prev` - Link to get previous records set * `Link-Next` - Link to get next records set         Remember, response header will be only sent when the record set is available. e.g. You will not get a ```Link-Last``` & ```Link-Next``` when you query for the last page.         ### Filter operators support API supports the following operators with filter parameters: <br> **Comparison operators**         Comparison operators allow you to limit results to those greater than, less than, or equal to a specified value for a specified attribute. These operators can be used with strings, numbers, and dates. The following comparison operators are available: * `gt` for `greater than` comparison * `ge` for `greater than or equal` comparison * `lt` for `less than` comparison * `le` for `less than or equal` comparison         They are included in queries using the following format:         `(<operator>)<value>`         For example, in order to filter value which is greater than 21, the following query parameter should be used:         `?value=(gt)21` <br><br> **Equals/In Operators**         It also allows filtering by the exact value of an attribute or by a set of values, depending on the type of value passed as a query parameter. If the value contains commas, the parameter is split on commas and used as array input for `IN` filtering, otherwise the exact match is applied. In order to only show records which have the value 42, the following query should be used:         `?value=42`         In order to filter records which have value 42 or 43, the following query should be used:         `?value=42,43` <br><br> **Like operators**         Like operators allow filtering using `LIKE` query. This operator is triggered if exact match operator is used, but value contains `%` sign as the first or last character. In order to filter records which category that start with `Food`, the following query should be used:         `?category=Food%` <br><br> **Negation operator**         It is possible to get negated results of a query by prefixed the operator with `!`. Some examples:         `//filter records except those with value are not 42 or 43`<br> `?value=!42,43`         `//filter records with value not greater than 21`<br> `?value=!(ge)21` <br><br> **Multiple constraints for single attribute**         It is possible to apply multiple constraints by providing an array of query filters:         Filter all records which value is greater than 20.2 and less than 20.3<br> `?value[]=(gt)20.2&value[]=(lt)20.3`         Filter all records which value is greater than 20.2 and less than 20.3 but not 20.2778<br> `?value[]=(gt)20.2&value[]=(lt)20.3&value[]=!20.2778`<br><br> 
+ *
+ * OpenAPI spec version: 2.0.6
+ * 
+ *
+ * NOTE: This class is auto generated by the swagger code generator program.
+ * https://github.com/swagger-api/swagger-codegen.git
+ * Do not edit the class manually.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 
 #include "SWGCorrelation.h"
 
@@ -26,68 +50,94 @@ SWGCorrelation::~SWGCorrelation() {
 
 void
 SWGCorrelation::init() {
-    id = 0;
-    timestamp = 0;
-    user_id = 0;
-    correlation = 0.0f;
-    cause_id = 0;
-    effect_id = 0;
-    onset_delay = 0;
-    duration_of_action = 0;
-    number_of_pairs = 0;
-    value_predicting_high_outcome = 0.0f;
-    value_predicting_low_outcome = 0.0f;
-    optimal_pearson_product = 0.0f;
-    vote = 0.0f;
-    statistical_significance = 0.0f;
-    cause_unit = new QString("");
-    cause_unit_id = 0;
-    cause_changes = 0;
-    effect_changes = 0;
-    qm_score = 0.0f;
-    error = new QString("");
-    created_at = NULL;
-    updated_at = NULL;
-    reverse_pearson_correlation_coefficient = 0.0f;
-    predictive_pearson_correlation_coefficient = 0.0f;
-    
+    correlationCoefficient = 0.0;
+cause = new QString("");
+originalCause = new QString("");
+effect = new QString("");
+originalEffect = new QString("");
+onsetDelay = 0.0;
+durationOfAction = 0.0;
+numberOfPairs = 0.0;
+effectSize = new QString("");
+statisticalSignificance = new QString("");
+timestamp = 0.0;
+reverseCorrelation = 0.0;
+causalityFactor = 0.0;
+causeCategory = new QString("");
+effectCategory = new QString("");
+valuePredictingHighOutcome = 0.0;
+valuePredictingLowOutcome = 0.0;
+optimalPearsonProduct = 0.0;
+averageVote = 0.0;
+userVote = 0.0;
+causeUnit = new QString("");
+causeUnitId = NULL;
 }
 
 void
 SWGCorrelation::cleanup() {
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    if(cause_unit != NULL) {
-        delete cause_unit;
+    if(correlationCoefficient != NULL) {
+        delete correlationCoefficient;
     }
-    
-    
-    
-    
-    if(error != NULL) {
-        delete error;
+if(cause != NULL) {
+        delete cause;
     }
-    if(created_at != NULL) {
-        delete created_at;
+if(originalCause != NULL) {
+        delete originalCause;
     }
-    if(updated_at != NULL) {
-        delete updated_at;
+if(effect != NULL) {
+        delete effect;
     }
-    
-    
-    
+if(originalEffect != NULL) {
+        delete originalEffect;
+    }
+
+if(durationOfAction != NULL) {
+        delete durationOfAction;
+    }
+if(numberOfPairs != NULL) {
+        delete numberOfPairs;
+    }
+if(effectSize != NULL) {
+        delete effectSize;
+    }
+if(statisticalSignificance != NULL) {
+        delete statisticalSignificance;
+    }
+if(timestamp != NULL) {
+        delete timestamp;
+    }
+if(reverseCorrelation != NULL) {
+        delete reverseCorrelation;
+    }
+if(causalityFactor != NULL) {
+        delete causalityFactor;
+    }
+if(causeCategory != NULL) {
+        delete causeCategory;
+    }
+if(effectCategory != NULL) {
+        delete effectCategory;
+    }
+if(valuePredictingHighOutcome != NULL) {
+        delete valuePredictingHighOutcome;
+    }
+if(valuePredictingLowOutcome != NULL) {
+        delete valuePredictingLowOutcome;
+    }
+if(optimalPearsonProduct != NULL) {
+        delete optimalPearsonProduct;
+    }
+if(averageVote != NULL) {
+        delete averageVote;
+    }
+if(userVote != NULL) {
+        delete userVote;
+    }
+if(causeUnit != NULL) {
+        delete causeUnit;
+    }
+
 }
 
 SWGCorrelation*
@@ -101,31 +151,28 @@ SWGCorrelation::fromJson(QString &json) {
 
 void
 SWGCorrelation::fromJsonObject(QJsonObject &pJson) {
-    setValue(&id, pJson["id"], "qint32", "");
-    setValue(&timestamp, pJson["timestamp"], "qint32", "");
-    setValue(&user_id, pJson["user_id"], "qint32", "");
-    setValue(&correlation, pJson["correlation"], "float", "");
-    setValue(&cause_id, pJson["cause_id"], "qint32", "");
-    setValue(&effect_id, pJson["effect_id"], "qint32", "");
-    setValue(&onset_delay, pJson["onset_delay"], "qint32", "");
-    setValue(&duration_of_action, pJson["duration_of_action"], "qint32", "");
-    setValue(&number_of_pairs, pJson["number_of_pairs"], "qint32", "");
-    setValue(&value_predicting_high_outcome, pJson["value_predicting_high_outcome"], "float", "");
-    setValue(&value_predicting_low_outcome, pJson["value_predicting_low_outcome"], "float", "");
-    setValue(&optimal_pearson_product, pJson["optimal_pearson_product"], "float", "");
-    setValue(&vote, pJson["vote"], "float", "");
-    setValue(&statistical_significance, pJson["statistical_significance"], "float", "");
-    setValue(&cause_unit, pJson["cause_unit"], "QString", "QString");
-    setValue(&cause_unit_id, pJson["cause_unit_id"], "qint32", "");
-    setValue(&cause_changes, pJson["cause_changes"], "qint32", "");
-    setValue(&effect_changes, pJson["effect_changes"], "qint32", "");
-    setValue(&qm_score, pJson["qm_score"], "float", "");
-    setValue(&error, pJson["error"], "QString", "QString");
-    setValue(&created_at, pJson["created_at"], "QDateTime", "QDateTime");
-    setValue(&updated_at, pJson["updated_at"], "QDateTime", "QDateTime");
-    setValue(&reverse_pearson_correlation_coefficient, pJson["reverse_pearson_correlation_coefficient"], "float", "");
-    setValue(&predictive_pearson_correlation_coefficient, pJson["predictive_pearson_correlation_coefficient"], "float", "");
-    
+    setValue(&correlationCoefficient, pJson["correlationCoefficient"], "SWGNumber", "SWGNumber");
+setValue(&cause, pJson["cause"], "QString", "QString");
+setValue(&originalCause, pJson["originalCause"], "QString", "QString");
+setValue(&effect, pJson["effect"], "QString", "QString");
+setValue(&originalEffect, pJson["originalEffect"], "QString", "QString");
+setValue(&onsetDelay, pJson["onsetDelay"], "double", "");
+setValue(&durationOfAction, pJson["durationOfAction"], "SWGNumber", "SWGNumber");
+setValue(&numberOfPairs, pJson["numberOfPairs"], "SWGNumber", "SWGNumber");
+setValue(&effectSize, pJson["effectSize"], "QString", "QString");
+setValue(&statisticalSignificance, pJson["statisticalSignificance"], "QString", "QString");
+setValue(&timestamp, pJson["timestamp"], "SWGNumber", "SWGNumber");
+setValue(&reverseCorrelation, pJson["reverseCorrelation"], "SWGNumber", "SWGNumber");
+setValue(&causalityFactor, pJson["causalityFactor"], "SWGNumber", "SWGNumber");
+setValue(&causeCategory, pJson["causeCategory"], "QString", "QString");
+setValue(&effectCategory, pJson["effectCategory"], "QString", "QString");
+setValue(&valuePredictingHighOutcome, pJson["valuePredictingHighOutcome"], "SWGNumber", "SWGNumber");
+setValue(&valuePredictingLowOutcome, pJson["valuePredictingLowOutcome"], "SWGNumber", "SWGNumber");
+setValue(&optimalPearsonProduct, pJson["optimalPearsonProduct"], "SWGNumber", "SWGNumber");
+setValue(&averageVote, pJson["averageVote"], "SWGNumber", "SWGNumber");
+setValue(&userVote, pJson["userVote"], "SWGNumber", "SWGNumber");
+setValue(&causeUnit, pJson["causeUnit"], "QString", "QString");
+setValue(&causeUnitId, pJson["causeUnitId"], "qint32", "");
 }
 
 QString
@@ -141,269 +188,308 @@ SWGCorrelation::asJson ()
 QJsonObject*
 SWGCorrelation::asJsonObject() {
     QJsonObject* obj = new QJsonObject();
-    obj->insert("id", QJsonValue(id));
-    obj->insert("timestamp", QJsonValue(timestamp));
-    obj->insert("user_id", QJsonValue(user_id));
-    obj->insert("correlation", QJsonValue(correlation));
-    obj->insert("cause_id", QJsonValue(cause_id));
-    obj->insert("effect_id", QJsonValue(effect_id));
-    obj->insert("onset_delay", QJsonValue(onset_delay));
-    obj->insert("duration_of_action", QJsonValue(duration_of_action));
-    obj->insert("number_of_pairs", QJsonValue(number_of_pairs));
-    obj->insert("value_predicting_high_outcome", QJsonValue(value_predicting_high_outcome));
-    obj->insert("value_predicting_low_outcome", QJsonValue(value_predicting_low_outcome));
-    obj->insert("optimal_pearson_product", QJsonValue(optimal_pearson_product));
-    obj->insert("vote", QJsonValue(vote));
-    obj->insert("statistical_significance", QJsonValue(statistical_significance));
     
     
-    toJsonValue(QString("cause_unit"), cause_unit, obj, QString("QString"));
+    toJsonValue(QString("correlationCoefficient"), correlationCoefficient, obj, QString("SWGNumber"));
     
+        
+
     
+    toJsonValue(QString("cause"), cause, obj, QString("QString"));
     
-    obj->insert("cause_unit_id", QJsonValue(cause_unit_id));
-    obj->insert("cause_changes", QJsonValue(cause_changes));
-    obj->insert("effect_changes", QJsonValue(effect_changes));
-    obj->insert("qm_score", QJsonValue(qm_score));
+        
+
     
+    toJsonValue(QString("originalCause"), originalCause, obj, QString("QString"));
     
-    toJsonValue(QString("error"), error, obj, QString("QString"));
+        
+
     
+    toJsonValue(QString("effect"), effect, obj, QString("QString"));
     
+        
+
     
+    toJsonValue(QString("originalEffect"), originalEffect, obj, QString("QString"));
     
+        
+obj->insert("onsetDelay", QJsonValue(onsetDelay));
+
     
-    toJsonValue(QString("created_at"), created_at, obj, QString("QDateTime"));
+    toJsonValue(QString("durationOfAction"), durationOfAction, obj, QString("SWGNumber"));
     
+        
+
     
+    toJsonValue(QString("numberOfPairs"), numberOfPairs, obj, QString("SWGNumber"));
     
+        
+
     
+    toJsonValue(QString("effectSize"), effectSize, obj, QString("QString"));
     
-    toJsonValue(QString("updated_at"), updated_at, obj, QString("QDateTime"));
+        
+
     
+    toJsonValue(QString("statisticalSignificance"), statisticalSignificance, obj, QString("QString"));
     
+        
+
     
-    obj->insert("reverse_pearson_correlation_coefficient", QJsonValue(reverse_pearson_correlation_coefficient));
-    obj->insert("predictive_pearson_correlation_coefficient", QJsonValue(predictive_pearson_correlation_coefficient));
+    toJsonValue(QString("timestamp"), timestamp, obj, QString("SWGNumber"));
     
+        
+
+    
+    toJsonValue(QString("reverseCorrelation"), reverseCorrelation, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("causalityFactor"), causalityFactor, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("causeCategory"), causeCategory, obj, QString("QString"));
+    
+        
+
+    
+    toJsonValue(QString("effectCategory"), effectCategory, obj, QString("QString"));
+    
+        
+
+    
+    toJsonValue(QString("valuePredictingHighOutcome"), valuePredictingHighOutcome, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("valuePredictingLowOutcome"), valuePredictingLowOutcome, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("optimalPearsonProduct"), optimalPearsonProduct, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("averageVote"), averageVote, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("userVote"), userVote, obj, QString("SWGNumber"));
+    
+        
+
+    
+    toJsonValue(QString("causeUnit"), causeUnit, obj, QString("QString"));
+    
+        
+obj->insert("causeUnitId", QJsonValue(causeUnitId));
 
     return obj;
 }
 
-qint32
-SWGCorrelation::getId() {
-    return id;
+SWGNumber*
+SWGCorrelation::getCorrelationCoefficient() {
+    return correlationCoefficient;
 }
 void
-SWGCorrelation::setId(qint32 id) {
-    this->id = id;
+SWGCorrelation::setCorrelationCoefficient(SWGNumber* correlationCoefficient) {
+    this->correlationCoefficient = correlationCoefficient;
 }
 
-qint32
+QString*
+SWGCorrelation::getCause() {
+    return cause;
+}
+void
+SWGCorrelation::setCause(QString* cause) {
+    this->cause = cause;
+}
+
+QString*
+SWGCorrelation::getOriginalCause() {
+    return originalCause;
+}
+void
+SWGCorrelation::setOriginalCause(QString* originalCause) {
+    this->originalCause = originalCause;
+}
+
+QString*
+SWGCorrelation::getEffect() {
+    return effect;
+}
+void
+SWGCorrelation::setEffect(QString* effect) {
+    this->effect = effect;
+}
+
+QString*
+SWGCorrelation::getOriginalEffect() {
+    return originalEffect;
+}
+void
+SWGCorrelation::setOriginalEffect(QString* originalEffect) {
+    this->originalEffect = originalEffect;
+}
+
+double
+SWGCorrelation::getOnsetDelay() {
+    return onsetDelay;
+}
+void
+SWGCorrelation::setOnsetDelay(double onsetDelay) {
+    this->onsetDelay = onsetDelay;
+}
+
+SWGNumber*
+SWGCorrelation::getDurationOfAction() {
+    return durationOfAction;
+}
+void
+SWGCorrelation::setDurationOfAction(SWGNumber* durationOfAction) {
+    this->durationOfAction = durationOfAction;
+}
+
+SWGNumber*
+SWGCorrelation::getNumberOfPairs() {
+    return numberOfPairs;
+}
+void
+SWGCorrelation::setNumberOfPairs(SWGNumber* numberOfPairs) {
+    this->numberOfPairs = numberOfPairs;
+}
+
+QString*
+SWGCorrelation::getEffectSize() {
+    return effectSize;
+}
+void
+SWGCorrelation::setEffectSize(QString* effectSize) {
+    this->effectSize = effectSize;
+}
+
+QString*
+SWGCorrelation::getStatisticalSignificance() {
+    return statisticalSignificance;
+}
+void
+SWGCorrelation::setStatisticalSignificance(QString* statisticalSignificance) {
+    this->statisticalSignificance = statisticalSignificance;
+}
+
+SWGNumber*
 SWGCorrelation::getTimestamp() {
     return timestamp;
 }
 void
-SWGCorrelation::setTimestamp(qint32 timestamp) {
+SWGCorrelation::setTimestamp(SWGNumber* timestamp) {
     this->timestamp = timestamp;
 }
 
-qint32
-SWGCorrelation::getUserId() {
-    return user_id;
+SWGNumber*
+SWGCorrelation::getReverseCorrelation() {
+    return reverseCorrelation;
 }
 void
-SWGCorrelation::setUserId(qint32 user_id) {
-    this->user_id = user_id;
+SWGCorrelation::setReverseCorrelation(SWGNumber* reverseCorrelation) {
+    this->reverseCorrelation = reverseCorrelation;
 }
 
-float
-SWGCorrelation::getCorrelation() {
-    return correlation;
+SWGNumber*
+SWGCorrelation::getCausalityFactor() {
+    return causalityFactor;
 }
 void
-SWGCorrelation::setCorrelation(float correlation) {
-    this->correlation = correlation;
+SWGCorrelation::setCausalityFactor(SWGNumber* causalityFactor) {
+    this->causalityFactor = causalityFactor;
 }
 
-qint32
-SWGCorrelation::getCauseId() {
-    return cause_id;
+QString*
+SWGCorrelation::getCauseCategory() {
+    return causeCategory;
 }
 void
-SWGCorrelation::setCauseId(qint32 cause_id) {
-    this->cause_id = cause_id;
+SWGCorrelation::setCauseCategory(QString* causeCategory) {
+    this->causeCategory = causeCategory;
 }
 
-qint32
-SWGCorrelation::getEffectId() {
-    return effect_id;
+QString*
+SWGCorrelation::getEffectCategory() {
+    return effectCategory;
 }
 void
-SWGCorrelation::setEffectId(qint32 effect_id) {
-    this->effect_id = effect_id;
+SWGCorrelation::setEffectCategory(QString* effectCategory) {
+    this->effectCategory = effectCategory;
 }
 
-qint32
-SWGCorrelation::getOnsetDelay() {
-    return onset_delay;
-}
-void
-SWGCorrelation::setOnsetDelay(qint32 onset_delay) {
-    this->onset_delay = onset_delay;
-}
-
-qint32
-SWGCorrelation::getDurationOfAction() {
-    return duration_of_action;
-}
-void
-SWGCorrelation::setDurationOfAction(qint32 duration_of_action) {
-    this->duration_of_action = duration_of_action;
-}
-
-qint32
-SWGCorrelation::getNumberOfPairs() {
-    return number_of_pairs;
-}
-void
-SWGCorrelation::setNumberOfPairs(qint32 number_of_pairs) {
-    this->number_of_pairs = number_of_pairs;
-}
-
-float
+SWGNumber*
 SWGCorrelation::getValuePredictingHighOutcome() {
-    return value_predicting_high_outcome;
+    return valuePredictingHighOutcome;
 }
 void
-SWGCorrelation::setValuePredictingHighOutcome(float value_predicting_high_outcome) {
-    this->value_predicting_high_outcome = value_predicting_high_outcome;
+SWGCorrelation::setValuePredictingHighOutcome(SWGNumber* valuePredictingHighOutcome) {
+    this->valuePredictingHighOutcome = valuePredictingHighOutcome;
 }
 
-float
+SWGNumber*
 SWGCorrelation::getValuePredictingLowOutcome() {
-    return value_predicting_low_outcome;
+    return valuePredictingLowOutcome;
 }
 void
-SWGCorrelation::setValuePredictingLowOutcome(float value_predicting_low_outcome) {
-    this->value_predicting_low_outcome = value_predicting_low_outcome;
+SWGCorrelation::setValuePredictingLowOutcome(SWGNumber* valuePredictingLowOutcome) {
+    this->valuePredictingLowOutcome = valuePredictingLowOutcome;
 }
 
-float
+SWGNumber*
 SWGCorrelation::getOptimalPearsonProduct() {
-    return optimal_pearson_product;
+    return optimalPearsonProduct;
 }
 void
-SWGCorrelation::setOptimalPearsonProduct(float optimal_pearson_product) {
-    this->optimal_pearson_product = optimal_pearson_product;
+SWGCorrelation::setOptimalPearsonProduct(SWGNumber* optimalPearsonProduct) {
+    this->optimalPearsonProduct = optimalPearsonProduct;
 }
 
-float
-SWGCorrelation::getVote() {
-    return vote;
+SWGNumber*
+SWGCorrelation::getAverageVote() {
+    return averageVote;
 }
 void
-SWGCorrelation::setVote(float vote) {
-    this->vote = vote;
+SWGCorrelation::setAverageVote(SWGNumber* averageVote) {
+    this->averageVote = averageVote;
 }
 
-float
-SWGCorrelation::getStatisticalSignificance() {
-    return statistical_significance;
+SWGNumber*
+SWGCorrelation::getUserVote() {
+    return userVote;
 }
 void
-SWGCorrelation::setStatisticalSignificance(float statistical_significance) {
-    this->statistical_significance = statistical_significance;
+SWGCorrelation::setUserVote(SWGNumber* userVote) {
+    this->userVote = userVote;
 }
 
 QString*
 SWGCorrelation::getCauseUnit() {
-    return cause_unit;
+    return causeUnit;
 }
 void
-SWGCorrelation::setCauseUnit(QString* cause_unit) {
-    this->cause_unit = cause_unit;
+SWGCorrelation::setCauseUnit(QString* causeUnit) {
+    this->causeUnit = causeUnit;
 }
 
 qint32
 SWGCorrelation::getCauseUnitId() {
-    return cause_unit_id;
+    return causeUnitId;
 }
 void
-SWGCorrelation::setCauseUnitId(qint32 cause_unit_id) {
-    this->cause_unit_id = cause_unit_id;
-}
-
-qint32
-SWGCorrelation::getCauseChanges() {
-    return cause_changes;
-}
-void
-SWGCorrelation::setCauseChanges(qint32 cause_changes) {
-    this->cause_changes = cause_changes;
-}
-
-qint32
-SWGCorrelation::getEffectChanges() {
-    return effect_changes;
-}
-void
-SWGCorrelation::setEffectChanges(qint32 effect_changes) {
-    this->effect_changes = effect_changes;
-}
-
-float
-SWGCorrelation::getQmScore() {
-    return qm_score;
-}
-void
-SWGCorrelation::setQmScore(float qm_score) {
-    this->qm_score = qm_score;
-}
-
-QString*
-SWGCorrelation::getError() {
-    return error;
-}
-void
-SWGCorrelation::setError(QString* error) {
-    this->error = error;
-}
-
-QDateTime*
-SWGCorrelation::getCreatedAt() {
-    return created_at;
-}
-void
-SWGCorrelation::setCreatedAt(QDateTime* created_at) {
-    this->created_at = created_at;
-}
-
-QDateTime*
-SWGCorrelation::getUpdatedAt() {
-    return updated_at;
-}
-void
-SWGCorrelation::setUpdatedAt(QDateTime* updated_at) {
-    this->updated_at = updated_at;
-}
-
-float
-SWGCorrelation::getReversePearsonCorrelationCoefficient() {
-    return reverse_pearson_correlation_coefficient;
-}
-void
-SWGCorrelation::setReversePearsonCorrelationCoefficient(float reverse_pearson_correlation_coefficient) {
-    this->reverse_pearson_correlation_coefficient = reverse_pearson_correlation_coefficient;
-}
-
-float
-SWGCorrelation::getPredictivePearsonCorrelationCoefficient() {
-    return predictive_pearson_correlation_coefficient;
-}
-void
-SWGCorrelation::setPredictivePearsonCorrelationCoefficient(float predictive_pearson_correlation_coefficient) {
-    this->predictive_pearson_correlation_coefficient = predictive_pearson_correlation_coefficient;
+SWGCorrelation::setCauseUnitId(qint32 causeUnitId) {
+    this->causeUnitId = causeUnitId;
 }
 
 
